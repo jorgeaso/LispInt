@@ -1,4 +1,4 @@
-// $ANTLR 3.5 /Users/jorgejaso/NetBeansProjects/LispInt/src/Lisp.g 2013-06-28 01:28:09
+// $ANTLR 3.5 /Users/jorgejaso/NetBeansProjects/LispInt/src/Lisp.g 2013-06-28 03:49:23
 
 import org.antlr.runtime.*;
 import java.util.Stack;
@@ -42,8 +42,8 @@ public class LispLexer extends Lexer {
 		try {
 			int _type = PUT;
 			int _channel = DEFAULT_TOKEN_CHANNEL;
-			// /Users/jorgejaso/NetBeansProjects/LispInt/src/Lisp.g:45:5: ( 'put' )
-			// /Users/jorgejaso/NetBeansProjects/LispInt/src/Lisp.g:45:7: 'put'
+			// /Users/jorgejaso/NetBeansProjects/LispInt/src/Lisp.g:47:5: ( 'put' )
+			// /Users/jorgejaso/NetBeansProjects/LispInt/src/Lisp.g:47:7: 'put'
 			{
 			match("put"); 
 
@@ -63,8 +63,8 @@ public class LispLexer extends Lexer {
 		try {
 			int _type = SETQ;
 			int _channel = DEFAULT_TOKEN_CHANNEL;
-			// /Users/jorgejaso/NetBeansProjects/LispInt/src/Lisp.g:46:6: ( 'setq' )
-			// /Users/jorgejaso/NetBeansProjects/LispInt/src/Lisp.g:46:8: 'setq'
+			// /Users/jorgejaso/NetBeansProjects/LispInt/src/Lisp.g:48:6: ( 'setq' )
+			// /Users/jorgejaso/NetBeansProjects/LispInt/src/Lisp.g:48:8: 'setq'
 			{
 			match("setq"); 
 
@@ -84,8 +84,8 @@ public class LispLexer extends Lexer {
 		try {
 			int _type = ASSN;
 			int _channel = DEFAULT_TOKEN_CHANNEL;
-			// /Users/jorgejaso/NetBeansProjects/LispInt/src/Lisp.g:48:6: ( '=' )
-			// /Users/jorgejaso/NetBeansProjects/LispInt/src/Lisp.g:48:8: '='
+			// /Users/jorgejaso/NetBeansProjects/LispInt/src/Lisp.g:50:6: ( '=' )
+			// /Users/jorgejaso/NetBeansProjects/LispInt/src/Lisp.g:50:8: '='
 			{
 			match('='); 
 			}
@@ -104,8 +104,8 @@ public class LispLexer extends Lexer {
 		try {
 			int _type = PLUS;
 			int _channel = DEFAULT_TOKEN_CHANNEL;
-			// /Users/jorgejaso/NetBeansProjects/LispInt/src/Lisp.g:49:6: ( '+' )
-			// /Users/jorgejaso/NetBeansProjects/LispInt/src/Lisp.g:49:8: '+'
+			// /Users/jorgejaso/NetBeansProjects/LispInt/src/Lisp.g:51:6: ( '+' )
+			// /Users/jorgejaso/NetBeansProjects/LispInt/src/Lisp.g:51:8: '+'
 			{
 			match('+'); 
 			}
@@ -124,8 +124,8 @@ public class LispLexer extends Lexer {
 		try {
 			int _type = MINUS;
 			int _channel = DEFAULT_TOKEN_CHANNEL;
-			// /Users/jorgejaso/NetBeansProjects/LispInt/src/Lisp.g:50:7: ( '-' )
-			// /Users/jorgejaso/NetBeansProjects/LispInt/src/Lisp.g:50:9: '-'
+			// /Users/jorgejaso/NetBeansProjects/LispInt/src/Lisp.g:52:7: ( '-' )
+			// /Users/jorgejaso/NetBeansProjects/LispInt/src/Lisp.g:52:9: '-'
 			{
 			match('-'); 
 			}
@@ -144,8 +144,8 @@ public class LispLexer extends Lexer {
 		try {
 			int _type = TIMES;
 			int _channel = DEFAULT_TOKEN_CHANNEL;
-			// /Users/jorgejaso/NetBeansProjects/LispInt/src/Lisp.g:51:7: ( '*' )
-			// /Users/jorgejaso/NetBeansProjects/LispInt/src/Lisp.g:51:9: '*'
+			// /Users/jorgejaso/NetBeansProjects/LispInt/src/Lisp.g:53:7: ( '*' )
+			// /Users/jorgejaso/NetBeansProjects/LispInt/src/Lisp.g:53:9: '*'
 			{
 			match('*'); 
 			}
@@ -164,8 +164,8 @@ public class LispLexer extends Lexer {
 		try {
 			int _type = QUOTIENT;
 			int _channel = DEFAULT_TOKEN_CHANNEL;
-			// /Users/jorgejaso/NetBeansProjects/LispInt/src/Lisp.g:52:13: ( '/' )
-			// /Users/jorgejaso/NetBeansProjects/LispInt/src/Lisp.g:52:17: '/'
+			// /Users/jorgejaso/NetBeansProjects/LispInt/src/Lisp.g:54:13: ( '/' )
+			// /Users/jorgejaso/NetBeansProjects/LispInt/src/Lisp.g:54:17: '/'
 			{
 			match('/'); 
 			}
@@ -184,8 +184,8 @@ public class LispLexer extends Lexer {
 		try {
 			int _type = LPAR;
 			int _channel = DEFAULT_TOKEN_CHANNEL;
-			// /Users/jorgejaso/NetBeansProjects/LispInt/src/Lisp.g:53:6: ( '(' )
-			// /Users/jorgejaso/NetBeansProjects/LispInt/src/Lisp.g:53:8: '('
+			// /Users/jorgejaso/NetBeansProjects/LispInt/src/Lisp.g:55:6: ( '(' )
+			// /Users/jorgejaso/NetBeansProjects/LispInt/src/Lisp.g:55:8: '('
 			{
 			match('('); 
 			}
@@ -204,8 +204,8 @@ public class LispLexer extends Lexer {
 		try {
 			int _type = RPAR;
 			int _channel = DEFAULT_TOKEN_CHANNEL;
-			// /Users/jorgejaso/NetBeansProjects/LispInt/src/Lisp.g:54:6: ( ')' )
-			// /Users/jorgejaso/NetBeansProjects/LispInt/src/Lisp.g:54:8: ')'
+			// /Users/jorgejaso/NetBeansProjects/LispInt/src/Lisp.g:56:6: ( ')' )
+			// /Users/jorgejaso/NetBeansProjects/LispInt/src/Lisp.g:56:8: ')'
 			{
 			match(')'); 
 			}
@@ -224,10 +224,10 @@ public class LispLexer extends Lexer {
 		try {
 			int _type = ID;
 			int _channel = DEFAULT_TOKEN_CHANNEL;
-			// /Users/jorgejaso/NetBeansProjects/LispInt/src/Lisp.g:56:4: ( ( 'a' .. 'z' )+ )
-			// /Users/jorgejaso/NetBeansProjects/LispInt/src/Lisp.g:56:6: ( 'a' .. 'z' )+
+			// /Users/jorgejaso/NetBeansProjects/LispInt/src/Lisp.g:58:4: ( ( 'a' .. 'z' )+ )
+			// /Users/jorgejaso/NetBeansProjects/LispInt/src/Lisp.g:58:6: ( 'a' .. 'z' )+
 			{
-			// /Users/jorgejaso/NetBeansProjects/LispInt/src/Lisp.g:56:6: ( 'a' .. 'z' )+
+			// /Users/jorgejaso/NetBeansProjects/LispInt/src/Lisp.g:58:6: ( 'a' .. 'z' )+
 			int cnt1=0;
 			loop1:
 			while (true) {
@@ -276,10 +276,10 @@ public class LispLexer extends Lexer {
 		try {
 			int _type = NUM;
 			int _channel = DEFAULT_TOKEN_CHANNEL;
-			// /Users/jorgejaso/NetBeansProjects/LispInt/src/Lisp.g:57:5: ( ( '0' .. '9' )+ )
-			// /Users/jorgejaso/NetBeansProjects/LispInt/src/Lisp.g:57:7: ( '0' .. '9' )+
+			// /Users/jorgejaso/NetBeansProjects/LispInt/src/Lisp.g:59:5: ( ( '0' .. '9' )+ )
+			// /Users/jorgejaso/NetBeansProjects/LispInt/src/Lisp.g:59:7: ( '0' .. '9' )+
 			{
-			// /Users/jorgejaso/NetBeansProjects/LispInt/src/Lisp.g:57:7: ( '0' .. '9' )+
+			// /Users/jorgejaso/NetBeansProjects/LispInt/src/Lisp.g:59:7: ( '0' .. '9' )+
 			int cnt2=0;
 			loop2:
 			while (true) {
@@ -328,10 +328,10 @@ public class LispLexer extends Lexer {
 		try {
 			int _type = EOL;
 			int _channel = DEFAULT_TOKEN_CHANNEL;
-			// /Users/jorgejaso/NetBeansProjects/LispInt/src/Lisp.g:59:5: ( ( '\\r' )? '\\n' )
-			// /Users/jorgejaso/NetBeansProjects/LispInt/src/Lisp.g:59:7: ( '\\r' )? '\\n'
+			// /Users/jorgejaso/NetBeansProjects/LispInt/src/Lisp.g:61:5: ( ( '\\r' )? '\\n' )
+			// /Users/jorgejaso/NetBeansProjects/LispInt/src/Lisp.g:61:7: ( '\\r' )? '\\n'
 			{
-			// /Users/jorgejaso/NetBeansProjects/LispInt/src/Lisp.g:59:7: ( '\\r' )?
+			// /Users/jorgejaso/NetBeansProjects/LispInt/src/Lisp.g:61:7: ( '\\r' )?
 			int alt3=2;
 			int LA3_0 = input.LA(1);
 			if ( (LA3_0=='\r') ) {
@@ -339,7 +339,7 @@ public class LispLexer extends Lexer {
 			}
 			switch (alt3) {
 				case 1 :
-					// /Users/jorgejaso/NetBeansProjects/LispInt/src/Lisp.g:59:7: '\\r'
+					// /Users/jorgejaso/NetBeansProjects/LispInt/src/Lisp.g:61:7: '\\r'
 					{
 					match('\r'); 
 					}
@@ -364,16 +364,16 @@ public class LispLexer extends Lexer {
 		try {
 			int _type = SPACE;
 			int _channel = DEFAULT_TOKEN_CHANNEL;
-			// /Users/jorgejaso/NetBeansProjects/LispInt/src/Lisp.g:61:7: ( ( ' ' | '\\t' )+ )
-			// /Users/jorgejaso/NetBeansProjects/LispInt/src/Lisp.g:61:9: ( ' ' | '\\t' )+
+			// /Users/jorgejaso/NetBeansProjects/LispInt/src/Lisp.g:63:7: ( ( ' ' | '\\t' | '\\r' | '\\n' )+ )
+			// /Users/jorgejaso/NetBeansProjects/LispInt/src/Lisp.g:63:9: ( ' ' | '\\t' | '\\r' | '\\n' )+
 			{
-			// /Users/jorgejaso/NetBeansProjects/LispInt/src/Lisp.g:61:9: ( ' ' | '\\t' )+
+			// /Users/jorgejaso/NetBeansProjects/LispInt/src/Lisp.g:63:9: ( ' ' | '\\t' | '\\r' | '\\n' )+
 			int cnt4=0;
 			loop4:
 			while (true) {
 				int alt4=2;
 				int LA4_0 = input.LA(1);
-				if ( (LA4_0=='\t'||LA4_0==' ') ) {
+				if ( ((LA4_0 >= '\t' && LA4_0 <= '\n')||LA4_0=='\r'||LA4_0==' ') ) {
 					alt4=1;
 				}
 
@@ -381,7 +381,7 @@ public class LispLexer extends Lexer {
 				case 1 :
 					// /Users/jorgejaso/NetBeansProjects/LispInt/src/Lisp.g:
 					{
-					if ( input.LA(1)=='\t'||input.LA(1)==' ' ) {
+					if ( (input.LA(1) >= '\t' && input.LA(1) <= '\n')||input.LA(1)=='\r'||input.LA(1)==' ' ) {
 						input.consume();
 					}
 					else {
@@ -421,10 +421,10 @@ public class LispLexer extends Lexer {
 			{
 			int LA5_1 = input.LA(2);
 			if ( (LA5_1=='u') ) {
-				int LA5_14 = input.LA(3);
-				if ( (LA5_14=='t') ) {
-					int LA5_16 = input.LA(4);
-					if ( ((LA5_16 >= 'a' && LA5_16 <= 'z')) ) {
+				int LA5_15 = input.LA(3);
+				if ( (LA5_15=='t') ) {
+					int LA5_18 = input.LA(4);
+					if ( ((LA5_18 >= 'a' && LA5_18 <= 'z')) ) {
 						alt5=10;
 					}
 
@@ -450,12 +450,12 @@ public class LispLexer extends Lexer {
 			{
 			int LA5_2 = input.LA(2);
 			if ( (LA5_2=='e') ) {
-				int LA5_15 = input.LA(3);
-				if ( (LA5_15=='t') ) {
-					int LA5_17 = input.LA(4);
-					if ( (LA5_17=='q') ) {
-						int LA5_19 = input.LA(5);
-						if ( ((LA5_19 >= 'a' && LA5_19 <= 'z')) ) {
+				int LA5_16 = input.LA(3);
+				if ( (LA5_16=='t') ) {
+					int LA5_19 = input.LA(4);
+					if ( (LA5_19=='q') ) {
+						int LA5_21 = input.LA(5);
+						if ( ((LA5_21 >= 'a' && LA5_21 <= 'z')) ) {
 							alt5=10;
 						}
 
@@ -560,10 +560,38 @@ public class LispLexer extends Lexer {
 			alt5=11;
 			}
 			break;
-		case '\n':
 		case '\r':
 			{
-			alt5=12;
+			int LA5_12 = input.LA(2);
+			if ( (LA5_12=='\n') ) {
+				int LA5_13 = input.LA(3);
+				if ( ((LA5_13 >= '\t' && LA5_13 <= '\n')||LA5_13=='\r'||LA5_13==' ') ) {
+					alt5=13;
+				}
+
+				else {
+					alt5=12;
+				}
+
+			}
+
+			else {
+				alt5=13;
+			}
+
+			}
+			break;
+		case '\n':
+			{
+			int LA5_13 = input.LA(2);
+			if ( ((LA5_13 >= '\t' && LA5_13 <= '\n')||LA5_13=='\r'||LA5_13==' ') ) {
+				alt5=13;
+			}
+
+			else {
+				alt5=12;
+			}
+
 			}
 			break;
 		case '\t':

@@ -8,7 +8,7 @@ grammar Lisp;
 // Programs 
 
 prog
-	:	com* EOF   // A program is composed from commands and "End Of File""
+	:	com* EOF   
 	;
 
 // Commands
@@ -23,12 +23,15 @@ com
 // Expressions
 
 expr		                     returns [int value]
-	:	v1=term              { $value = $v1.value; }
-		( PLUS v2=term       { $value += $v2.value; }
-		| MINUS v2=term      { $value -= $v2.value; }
-		| TIMES v2=term      { $value *= $v2.value; }
-                | QUOTIENT v2=term   { $value /= $v2.value; }
+	:	
+		( PLUS      { $operator = '+'; }
+		| MINUS     { $operator = '-'; }
+		| TIMES     { $operator = '*'; }
+                | QUOTIENT  { $operator = '/'; }
 		)*
+                v1=term              { $v1 = $v1.value; }
+                v2=term              { $v2 = $v2.value; }
+                                     { $value = $v1 $operator $v2; }
 	;
 
 term		                     returns [int value]
