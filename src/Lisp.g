@@ -53,7 +53,7 @@ QUOTIENT    :   '/' ;
 LPAR	:	'(' ;
 RPAR	:	')' ;
 
-ID	:	'a'..'z'+ ;
+ID	:	'a'..'z' ;
 NUM	:	'0'..'9'+ ;
 
 EOL	:	'\r'? '\n' ;
