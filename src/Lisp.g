@@ -8,7 +8,7 @@ grammar Lisp;
 // Programs 
 
 prog
-	:	com* EOF
+	:	com* EOF   // A program is composed from commands and "End Of File""
 	;
 
 // Commands

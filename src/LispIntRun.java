@@ -4,10 +4,7 @@ import org.antlr.runtime.*;
 public class LispIntRun {
 
 	public static void main(String[] args) throws Exception {
-		//InputStream source = new FileInputStream(args[0]);
-		//CalcLexer lexer = new CalcLexer(
-		  // new ANTLRInputStream(source));
-		
+		// Reads the specified name of the file provided in argument 0
                 CharStream cs= new ANTLRFileStream(args[0]);
 		LispLexer lexer = new LispLexer (cs);
             
