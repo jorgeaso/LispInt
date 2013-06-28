@@ -1,4 +1,4 @@
-// $ANTLR 3.5 /Users/jorgejaso/NetBeansProjects/LispInt/src/Lisp.g 2013-06-28 03:49:22
+// $ANTLR 3.5 /Users/jorgejaso/NetBeansProjects/LispInt/src/Lisp.g 2013-06-28 13:16:45
 
 import org.antlr.runtime.*;
 import java.util.Stack;
@@ -45,19 +45,20 @@ public class LispParser extends Parser {
 	@Override public String getGrammarFileName() { return "/Users/jorgejaso/NetBeansProjects/LispInt/src/Lisp.g"; }
 
 
+	        
 		private int[] store = new int[26]; // implement hashmap
 		// ... storage for variables 'a', ..., 'z'
 
 
 
 	// $ANTLR start "prog"
-	// /Users/jorgejaso/NetBeansProjects/LispInt/src/Lisp.g:10:1: prog : ( com )* EOF ;
+	// /Users/jorgejaso/NetBeansProjects/LispInt/src/Lisp.g:11:1: prog : ( com )* EOF ;
 	public final void prog() throws RecognitionException {
 		try {
-			// /Users/jorgejaso/NetBeansProjects/LispInt/src/Lisp.g:11:2: ( ( com )* EOF )
-			// /Users/jorgejaso/NetBeansProjects/LispInt/src/Lisp.g:11:4: ( com )* EOF
+			// /Users/jorgejaso/NetBeansProjects/LispInt/src/Lisp.g:12:2: ( ( com )* EOF )
+			// /Users/jorgejaso/NetBeansProjects/LispInt/src/Lisp.g:12:4: ( com )* EOF
 			{
-			// /Users/jorgejaso/NetBeansProjects/LispInt/src/Lisp.g:11:4: ( com )*
+			// /Users/jorgejaso/NetBeansProjects/LispInt/src/Lisp.g:12:4: ( com )*
 			loop1:
 			while (true) {
 				int alt1=2;
@@ -68,7 +69,7 @@ public class LispParser extends Parser {
 
 				switch (alt1) {
 				case 1 :
-					// /Users/jorgejaso/NetBeansProjects/LispInt/src/Lisp.g:11:4: com
+					// /Users/jorgejaso/NetBeansProjects/LispInt/src/Lisp.g:12:4: com
 					{
 					pushFollow(FOLLOW_com_in_prog19);
 					com();
@@ -99,13 +100,13 @@ public class LispParser extends Parser {
 
 
 	// $ANTLR start "com"
-	// /Users/jorgejaso/NetBeansProjects/LispInt/src/Lisp.g:16:1: com : ( PUT v= expr EOL | LPAR SETQ ID v= expr RPAR EOL );
+	// /Users/jorgejaso/NetBeansProjects/LispInt/src/Lisp.g:17:1: com : ( PUT v= expr EOL | LPAR SETQ ID v= expr RPAR EOL );
 	public final void com() throws RecognitionException {
 		Token ID1=null;
 		int v =0;
 
 		try {
-			// /Users/jorgejaso/NetBeansProjects/LispInt/src/Lisp.g:17:2: ( PUT v= expr EOL | LPAR SETQ ID v= expr RPAR EOL )
+			// /Users/jorgejaso/NetBeansProjects/LispInt/src/Lisp.g:18:2: ( PUT v= expr EOL | LPAR SETQ ID v= expr RPAR EOL )
 			int alt2=2;
 			int LA2_0 = input.LA(1);
 			if ( (LA2_0==PUT) ) {
@@ -123,7 +124,7 @@ public class LispParser extends Parser {
 
 			switch (alt2) {
 				case 1 :
-					// /Users/jorgejaso/NetBeansProjects/LispInt/src/Lisp.g:17:4: PUT v= expr EOL
+					// /Users/jorgejaso/NetBeansProjects/LispInt/src/Lisp.g:18:4: PUT v= expr EOL
 					{
 					match(input,PUT,FOLLOW_PUT_in_com38); 
 					pushFollow(FOLLOW_expr_in_com42);
@@ -135,7 +136,7 @@ public class LispParser extends Parser {
 					}
 					break;
 				case 2 :
-					// /Users/jorgejaso/NetBeansProjects/LispInt/src/Lisp.g:18:4: LPAR SETQ ID v= expr RPAR EOL
+					// /Users/jorgejaso/NetBeansProjects/LispInt/src/Lisp.g:19:4: LPAR SETQ ID v= expr RPAR EOL
 					{
 					match(input,LPAR,FOLLOW_LPAR_in_com57); 
 					match(input,SETQ,FOLLOW_SETQ_in_com59); 
@@ -167,111 +168,77 @@ public class LispParser extends Parser {
 
 
 	// $ANTLR start "expr"
-	// /Users/jorgejaso/NetBeansProjects/LispInt/src/Lisp.g:25:1: expr returns [int value] : ( PLUS v1= term v2= term | MINUS v1= term v2= term | TIMES v1= term v2= term | QUOTIENT v1= term v2= term )* ;
+	// /Users/jorgejaso/NetBeansProjects/LispInt/src/Lisp.g:26:1: expr returns [int value] : LPAR ( PLUS | MINUS | TIMES | QUOTIENT ) RPAR ;
 	public final int expr() throws RecognitionException {
 		int value = 0;
 
 
-		int v1 =0;
-		int v2 =0;
-
 		try {
-			// /Users/jorgejaso/NetBeansProjects/LispInt/src/Lisp.g:26:2: ( ( PLUS v1= term v2= term | MINUS v1= term v2= term | TIMES v1= term v2= term | QUOTIENT v1= term v2= term )* )
-			// /Users/jorgejaso/NetBeansProjects/LispInt/src/Lisp.g:28:3: ( PLUS v1= term v2= term | MINUS v1= term v2= term | TIMES v1= term v2= term | QUOTIENT v1= term v2= term )*
+			// /Users/jorgejaso/NetBeansProjects/LispInt/src/Lisp.g:27:2: ( LPAR ( PLUS | MINUS | TIMES | QUOTIENT ) RPAR )
+			// /Users/jorgejaso/NetBeansProjects/LispInt/src/Lisp.g:28:3: LPAR ( PLUS | MINUS | TIMES | QUOTIENT ) RPAR
 			{
-			// /Users/jorgejaso/NetBeansProjects/LispInt/src/Lisp.g:28:3: ( PLUS v1= term v2= term | MINUS v1= term v2= term | TIMES v1= term v2= term | QUOTIENT v1= term v2= term )*
-			loop3:
-			while (true) {
-				int alt3=5;
-				switch ( input.LA(1) ) {
-				case PLUS:
-					{
-					alt3=1;
-					}
-					break;
-				case MINUS:
-					{
-					alt3=2;
-					}
-					break;
-				case TIMES:
-					{
-					alt3=3;
-					}
-					break;
-				case QUOTIENT:
-					{
-					alt3=4;
-					}
-					break;
+			match(input,LPAR,FOLLOW_LPAR_in_expr121); 
+			// /Users/jorgejaso/NetBeansProjects/LispInt/src/Lisp.g:29:17: ( PLUS | MINUS | TIMES | QUOTIENT )
+			int alt3=4;
+			switch ( input.LA(1) ) {
+			case PLUS:
+				{
+				alt3=1;
 				}
-				switch (alt3) {
+				break;
+			case MINUS:
+				{
+				alt3=2;
+				}
+				break;
+			case TIMES:
+				{
+				alt3=3;
+				}
+				break;
+			case QUOTIENT:
+				{
+				alt3=4;
+				}
+				break;
+			default:
+				NoViableAltException nvae =
+					new NoViableAltException("", 3, 0, input);
+				throw nvae;
+			}
+			switch (alt3) {
 				case 1 :
-					// /Users/jorgejaso/NetBeansProjects/LispInt/src/Lisp.g:28:5: PLUS v1= term v2= term
+					// /Users/jorgejaso/NetBeansProjects/LispInt/src/Lisp.g:29:19: PLUS
 					{
-					match(input,PLUS,FOLLOW_PLUS_in_expr139); 
-					pushFollow(FOLLOW_term_in_expr143);
-					v1=term();
-					state._fsp--;
-
-					pushFollow(FOLLOW_term_in_expr147);
-					v2=term();
-					state._fsp--;
-
-					 value = v1; value = v1 + v2; 
+					match(input,PLUS,FOLLOW_PLUS_in_expr141); 
+					 value = $v1.value + $v2.value; 
 					}
 					break;
 				case 2 :
-					// /Users/jorgejaso/NetBeansProjects/LispInt/src/Lisp.g:29:5: MINUS v1= term v2= term
+					// /Users/jorgejaso/NetBeansProjects/LispInt/src/Lisp.g:30:5: MINUS
 					{
-					match(input,MINUS,FOLLOW_MINUS_in_expr161); 
-					pushFollow(FOLLOW_term_in_expr165);
-					v1=term();
-					state._fsp--;
-
-					pushFollow(FOLLOW_term_in_expr169);
-					v2=term();
-					state._fsp--;
-
-					 value = v1; value = v1 - v2; 
+					match(input,MINUS,FOLLOW_MINUS_in_expr154); 
+					 value = $v1.value - $v2.value; 
 					}
 					break;
 				case 3 :
-					// /Users/jorgejaso/NetBeansProjects/LispInt/src/Lisp.g:30:5: TIMES v1= term v2= term
+					// /Users/jorgejaso/NetBeansProjects/LispInt/src/Lisp.g:31:5: TIMES
 					{
-					match(input,TIMES,FOLLOW_TIMES_in_expr182); 
-					pushFollow(FOLLOW_term_in_expr186);
-					v1=term();
-					state._fsp--;
-
-					pushFollow(FOLLOW_term_in_expr190);
-					v2=term();
-					state._fsp--;
-
-					 value = v1; value = v1 * v2; 
+					match(input,TIMES,FOLLOW_TIMES_in_expr166); 
+					 value = $v1.value * $v2.value; 
 					}
 					break;
 				case 4 :
-					// /Users/jorgejaso/NetBeansProjects/LispInt/src/Lisp.g:31:19: QUOTIENT v1= term v2= term
+					// /Users/jorgejaso/NetBeansProjects/LispInt/src/Lisp.g:32:19: QUOTIENT
 					{
-					match(input,QUOTIENT,FOLLOW_QUOTIENT_in_expr217); 
-					pushFollow(FOLLOW_term_in_expr221);
-					v1=term();
-					state._fsp--;
-
-					pushFollow(FOLLOW_term_in_expr225);
-					v2=term();
-					state._fsp--;
-
-					 value = v1; value = v1 / v2; 
+					match(input,QUOTIENT,FOLLOW_QUOTIENT_in_expr192); 
+					 value = $v1.value / $v2.value; 
 					}
 					break;
 
-				default :
-					break loop3;
-				}
 			}
 
+			match(input,RPAR,FOLLOW_RPAR_in_expr217); 
 			}
 
 		}
@@ -289,7 +256,7 @@ public class LispParser extends Parser {
 
 
 	// $ANTLR start "term"
-	// /Users/jorgejaso/NetBeansProjects/LispInt/src/Lisp.g:36:1: term returns [int value] : ( NUM | ID | LPAR v= expr RPAR );
+	// /Users/jorgejaso/NetBeansProjects/LispInt/src/Lisp.g:37:1: term returns [int value] : ( NUM | ID | LPAR v= expr RPAR );
 	public final int term() throws RecognitionException {
 		int value = 0;
 
@@ -299,7 +266,7 @@ public class LispParser extends Parser {
 		int v =0;
 
 		try {
-			// /Users/jorgejaso/NetBeansProjects/LispInt/src/Lisp.g:37:2: ( NUM | ID | LPAR v= expr RPAR )
+			// /Users/jorgejaso/NetBeansProjects/LispInt/src/Lisp.g:38:2: ( NUM | ID | LPAR v= expr RPAR )
 			int alt4=3;
 			switch ( input.LA(1) ) {
 			case NUM:
@@ -324,31 +291,31 @@ public class LispParser extends Parser {
 			}
 			switch (alt4) {
 				case 1 :
-					// /Users/jorgejaso/NetBeansProjects/LispInt/src/Lisp.g:37:4: NUM
+					// /Users/jorgejaso/NetBeansProjects/LispInt/src/Lisp.g:38:4: NUM
 					{
-					NUM2=(Token)match(input,NUM,FOLLOW_NUM_in_term288); 
+					NUM2=(Token)match(input,NUM,FOLLOW_NUM_in_term254); 
 					 value = Integer.parseInt(
 							                         (NUM2!=null?NUM2.getText():null)); 
 					}
 					break;
 				case 2 :
-					// /Users/jorgejaso/NetBeansProjects/LispInt/src/Lisp.g:39:4: ID
+					// /Users/jorgejaso/NetBeansProjects/LispInt/src/Lisp.g:40:4: ID
 					{
-					ID3=(Token)match(input,ID,FOLLOW_ID_in_term312); 
+					ID3=(Token)match(input,ID,FOLLOW_ID_in_term278); 
 					 int a =
 							                         (ID3!=null?ID3.getText():null).charAt(0) - 'a'; 
 							                       value = store[a]; 
 					}
 					break;
 				case 3 :
-					// /Users/jorgejaso/NetBeansProjects/LispInt/src/Lisp.g:42:4: LPAR v= expr RPAR
+					// /Users/jorgejaso/NetBeansProjects/LispInt/src/Lisp.g:43:4: LPAR v= expr RPAR
 					{
-					match(input,LPAR,FOLLOW_LPAR_in_term337); 
-					pushFollow(FOLLOW_expr_in_term341);
+					match(input,LPAR,FOLLOW_LPAR_in_term303); 
+					pushFollow(FOLLOW_expr_in_term307);
 					v=expr();
 					state._fsp--;
 
-					match(input,RPAR,FOLLOW_RPAR_in_term343); 
+					match(input,RPAR,FOLLOW_RPAR_in_term309); 
 					 value = v; 
 					}
 					break;
@@ -372,30 +339,24 @@ public class LispParser extends Parser {
 
 	public static final BitSet FOLLOW_com_in_prog19 = new BitSet(new long[]{0x0000000000000880L});
 	public static final BitSet FOLLOW_EOF_in_prog22 = new BitSet(new long[]{0x0000000000000002L});
-	public static final BitSet FOLLOW_PUT_in_com38 = new BitSet(new long[]{0x0000000000011520L});
+	public static final BitSet FOLLOW_PUT_in_com38 = new BitSet(new long[]{0x0000000000000080L});
 	public static final BitSet FOLLOW_expr_in_com42 = new BitSet(new long[]{0x0000000000000020L});
 	public static final BitSet FOLLOW_EOL_in_com44 = new BitSet(new long[]{0x0000000000000002L});
 	public static final BitSet FOLLOW_LPAR_in_com57 = new BitSet(new long[]{0x0000000000004000L});
 	public static final BitSet FOLLOW_SETQ_in_com59 = new BitSet(new long[]{0x0000000000000040L});
-	public static final BitSet FOLLOW_ID_in_com61 = new BitSet(new long[]{0x0000000000013500L});
+	public static final BitSet FOLLOW_ID_in_com61 = new BitSet(new long[]{0x0000000000000080L});
 	public static final BitSet FOLLOW_expr_in_com65 = new BitSet(new long[]{0x0000000000002000L});
 	public static final BitSet FOLLOW_RPAR_in_com67 = new BitSet(new long[]{0x0000000000000020L});
 	public static final BitSet FOLLOW_EOL_in_com69 = new BitSet(new long[]{0x0000000000000002L});
-	public static final BitSet FOLLOW_PLUS_in_expr139 = new BitSet(new long[]{0x00000000000002C0L});
-	public static final BitSet FOLLOW_term_in_expr143 = new BitSet(new long[]{0x00000000000002C0L});
-	public static final BitSet FOLLOW_term_in_expr147 = new BitSet(new long[]{0x0000000000011502L});
-	public static final BitSet FOLLOW_MINUS_in_expr161 = new BitSet(new long[]{0x00000000000002C0L});
-	public static final BitSet FOLLOW_term_in_expr165 = new BitSet(new long[]{0x00000000000002C0L});
-	public static final BitSet FOLLOW_term_in_expr169 = new BitSet(new long[]{0x0000000000011502L});
-	public static final BitSet FOLLOW_TIMES_in_expr182 = new BitSet(new long[]{0x00000000000002C0L});
-	public static final BitSet FOLLOW_term_in_expr186 = new BitSet(new long[]{0x00000000000002C0L});
-	public static final BitSet FOLLOW_term_in_expr190 = new BitSet(new long[]{0x0000000000011502L});
-	public static final BitSet FOLLOW_QUOTIENT_in_expr217 = new BitSet(new long[]{0x00000000000002C0L});
-	public static final BitSet FOLLOW_term_in_expr221 = new BitSet(new long[]{0x00000000000002C0L});
-	public static final BitSet FOLLOW_term_in_expr225 = new BitSet(new long[]{0x0000000000011502L});
-	public static final BitSet FOLLOW_NUM_in_term288 = new BitSet(new long[]{0x0000000000000002L});
-	public static final BitSet FOLLOW_ID_in_term312 = new BitSet(new long[]{0x0000000000000002L});
-	public static final BitSet FOLLOW_LPAR_in_term337 = new BitSet(new long[]{0x0000000000013500L});
-	public static final BitSet FOLLOW_expr_in_term341 = new BitSet(new long[]{0x0000000000002000L});
-	public static final BitSet FOLLOW_RPAR_in_term343 = new BitSet(new long[]{0x0000000000000002L});
+	public static final BitSet FOLLOW_LPAR_in_expr121 = new BitSet(new long[]{0x0000000000011500L});
+	public static final BitSet FOLLOW_PLUS_in_expr141 = new BitSet(new long[]{0x0000000000002000L});
+	public static final BitSet FOLLOW_MINUS_in_expr154 = new BitSet(new long[]{0x0000000000002000L});
+	public static final BitSet FOLLOW_TIMES_in_expr166 = new BitSet(new long[]{0x0000000000002000L});
+	public static final BitSet FOLLOW_QUOTIENT_in_expr192 = new BitSet(new long[]{0x0000000000002000L});
+	public static final BitSet FOLLOW_RPAR_in_expr217 = new BitSet(new long[]{0x0000000000000002L});
+	public static final BitSet FOLLOW_NUM_in_term254 = new BitSet(new long[]{0x0000000000000002L});
+	public static final BitSet FOLLOW_ID_in_term278 = new BitSet(new long[]{0x0000000000000002L});
+	public static final BitSet FOLLOW_LPAR_in_term303 = new BitSet(new long[]{0x0000000000000080L});
+	public static final BitSet FOLLOW_expr_in_term307 = new BitSet(new long[]{0x0000000000002000L});
+	public static final BitSet FOLLOW_RPAR_in_term309 = new BitSet(new long[]{0x0000000000000002L});
 }

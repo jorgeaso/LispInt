@@ -1,6 +1,7 @@
 grammar Lisp;
 
 @members {
+        
 	private int[] store = new int[26]; // implement hashmap
 	// ... storage for variables 'a', ..., 'z'
 }
@@ -15,7 +16,7 @@ prog
 
 com
 	:	PUT v=expr EOL       { System.out.println($v.value); }
-	|	'(' SETQ ID v=expr ')' EOL         { int a =
+	|	LPAR SETQ ID v=expr RPAR EOL         { int a =
 		                         $ID.text.charAt(0) - 'a'; 
 		                       store[a] = $v.value; }
 	;
@@ -24,14 +25,13 @@ com
 
 expr		                     returns [int value]
 	:	
-		( PLUS      { $operator = '+'; }
-		| MINUS     { $operator = '-'; }
-		| TIMES     { $operator = '*'; }
-                | QUOTIENT  { $operator = '/'; }
-		)*
-                v1=term              { $v1 = $v1.value; }
-                v2=term              { $v2 = $v2.value; }
-                                     { $value = $v1 $operator $v2; }
+		LPAR
+                ( PLUS      { $value = $v1.value ''+ $v2.value; }
+		| MINUS     { $value = $v1.value - $v2.value; }
+		| TIMES     { $value = $v1.value * $v2.value; }
+                | QUOTIENT  { $value = $v1.value / $v2.value; }
+		)
+                RPAR
 	;
 
 term		                     returns [int value]
