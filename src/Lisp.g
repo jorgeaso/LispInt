@@ -15,8 +15,8 @@ prog
 // Commands
 
 com
-	:	PUT v=expr EOL       { System.out.println($v.value); }
-	|	LPAR SETQ ID v=expr RPAR EOL         { int a =
+	:	'(' PUT v=expr ')' EOL       { System.out.println($v.value); }
+	|	'(' SETQ ID v=expr ')' EOL       { int a =
 		                         $ID.text.charAt(0) - 'a'; 
 		                       store[a] = $v.value; }
 	;
@@ -24,14 +24,13 @@ com
 // Expressions
 
 expr		                     returns [int value]
-	:	
-		LPAR
-                ( PLUS      { $value = $v1.value ''+ $v2.value; }
-		| MINUS     { $value = $v1.value - $v2.value; }
-		| TIMES     { $value = $v1.value * $v2.value; }
-                | QUOTIENT  { $value = $v1.value / $v2.value; }
-		)
-                RPAR
+	:	v1=term              { $value = $v1.value; }
+		('('
+                PLUS v1=expr v2=expr ')' {$value = $v1.value+$v2.value;}
+                | '(' MINUS v1=expr v2=expr ')' {$value = $v1.value-$v2.value;} 
+                | '(' TIMES v1=expr v2=expr ')' {$value = $v1.value*$v2.value;}
+                | '(' QUOTIENT v1=expr v2=expr ')' {$value = $v1.value-$v2.value;}
+                )*
 	;
 
 term		                     returns [int value]

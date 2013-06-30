@@ -11,3 +11,5 @@ RPAR=13
 SETQ=14
 SPACE=15
 TIMES=16
+'('=7
+')'=13
