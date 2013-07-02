@@ -13,7 +13,7 @@ public class LispIntGUI extends JFrame implements ActionListener {
     /** GUI Buttons **/
     private JButton executeButton, exitButton;
     /** GUI TextArea to display source lisp code and output */
-    private JTextArea displayCode, displayOutput;
+    private JTextArea CodeTextArea, OutputTextArea;
     /** GUI Label output */
     private JLabel SourceLabel, EmptyLabel, OutputLabel;
     /** Name of input file */
@@ -34,20 +34,33 @@ public class LispIntGUI extends JFrame implements ActionListener {
                 
     // JPanel containing JTextArea and Execute Button
     public void layoutTop(String Code) {
-            JPanel topJPanel = new JPanel(new GridLayout(3, 1));
+            JPanel topJPanel = new JPanel();
+            topJPanel.setLayout(new BorderLayout());
+            JPanel UpperTop = new JPanel();
+            JPanel MiddleTop = new JPanel();
+            JPanel LowerTop = new JPanel();
             //topJPanel.setBackground(Color.red);
             SourceLabel= new JLabel("Source Lisp Code:");
-            topJPanel.add(SourceLabel);
-            displayCode = new JTextArea();
-            displayCode.setFont(new Font("Courier", Font.PLAIN, 14));
-            displayCode.setEditable(false);
-            displayCode.setText(Code);
-            topJPanel.add(displayCode);
+            UpperTop.add(SourceLabel, BorderLayout.NORTH);
+            //UpperTop.add(SourceLabel);
+            //topJPanel.add(SourceLabel);
+            
+            CodeTextArea = new JTextArea(7,75);
+            CodeTextArea.setFont(new Font("Courier", Font.PLAIN, 14));
+            CodeTextArea.setEditable(false);
+            CodeTextArea.setText(Code);
+            JScrollPane scrollPane = new JScrollPane(CodeTextArea);
+            MiddleTop.add(scrollPane,BorderLayout.CENTER);
+            //topJPanel.add(scrollPane);
 
             executeButton = new JButton("Execute");
             executeButton.addActionListener(this);
-            topJPanel.add(executeButton);
-            
+            //topJPanel.add(executeButton);
+            LowerTop.add(executeButton, BorderLayout.SOUTH);
+
+            topJPanel.add(UpperTop, BorderLayout.NORTH);
+            topJPanel.add(MiddleTop, BorderLayout.CENTER);
+            topJPanel.add(LowerTop, BorderLayout.SOUTH);
             add(topJPanel, BorderLayout.NORTH);
     }
     
@@ -66,20 +79,32 @@ public class LispIntGUI extends JFrame implements ActionListener {
      * JPanel containing Label, JTextArea and Exit Button
      */
     public void layoutBottom() {
-            JPanel bottomJPanel = new JPanel((new GridLayout(3, 1)));
+            JPanel bottomJPanel = new JPanel();
+            bottomJPanel.setLayout(new BorderLayout());
+            JPanel UpperBottom = new JPanel();
+            JPanel MiddleBottom = new JPanel();
+            JPanel LowerBottom = new JPanel();
             //bottomJPanel.setBackground(Color.blue);
             OutputLabel= new JLabel("Output:");
-            bottomJPanel.add(OutputLabel);
-            displayOutput = new JTextArea();
-            displayOutput.setFont(new Font("Courier", Font.PLAIN, 14));
-            displayOutput.setEditable(false);
-            bottomJPanel.add(displayOutput);
+            UpperBottom.add(OutputLabel, BorderLayout.NORTH);
+            //bottomJPanel.add(OutputLabel);
+            OutputTextArea = new JTextArea(7,75);
+            OutputTextArea.setFont(new Font("Courier", Font.PLAIN, 14));
+            OutputTextArea.setEditable(false);
+            JScrollPane scrollPane = new JScrollPane(OutputTextArea);
+            MiddleBottom.add(scrollPane,BorderLayout.CENTER);
+            //bottomJPanel.add(scrollPane);
             //add(displayOutput, BorderLayout.NORTH);
             exitButton = new JButton("Exit");
             exitButton.addActionListener(this);
-            bottomJPanel.add(exitButton);
+            LowerBottom.add(exitButton, BorderLayout.SOUTH);
+            //bottomJPanel.add(exitButton);
 
+            bottomJPanel.add(UpperBottom, BorderLayout.NORTH);
+            bottomJPanel.add(MiddleBottom, BorderLayout.CENTER);
+            bottomJPanel.add(LowerBottom, BorderLayout.SOUTH);
             add(bottomJPanel, BorderLayout.SOUTH);
+            //add(bottomJPanel, BorderLayout.SOUTH);
     }
         
     	/**

@@ -8,6 +8,7 @@ public class LispIntRun {
 	public static void main(String[] args) throws Exception {
 		// Reads the specified name of the file through an input dialog box
                 String SourceFile= JOptionPane.showInputDialog(null, "Enter source file name:");
+                SourceFile =SourceFile.trim();
                 if(SourceFile.equals("")|| SourceFile==null){
                     System.exit(0);
                 } else {
