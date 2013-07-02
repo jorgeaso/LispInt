@@ -1,4 +1,4 @@
-// $ANTLR 3.5 /Users/jorgejaso/NetBeansProjects/LispInt/src/Lisp.g 2013-07-02 14:11:04
+// $ANTLR 3.5 /Users/jorgejaso/NetBeansProjects/LispInt/src/Lisp.g 2013-07-02 16:45:42
 
 import org.antlr.runtime.*;
 import java.util.Stack;
@@ -150,7 +150,7 @@ public class LispParser extends Parser {
 
 					match(input,RPAR,FOLLOW_RPAR_in_com46); 
 					match(input,EOL,FOLLOW_EOL_in_com48); 
-					 System.out.println(v); 
+					 LispIntRun.output.println(v); 
 					}
 					break;
 				case 2 :
@@ -354,7 +354,7 @@ public class LispParser extends Parser {
 							state._fsp--;
 
 							match(input,RPAR,FOLLOW_RPAR_in_expr274); 
-							value = v1 - v2;
+							value = v1 / v2;
 							}
 							break;
 

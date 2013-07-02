@@ -15,7 +15,7 @@ prog
 // Commands
 
 com
-	:	'(' PUT v=expr ')' EOL       { System.out.println($v.value); }
+	:	'(' PUT v=expr ')' EOL       { LispIntRun.output.println($v.value); }
 	|	'(' SETQ ID v=expr ')' EOL       { int a =
 		                         $ID.text.charAt(0) - 'a'; 
 		                       store[a] = $v.value; }
@@ -29,7 +29,7 @@ expr		                     returns [int value]
                 PLUS v1=expr v2=expr ')' {$value = $v1.value + $v2.value;}
                 | '(' MINUS v1=expr v2=expr ')' {$value = $v1.value - $v2.value;} 
                 | '(' TIMES v1=expr v2=expr ')' {$value = $v1.value * $v2.value;}
-                | '(' QUOTIENT v1=expr v2=expr ')' {$value = $v1.value - $v2.value;}
+                | '(' QUOTIENT v1=expr v2=expr ')' {$value = $v1.value / $v2.value;}
                 )
 	;
 
