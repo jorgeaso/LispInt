@@ -11,93 +11,68 @@ import java.io.*;
 
 public class LispIntGUI extends JFrame implements ActionListener {
     /** GUI Buttons **/
-    private JButton selectButton, executeButton, exitButton;
-    /** GUI JTextFields */
-    private JTextField sourceInbox;
+    private JButton executeButton, exitButton;
     /** GUI TextArea to display source lisp code and output */
     private JTextArea displayCode, displayOutput;
     /** GUI Label output */
-    private JLabel OutputLabel;
+    private JLabel SourceLabel, EmptyLabel, OutputLabel;
     /** Name of input file */
-    private final String SrcInFile = "/Users/jorgejaso/NetBeansProjects/LispInt/src/arith.lisp";    
+    //private final String SrcInFile = "/Users/jorgejaso/NetBeansProjects/LispInt/src/arith.lisp";    
     String lispFile;
 	
-    public LispIntGUI() {
-		setDefaultCloseOperation(EXIT_ON_CLOSE);
+    public LispIntGUI(String SF) {
+		String SourceFile = SF;
+                SourceCode SourceCodeObject =new SourceCode(SourceFile);
+                String Code=SourceCodeObject.DisplaySource();
+                setDefaultCloseOperation(EXIT_ON_CLOSE);
 		setTitle("Lisp Interpreter");
-		setSize(700, 300);
-                layoutTop();
+		setSize(700, 400);
+                layoutTop(Code);
                 layoutMiddle();
                 layoutBottom();	
     }
-        
-    // Read Source File and Display
-    public void DisplaySource() {
-		{
-			try {
-				FileReader reader = new FileReader("/Users/jorgejaso/NetBeansProjects/LispInt/src/arith.lisp");
-				Scanner in = new Scanner(reader);
-				while (in.hasNextLine()) { 
-					String line = in.nextLine();
-					System.out.println(line);
-				}
-				reader.close();
-			}
-			catch (IOException e) {
-				System.out.println("File not found");
-			}
-		}		    		
-		
-	}
-
-    /**
-    * JPanel containing labels and text field to specify source path and Select Button
-    **/
-    public void layoutTop() {
-            // instantiate panel for bottom of display
-            JPanel topJPanel = new JPanel(new GridLayout(1, 3));
-            topJPanel.setBackground(Color.yellow);
-            // label to specify source path
-            JLabel srcLabel = new JLabel("Enter Source File Path:");
-            topJPanel.add(srcLabel);
-            // textfield to enter source path
-            sourceInbox = new JTextField();
-            topJPanel.add(sourceInbox);
-            //JPanel panel1 = new JPanel();
-            // button to select file
-            selectButton = new JButton("Select");
-            selectButton.addActionListener(this);
-            //panel1.add(selectButton);
-            topJPanel.add(selectButton);
-            //topJPanel.add(panel1);
-            add(topJPanel, BorderLayout.NORTH);
-    }
-        
+                
     // JPanel containing JTextArea and Execute Button
-    public void layoutMiddle() {
-            JPanel middleJPanel = new JPanel(new GridLayout(2, 1));
-            middleJPanel.setBackground(Color.red);
+    public void layoutTop(String Code) {
+            JPanel topJPanel = new JPanel(new GridLayout(3, 1));
+            //topJPanel.setBackground(Color.red);
+            SourceLabel= new JLabel("Source Lisp Code:");
+            topJPanel.add(SourceLabel);
             displayCode = new JTextArea();
             displayCode.setFont(new Font("Courier", Font.PLAIN, 14));
-            middleJPanel.add(displayCode);
+            displayCode.setEditable(false);
+            displayCode.setText(Code);
+            topJPanel.add(displayCode);
 
             executeButton = new JButton("Execute");
-            executeButton.setEnabled(false);
             executeButton.addActionListener(this);
-            middleJPanel.add(executeButton);
+            topJPanel.add(executeButton);
             
+            add(topJPanel, BorderLayout.NORTH);
+    }
+    
+      // JPanel containing JTextArea and Execute Button
+    public void layoutMiddle() {
+            JPanel middleJPanel = new JPanel((new GridLayout(1, 1)));
+            middleJPanel.setSize(0, 0);
+            //middleJPanel.setBackground(Color.yellow);
+            EmptyLabel= new JLabel("");
+            middleJPanel.add(EmptyLabel);
             add(middleJPanel, BorderLayout.CENTER);
     }
-        
-
+    
+    
     /**
      * JPanel containing Label, JTextArea and Exit Button
      */
     public void layoutBottom() {
-            JPanel bottomJPanel = new JPanel(new GridLayout(3, 1));
-            bottomJPanel.setBackground(Color.blue);
+            JPanel bottomJPanel = new JPanel((new GridLayout(3, 1)));
+            //bottomJPanel.setBackground(Color.blue);
+            OutputLabel= new JLabel("Output:");
+            bottomJPanel.add(OutputLabel);
             displayOutput = new JTextArea();
             displayOutput.setFont(new Font("Courier", Font.PLAIN, 14));
+            displayOutput.setEditable(false);
             bottomJPanel.add(displayOutput);
             //add(displayOutput, BorderLayout.NORTH);
             exitButton = new JButton("Exit");
@@ -114,15 +89,15 @@ public class LispIntGUI extends JFrame implements ActionListener {
 	public void actionPerformed(ActionEvent ae) {
 		if (ae.getSource()==exitButton)
                 {	    	
-		// Closing the application
-		System.exit(0);		
+                    // Closing the application
+                    System.exit(0);		
                 }
-		if (ae.getSource()==selectButton)
-                {	    	
-		// Display selected lisp source file
-		System.exit(0);		
-                }
-	    
+		
+                if (ae.getSource()==executeButton)
+                {
+                    // Execute selected file
+                    	
+                } 
 	   
 	    	
 	}

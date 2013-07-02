@@ -6,11 +6,15 @@ import javax.swing.*;
 public class LispIntRun {
 
 	public static void main(String[] args) throws Exception {
-		// Reads the specified name of the file provided in argument 0
+		// Reads the specified name of the file through an input dialog box
+                String SourceFile= JOptionPane.showInputDialog(null, "Enter source file name:");
+                if(SourceFile.equals("")|| SourceFile==null){
+                    System.exit(0);
+                } else {
+                LispIntGUI LispGUI = new LispIntGUI(SourceFile);
+		LispGUI.setVisible(true);
+                }
                 
-                LispIntGUI display = new LispIntGUI();
-		display.setVisible(true);
-            
                 CharStream cs= new ANTLRFileStream(args[0]);
 		LispLexer lexer = new LispLexer (cs);
             
@@ -19,5 +23,10 @@ public class LispIntRun {
 		LispParser parser = new LispParser(tokens);
 		parser.prog();
 	}
+        
+        
+}
+        
+        
 
-}	 
+ 
