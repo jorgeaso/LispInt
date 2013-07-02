@@ -25,12 +25,12 @@ com
 
 expr		                     returns [int value]
 	:	v1=term              { $value = $v1.value; }
-		('('
+		|('('
                 PLUS v1=expr v2=expr ')' {$value = $v1.value + $v2.value;}
                 | '(' MINUS v1=expr v2=expr ')' {$value = $v1.value - $v2.value;} 
                 | '(' TIMES v1=expr v2=expr ')' {$value = $v1.value * $v2.value;}
                 | '(' QUOTIENT v1=expr v2=expr ')' {$value = $v1.value - $v2.value;}
-                )*
+                )
 	;
 
 term		                     returns [int value]
