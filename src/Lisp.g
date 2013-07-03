@@ -15,10 +15,15 @@ prog
 // Commands
 
 com
-	:	'(' PUT v=expr ')' EOL       { LispIntRun.output.println("Resultado:"+$v.value); }
+	:	'(' PUT v=expr ')' EOL       { LispIntRun.output.println("Resultado:"+$v.value); 
+                                                LispIntRun.PrintWriter writerout = null; 
+                                                LispIntRun.writerout = new PrintWriter("Output.lisp");
+                                                LispIntRun.writerout.println("Resultado:"+$v.value);
+                                                LispIntRun.writerout.close();
+                                              }
 	|	'(' SETQ ID v=expr ')' EOL       { int a =
 		                         $ID.text.charAt(0) - 'a'; 
-		                       store[a] = $v.value; }
+		                         store[a] = $v.value; }
 	;
 
 // Expressions

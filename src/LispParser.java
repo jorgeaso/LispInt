@@ -1,4 +1,4 @@
-// $ANTLR 3.5 /Users/jorgejaso/NetBeansProjects/LispInt/src/Lisp.g 2013-07-03 13:08:41
+// $ANTLR 3.5 /Users/jorgejaso/NetBeansProjects/LispInt/src/Lisp.g 2013-07-03 13:39:14
 
 import org.antlr.runtime.*;
 import java.util.Stack;
@@ -150,11 +150,16 @@ public class LispParser extends Parser {
 
 					match(input,RPAR,FOLLOW_RPAR_in_com46); 
 					match(input,EOL,FOLLOW_EOL_in_com48); 
-					 LispIntRun.output.println("Este es el resultado"+v); 
+					 LispIntRun.output.println("Resultado:"+v); 
+					                                                PrintWriter writerout = null; 
+					                                                writerout = new PrintWriter("Output.lisp");
+					                                                writerout.println("Resultado:"+v);
+					                                                writerout.close();
+					                                              
 					}
 					break;
 				case 2 :
-					// /Users/jorgejaso/NetBeansProjects/LispInt/src/Lisp.g:19:4: '(' SETQ ID v= expr ')' EOL
+					// /Users/jorgejaso/NetBeansProjects/LispInt/src/Lisp.g:24:4: '(' SETQ ID v= expr ')' EOL
 					{
 					match(input,LPAR,FOLLOW_LPAR_in_com61); 
 					match(input,SETQ,FOLLOW_SETQ_in_com63); 
@@ -167,7 +172,7 @@ public class LispParser extends Parser {
 					match(input,EOL,FOLLOW_EOL_in_com73); 
 					 int a =
 							                         (ID1!=null?ID1.getText():null).charAt(0) - 'a'; 
-							                       store[a] = v; 
+							                         store[a] = v; 
 					}
 					break;
 
@@ -186,7 +191,7 @@ public class LispParser extends Parser {
 
 
 	// $ANTLR start "expr"
-	// /Users/jorgejaso/NetBeansProjects/LispInt/src/Lisp.g:26:1: expr returns [int value] : (v1= term | ( '(' PLUS v1= expr v2= expr ')' | '(' MINUS v1= expr v2= expr ')' | '(' TIMES v1= expr v2= expr ')' | '(' QUOTIENT v1= expr v2= expr ')' ) );
+	// /Users/jorgejaso/NetBeansProjects/LispInt/src/Lisp.g:31:1: expr returns [int value] : (v1= term | ( '(' PLUS v1= expr v2= expr ')' | '(' MINUS v1= expr v2= expr ')' | '(' TIMES v1= expr v2= expr ')' | '(' QUOTIENT v1= expr v2= expr ')' ) );
 	public final int expr() throws RecognitionException {
 		int value = 0;
 
@@ -195,7 +200,7 @@ public class LispParser extends Parser {
 		int v2 =0;
 
 		try {
-			// /Users/jorgejaso/NetBeansProjects/LispInt/src/Lisp.g:27:2: (v1= term | ( '(' PLUS v1= expr v2= expr ')' | '(' MINUS v1= expr v2= expr ')' | '(' TIMES v1= expr v2= expr ')' | '(' QUOTIENT v1= expr v2= expr ')' ) )
+			// /Users/jorgejaso/NetBeansProjects/LispInt/src/Lisp.g:32:2: (v1= term | ( '(' PLUS v1= expr v2= expr ')' | '(' MINUS v1= expr v2= expr ')' | '(' TIMES v1= expr v2= expr ')' | '(' QUOTIENT v1= expr v2= expr ')' ) )
 			int alt4=2;
 			int LA4_0 = input.LA(1);
 			if ( (LA4_0==ID||LA4_0==NUM) ) {
@@ -232,7 +237,7 @@ public class LispParser extends Parser {
 
 			switch (alt4) {
 				case 1 :
-					// /Users/jorgejaso/NetBeansProjects/LispInt/src/Lisp.g:27:4: v1= term
+					// /Users/jorgejaso/NetBeansProjects/LispInt/src/Lisp.g:32:4: v1= term
 					{
 					pushFollow(FOLLOW_term_in_expr122);
 					v1=term();
@@ -242,9 +247,9 @@ public class LispParser extends Parser {
 					}
 					break;
 				case 2 :
-					// /Users/jorgejaso/NetBeansProjects/LispInt/src/Lisp.g:28:4: ( '(' PLUS v1= expr v2= expr ')' | '(' MINUS v1= expr v2= expr ')' | '(' TIMES v1= expr v2= expr ')' | '(' QUOTIENT v1= expr v2= expr ')' )
+					// /Users/jorgejaso/NetBeansProjects/LispInt/src/Lisp.g:33:4: ( '(' PLUS v1= expr v2= expr ')' | '(' MINUS v1= expr v2= expr ')' | '(' TIMES v1= expr v2= expr ')' | '(' QUOTIENT v1= expr v2= expr ')' )
 					{
-					// /Users/jorgejaso/NetBeansProjects/LispInt/src/Lisp.g:28:4: ( '(' PLUS v1= expr v2= expr ')' | '(' MINUS v1= expr v2= expr ')' | '(' TIMES v1= expr v2= expr ')' | '(' QUOTIENT v1= expr v2= expr ')' )
+					// /Users/jorgejaso/NetBeansProjects/LispInt/src/Lisp.g:33:4: ( '(' PLUS v1= expr v2= expr ')' | '(' MINUS v1= expr v2= expr ')' | '(' TIMES v1= expr v2= expr ')' | '(' QUOTIENT v1= expr v2= expr ')' )
 					int alt3=4;
 					int LA3_0 = input.LA(1);
 					if ( (LA3_0==LPAR) ) {
@@ -290,7 +295,7 @@ public class LispParser extends Parser {
 
 					switch (alt3) {
 						case 1 :
-							// /Users/jorgejaso/NetBeansProjects/LispInt/src/Lisp.g:28:5: '(' PLUS v1= expr v2= expr ')'
+							// /Users/jorgejaso/NetBeansProjects/LispInt/src/Lisp.g:33:5: '(' PLUS v1= expr v2= expr ')'
 							{
 							match(input,LPAR,FOLLOW_LPAR_in_expr143); 
 							match(input,PLUS,FOLLOW_PLUS_in_expr161); 
@@ -307,7 +312,7 @@ public class LispParser extends Parser {
 							}
 							break;
 						case 2 :
-							// /Users/jorgejaso/NetBeansProjects/LispInt/src/Lisp.g:30:19: '(' MINUS v1= expr v2= expr ')'
+							// /Users/jorgejaso/NetBeansProjects/LispInt/src/Lisp.g:35:19: '(' MINUS v1= expr v2= expr ')'
 							{
 							match(input,LPAR,FOLLOW_LPAR_in_expr193); 
 							match(input,MINUS,FOLLOW_MINUS_in_expr195); 
@@ -324,7 +329,7 @@ public class LispParser extends Parser {
 							}
 							break;
 						case 3 :
-							// /Users/jorgejaso/NetBeansProjects/LispInt/src/Lisp.g:31:19: '(' TIMES v1= expr v2= expr ')'
+							// /Users/jorgejaso/NetBeansProjects/LispInt/src/Lisp.g:36:19: '(' TIMES v1= expr v2= expr ')'
 							{
 							match(input,LPAR,FOLLOW_LPAR_in_expr228); 
 							match(input,TIMES,FOLLOW_TIMES_in_expr230); 
@@ -341,7 +346,7 @@ public class LispParser extends Parser {
 							}
 							break;
 						case 4 :
-							// /Users/jorgejaso/NetBeansProjects/LispInt/src/Lisp.g:32:19: '(' QUOTIENT v1= expr v2= expr ')'
+							// /Users/jorgejaso/NetBeansProjects/LispInt/src/Lisp.g:37:19: '(' QUOTIENT v1= expr v2= expr ')'
 							{
 							match(input,LPAR,FOLLOW_LPAR_in_expr262); 
 							match(input,QUOTIENT,FOLLOW_QUOTIENT_in_expr264); 
@@ -379,7 +384,7 @@ public class LispParser extends Parser {
 
 
 	// $ANTLR start "term"
-	// /Users/jorgejaso/NetBeansProjects/LispInt/src/Lisp.g:36:1: term returns [int value] : ( NUM | ID | LPAR v= expr RPAR );
+	// /Users/jorgejaso/NetBeansProjects/LispInt/src/Lisp.g:41:1: term returns [int value] : ( NUM | ID | LPAR v= expr RPAR );
 	public final int term() throws RecognitionException {
 		int value = 0;
 
@@ -389,7 +394,7 @@ public class LispParser extends Parser {
 		int v =0;
 
 		try {
-			// /Users/jorgejaso/NetBeansProjects/LispInt/src/Lisp.g:37:2: ( NUM | ID | LPAR v= expr RPAR )
+			// /Users/jorgejaso/NetBeansProjects/LispInt/src/Lisp.g:42:2: ( NUM | ID | LPAR v= expr RPAR )
 			int alt5=3;
 			switch ( input.LA(1) ) {
 			case NUM:
@@ -414,7 +419,7 @@ public class LispParser extends Parser {
 			}
 			switch (alt5) {
 				case 1 :
-					// /Users/jorgejaso/NetBeansProjects/LispInt/src/Lisp.g:37:4: NUM
+					// /Users/jorgejaso/NetBeansProjects/LispInt/src/Lisp.g:42:4: NUM
 					{
 					NUM2=(Token)match(input,NUM,FOLLOW_NUM_in_term331); 
 					 value = Integer.parseInt(
@@ -422,7 +427,7 @@ public class LispParser extends Parser {
 					}
 					break;
 				case 2 :
-					// /Users/jorgejaso/NetBeansProjects/LispInt/src/Lisp.g:39:4: ID
+					// /Users/jorgejaso/NetBeansProjects/LispInt/src/Lisp.g:44:4: ID
 					{
 					ID3=(Token)match(input,ID,FOLLOW_ID_in_term355); 
 					 int a =
@@ -431,7 +436,7 @@ public class LispParser extends Parser {
 					}
 					break;
 				case 3 :
-					// /Users/jorgejaso/NetBeansProjects/LispInt/src/Lisp.g:42:4: LPAR v= expr RPAR
+					// /Users/jorgejaso/NetBeansProjects/LispInt/src/Lisp.g:47:4: LPAR v= expr RPAR
 					{
 					match(input,LPAR,FOLLOW_LPAR_in_term380); 
 					pushFollow(FOLLOW_expr_in_term384);
