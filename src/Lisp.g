@@ -15,7 +15,7 @@ prog
 // Commands
 
 com
-	:	'(' PUT v=expr ')' EOL       { LispIntRun.output.println($v.value); }
+	:	'(' PUT v=expr ')' EOL       { LispIntRun.output.println("Resultado:"+$v.value); }
 	|	'(' SETQ ID v=expr ')' EOL       { int a =
 		                         $ID.text.charAt(0) - 'a'; 
 		                       store[a] = $v.value; }

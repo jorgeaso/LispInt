@@ -8,20 +8,20 @@ import javax.swing.JOptionPane;
  */
 public class SourceCode {
     // instance variables
-    private String SourceFile;
+    private String FileName;
     // default constructor
-    public SourceCode(String sf)
+    public SourceCode(String fn)
     {
-        this.SourceFile = ""; //initializing the name of the file
+        this.FileName = fn; //initializing the name of the file
     }
     // Method that display the source code
     public String DisplaySource() {
-                        
-			String lispFile;
-                        lispFile="/Users/jorgejaso/NetBeansProjects/LispInt/src/test2.lisp";                            
+			String FilePath;
+                        FilePath="/Users/jorgejaso/NetBeansProjects/LispInt/src/"+FileName;
+                        System.out.println("Este es el filepath desde sourcecode class:"+FilePath);
                         String line="";
                         try {
-				FileReader reader = new FileReader(lispFile);
+				FileReader reader = new FileReader(FilePath);
 				Scanner in = new Scanner(reader);
 				while (in.hasNextLine()) { 
 					line += in.nextLine();
@@ -39,8 +39,8 @@ public class SourceCode {
     }
     
     // Accesor method
-    public String getFileContents() {   
-	      return SourceFile;
+    public String getFileName() {   
+	      return FileName;
     }
 	
 

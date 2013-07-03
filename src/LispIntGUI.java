@@ -11,69 +11,66 @@ import java.io.*;
 
 public class LispIntGUI extends JFrame implements ActionListener {
     /** GUI Buttons **/
-    private JButton executeButton, exitButton;
+    private JButton selectButton, executeButton, exitButton;
     /** GUI TextArea to display source lisp code and output */
     private JTextArea CodeTextArea, OutputTextArea;
     /** GUI Label output */
-    private JLabel SourceLabel, EmptyLabel, OutputLabel;
+    private JLabel SourceLabel, SelectLabel, OutputLabel;
     /** Name of input file */
     //private final String SrcInFile = "/Users/jorgejaso/NetBeansProjects/LispInt/src/arith.lisp";    
     String lispFile;
 	
-    public LispIntGUI(String SF) {
-		String SourceFile = SF;
-                SourceCode SourceCodeObject =new SourceCode(SourceFile);
-                String Code=SourceCodeObject.DisplaySource();
-                setDefaultCloseOperation(EXIT_ON_CLOSE);
-		setTitle("Lisp Interpreter");
-		setSize(700, 400);
-                layoutTop(Code);
-                layoutMiddle();
-                layoutBottom();	
-    }
+    public LispIntGUI(String FN) {
+            String FileName = FN;
+            System.out.println("Este es FileName desde GUI: "+FileName);
+            SourceCode SourceCodeObject =new SourceCode(FileName);
+            String Code=SourceCodeObject.DisplaySource();
+            setDefaultCloseOperation(EXIT_ON_CLOSE);
+            setTitle("Lisp Interpreter");
+            setSize(700, 400);
+            layoutTop();
+            layoutMiddle(Code);
+            layoutBottom();	
+    } 
                 
-    // JPanel containing JTextArea and Execute Button
-    public void layoutTop(String Code) {
+    // JPanel containing Select Button
+    public void layoutTop() {
             JPanel topJPanel = new JPanel();
             topJPanel.setLayout(new BorderLayout());
-            JPanel UpperTop = new JPanel();
             JPanel MiddleTop = new JPanel();
-            JPanel LowerTop = new JPanel();
-            //topJPanel.setBackground(Color.red);
+            selectButton= new JButton("Select File");
+            MiddleTop.add(selectButton);
+            topJPanel.add(MiddleTop, BorderLayout.CENTER);
+            add(topJPanel, BorderLayout.NORTH);
+    } // End layoutTop
+    
+      // JPanel containing Label, JTextArea and Execute Button
+    public void layoutMiddle(String Code) {
+            JPanel middleJPanel = new JPanel();
+            middleJPanel.setLayout(new BorderLayout());
+            JPanel UpperMiddle = new JPanel();
+            JPanel MiddleMiddle = new JPanel();
+            JPanel LowerMiddle = new JPanel();
+            
             SourceLabel= new JLabel("Source Lisp Code:");
-            UpperTop.add(SourceLabel, BorderLayout.NORTH);
-            //UpperTop.add(SourceLabel);
-            //topJPanel.add(SourceLabel);
+            UpperMiddle.add(SourceLabel, BorderLayout.NORTH);
             
             CodeTextArea = new JTextArea(7,75);
             CodeTextArea.setFont(new Font("Courier", Font.PLAIN, 14));
             CodeTextArea.setEditable(false);
             CodeTextArea.setText(Code);
             JScrollPane scrollPane = new JScrollPane(CodeTextArea);
-            MiddleTop.add(scrollPane,BorderLayout.CENTER);
-            //topJPanel.add(scrollPane);
+            MiddleMiddle.add(scrollPane,BorderLayout.CENTER);
 
             executeButton = new JButton("Execute");
             executeButton.addActionListener(this);
-            //topJPanel.add(executeButton);
-            LowerTop.add(executeButton, BorderLayout.SOUTH);
+            LowerMiddle.add(executeButton, BorderLayout.SOUTH);
 
-            topJPanel.add(UpperTop, BorderLayout.NORTH);
-            topJPanel.add(MiddleTop, BorderLayout.CENTER);
-            topJPanel.add(LowerTop, BorderLayout.SOUTH);
-            add(topJPanel, BorderLayout.NORTH);
-    }
-    
-      // JPanel containing JTextArea and Execute Button
-    public void layoutMiddle() {
-            JPanel middleJPanel = new JPanel((new GridLayout(1, 1)));
-            middleJPanel.setSize(0, 0);
-            //middleJPanel.setBackground(Color.yellow);
-            EmptyLabel= new JLabel("");
-            middleJPanel.add(EmptyLabel);
-            add(middleJPanel, BorderLayout.CENTER);
-    }
-    
+            middleJPanel.add(UpperMiddle, BorderLayout.NORTH);
+            middleJPanel.add(MiddleMiddle, BorderLayout.CENTER);
+            middleJPanel.add(LowerMiddle, BorderLayout.SOUTH);
+            add(middleJPanel, BorderLayout.CENTER);           
+    } // End layoutMiddle
     
     /**
      * JPanel containing Label, JTextArea and Exit Button
@@ -84,49 +81,50 @@ public class LispIntGUI extends JFrame implements ActionListener {
             JPanel UpperBottom = new JPanel();
             JPanel MiddleBottom = new JPanel();
             JPanel LowerBottom = new JPanel();
-            //bottomJPanel.setBackground(Color.blue);
+            
             OutputLabel= new JLabel("Output:");
             UpperBottom.add(OutputLabel, BorderLayout.NORTH);
-            //bottomJPanel.add(OutputLabel);
+
             OutputTextArea = new JTextArea(7,75);
             OutputTextArea.setFont(new Font("Courier", Font.PLAIN, 14));
             OutputTextArea.setEditable(false);
             JScrollPane scrollPane = new JScrollPane(OutputTextArea);
             MiddleBottom.add(scrollPane,BorderLayout.CENTER);
-            //bottomJPanel.add(scrollPane);
-            //add(displayOutput, BorderLayout.NORTH);
+            
             exitButton = new JButton("Exit");
             exitButton.addActionListener(this);
             LowerBottom.add(exitButton, BorderLayout.SOUTH);
-            //bottomJPanel.add(exitButton);
 
             bottomJPanel.add(UpperBottom, BorderLayout.NORTH);
             bottomJPanel.add(MiddleBottom, BorderLayout.CENTER);
             bottomJPanel.add(LowerBottom, BorderLayout.SOUTH);
             add(bottomJPanel, BorderLayout.SOUTH);
-            //add(bottomJPanel, BorderLayout.SOUTH);
-    }
+    } // End layoutBottom
         
     	/**
 	 * Process button clicks.
 	 * @param ae the ActionEvent
 	 */
-	public void actionPerformed(ActionEvent ae) {
-		if (ae.getSource()==exitButton)
-                {	    	
-                    // Closing the application
-                    System.exit(0);		
+    public void actionPerformed(ActionEvent ae) {
+		if(ae.getSource()==selectButton)
+                {
+                    // Code to choose the source file
                 }
-		
+            
+            
                 if (ae.getSource()==executeButton)
                 {
                     // Execute selected file
                     	
                 } 
-	   
-	    	
-	}
-    
-    
+            
+                if (ae.getSource()==exitButton)
+                {	    	
+                    // Closing the application
+                    System.exit(0);		
+                }
+     	
+    } // end actionPerformed
+  
     
 }

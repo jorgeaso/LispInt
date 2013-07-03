@@ -12,17 +12,19 @@ public class LispIntRun {
 		output=System.out;
                 
                 // Reads the specified name of the file through an input dialog box
-                String SourceFile= JOptionPane.showInputDialog(null, "Enter source file name:");
-                SourceFile =SourceFile.trim();
-                System.out.println("Entered File:"+SourceFile);
-                if(SourceFile.equals("")|| SourceFile==null){
+                String FileName= JOptionPane.showInputDialog(null, "Enter source file name:");
+                FileName =FileName.trim();
+                String FilePath= "/Users/jorgejaso/NetBeansProjects/LispInt/src/"+FileName;
+                System.out.println("Specified File Name:"+FileName);
+                System.out.println(FilePath);
+                if(FileName.equals("")|| FileName==null){
                     System.exit(0);
                 } else {
-                LispIntGUI LispGUI = new LispIntGUI(SourceFile);
-		LispGUI.setVisible(true);
+                    LispIntGUI LispGUI = new LispIntGUI(FileName);
+                    LispGUI.setVisible(true);
                 }
                 
-                CharStream cs= new ANTLRFileStream(SourceFile);
+                CharStream cs= new ANTLRFileStream(FilePath);
 		LispLexer lexer = new LispLexer (cs);
             
                 CommonTokenStream tokens = 
