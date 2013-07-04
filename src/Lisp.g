@@ -1,9 +1,18 @@
 grammar Lisp;
 
+@header{
+import java.util.HashMap;
+import java.io.*;
+}
+
+// To include a header to lexer @lexer::header {package pkg.name;}
+
+
 @members {
         
 	private int[] store = new int[26]; // implement hashmap
 	// ... storage for variables 'a', ..., 'z'
+        // HashMap store = new HashMap(); // implementation of hashmap
 }
 
 // Programs 
@@ -15,26 +24,33 @@ prog
 // Commands
 
 com
-	:	'(' PUT v=expr ')' EOL       { LispIntRun.output.println("Resultado:"+$v.value); 
-                                                LispIntRun.PrintWriter writerout = null; 
-                                                LispIntRun.writerout = new PrintWriter("Output.lisp");
-                                                LispIntRun.writerout.println("Resultado:"+$v.value);
-                                                LispIntRun.writerout.close();
+	:	'(' PUT v=sexpr ')' EOL       { LispIntRun.output.println($v.value); 
+                                                try
+                                                {
+                                                PrintWriter writerout = null; 
+                                                writerout = new PrintWriter(new BufferedWriter(new FileWriter("LispOutput", true))); // write to a file and appends the results in case there are more than 1 line
+                                                writerout.println($v.value);
+                                                writerout.close();
+                                                }
+                                                catch (IOException ioe)
+                                                {
+                                                        System.out.println("File I/O error: ");
+                                                        ioe.printStackTrace(); // print out details of where exception occurred			
+                                                }
                                               }
-	|	'(' SETQ ID v=expr ')' EOL       { int a =
-		                         $ID.text.charAt(0) - 'a'; 
-		                         store[a] = $v.value; }
+	|	'(' SETQ ID v=sexpr ')' EOL       { int a = $ID.text.charAt(0) - 'a'; 
+                                                    store[a] = $v.value; }
 	;
 
 // Expressions
 
-expr		                     returns [int value]
+sexpr		                     returns [int value]
 	:	v1=term              { $value = $v1.value; }
 		|('('
-                PLUS v1=expr v2=expr ')' {$value = $v1.value + $v2.value;}
-                | '(' MINUS v1=expr v2=expr ')' {$value = $v1.value - $v2.value;} 
-                | '(' TIMES v1=expr v2=expr ')' {$value = $v1.value * $v2.value;}
-                | '(' QUOTIENT v1=expr v2=expr ')' {$value = $v1.value / $v2.value;}
+                PLUS v1=sexpr v2=sexpr ')' {$value = $v1.value + $v2.value;}
+                | '(' MINUS v1=sexpr v2=sexpr ')' {$value = $v1.value - $v2.value;} 
+                | '(' TIMES v1=sexpr v2=sexpr ')' {$value = $v1.value * $v2.value;}
+                | '(' QUOTIENT v1=sexpr v2=sexpr ')' {$value = $v1.value / $v2.value;}
                 )
 	;
 
@@ -44,7 +60,7 @@ term		                     returns [int value]
 	|	ID                   { int a =
 		                         $ID.text.charAt(0) - 'a'; 
 		                       $value = store[a]; }
-	|	LPAR v=expr RPAR     { $value = $v.value; }
+	|	LPAR v=sexpr RPAR     { $value = $v.value; }
 	;
 
 // Lexicon
