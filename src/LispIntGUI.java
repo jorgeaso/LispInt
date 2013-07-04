@@ -88,6 +88,7 @@ public class LispIntGUI extends JFrame implements ActionListener {
             OutputTextArea = new JTextArea(7,75);
             OutputTextArea.setFont(new Font("Courier", Font.PLAIN, 14));
             OutputTextArea.setEditable(false);
+            OutputTextArea.setText("");
             JScrollPane scrollPane = new JScrollPane(OutputTextArea);
             MiddleBottom.add(scrollPane,BorderLayout.CENTER);
             
@@ -115,7 +116,9 @@ public class LispIntGUI extends JFrame implements ActionListener {
                 if (ae.getSource()==executeButton)
                 {
                     // Execute selected file
-                    	
+                    SourceCode SourceCodeObject =new SourceCode();
+                    String Results=SourceCodeObject.DisplayOutput();
+                    OutputTextArea.setText(Results);	
                 } 
             
                 if (ae.getSource()==exitButton)

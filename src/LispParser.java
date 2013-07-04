@@ -1,7 +1,8 @@
-// $ANTLR 3.5 /Users/jorgejaso/NetBeansProjects/LispInt/src/Lisp.g 2013-07-04 13:06:09
+// $ANTLR 3.5 /Users/jorgejaso/NetBeansProjects/LispInt/src/Lisp.g 2013-07-04 14:09:19
 
 import java.util.HashMap;
 import java.io.*;
+
 
 
 import org.antlr.runtime.*;
@@ -57,13 +58,13 @@ public class LispParser extends Parser {
 
 
 	// $ANTLR start "prog"
-	// /Users/jorgejaso/NetBeansProjects/LispInt/src/Lisp.g:20:1: prog : ( com )* EOF ;
+	// /Users/jorgejaso/NetBeansProjects/LispInt/src/Lisp.g:21:1: prog : ( com )* EOF ;
 	public final void prog() throws RecognitionException {
 		try {
-			// /Users/jorgejaso/NetBeansProjects/LispInt/src/Lisp.g:21:2: ( ( com )* EOF )
-			// /Users/jorgejaso/NetBeansProjects/LispInt/src/Lisp.g:21:4: ( com )* EOF
+			// /Users/jorgejaso/NetBeansProjects/LispInt/src/Lisp.g:22:2: ( ( com )* EOF )
+			// /Users/jorgejaso/NetBeansProjects/LispInt/src/Lisp.g:22:4: ( com )* EOF
 			{
-			// /Users/jorgejaso/NetBeansProjects/LispInt/src/Lisp.g:21:4: ( com )*
+			// /Users/jorgejaso/NetBeansProjects/LispInt/src/Lisp.g:22:4: ( com )*
 			loop1:
 			while (true) {
 				int alt1=2;
@@ -74,7 +75,7 @@ public class LispParser extends Parser {
 
 				switch (alt1) {
 				case 1 :
-					// /Users/jorgejaso/NetBeansProjects/LispInt/src/Lisp.g:21:4: com
+					// /Users/jorgejaso/NetBeansProjects/LispInt/src/Lisp.g:22:4: com
 					{
 					pushFollow(FOLLOW_com_in_prog27);
 					com();
@@ -105,13 +106,13 @@ public class LispParser extends Parser {
 
 
 	// $ANTLR start "com"
-	// /Users/jorgejaso/NetBeansProjects/LispInt/src/Lisp.g:26:1: com : ( '(' PUT v= sexpr ')' EOL | '(' SETQ ID v= sexpr ')' EOL );
+	// /Users/jorgejaso/NetBeansProjects/LispInt/src/Lisp.g:27:1: com : ( '(' PUT v= sexpr ')' EOL | '(' SETQ ID v= sexpr ')' EOL );
 	public final void com() throws RecognitionException {
 		Token ID1=null;
 		int v =0;
 
 		try {
-			// /Users/jorgejaso/NetBeansProjects/LispInt/src/Lisp.g:27:2: ( '(' PUT v= sexpr ')' EOL | '(' SETQ ID v= sexpr ')' EOL )
+			// /Users/jorgejaso/NetBeansProjects/LispInt/src/Lisp.g:28:2: ( '(' PUT v= sexpr ')' EOL | '(' SETQ ID v= sexpr ')' EOL )
 			int alt2=2;
 			int LA2_0 = input.LA(1);
 			if ( (LA2_0==LPAR) ) {
@@ -145,7 +146,7 @@ public class LispParser extends Parser {
 
 			switch (alt2) {
 				case 1 :
-					// /Users/jorgejaso/NetBeansProjects/LispInt/src/Lisp.g:27:4: '(' PUT v= sexpr ')' EOL
+					// /Users/jorgejaso/NetBeansProjects/LispInt/src/Lisp.g:28:4: '(' PUT v= sexpr ')' EOL
 					{
 					match(input,LPAR,FOLLOW_LPAR_in_com46); 
 					match(input,PUT,FOLLOW_PUT_in_com48); 
@@ -172,7 +173,7 @@ public class LispParser extends Parser {
 					}
 					break;
 				case 2 :
-					// /Users/jorgejaso/NetBeansProjects/LispInt/src/Lisp.g:41:4: '(' SETQ ID v= sexpr ')' EOL
+					// /Users/jorgejaso/NetBeansProjects/LispInt/src/Lisp.g:42:4: '(' SETQ ID v= sexpr ')' EOL
 					{
 					match(input,LPAR,FOLLOW_LPAR_in_com69); 
 					match(input,SETQ,FOLLOW_SETQ_in_com71); 
@@ -203,7 +204,7 @@ public class LispParser extends Parser {
 
 
 	// $ANTLR start "sexpr"
-	// /Users/jorgejaso/NetBeansProjects/LispInt/src/Lisp.g:47:1: sexpr returns [int value] : (v1= term | ( '(' PLUS v1= sexpr v2= sexpr ')' | '(' MINUS v1= sexpr v2= sexpr ')' | '(' TIMES v1= sexpr v2= sexpr ')' | '(' QUOTIENT v1= sexpr v2= sexpr ')' ) );
+	// /Users/jorgejaso/NetBeansProjects/LispInt/src/Lisp.g:48:1: sexpr returns [int value] : (v1= term | ( '(' PLUS v1= sexpr v2= sexpr ')' | '(' MINUS v1= sexpr v2= sexpr ')' | '(' TIMES v1= sexpr v2= sexpr ')' | '(' QUOTIENT v1= sexpr v2= sexpr ')' ) );
 	public final int sexpr() throws RecognitionException {
 		int value = 0;
 
@@ -212,7 +213,7 @@ public class LispParser extends Parser {
 		int v2 =0;
 
 		try {
-			// /Users/jorgejaso/NetBeansProjects/LispInt/src/Lisp.g:48:2: (v1= term | ( '(' PLUS v1= sexpr v2= sexpr ')' | '(' MINUS v1= sexpr v2= sexpr ')' | '(' TIMES v1= sexpr v2= sexpr ')' | '(' QUOTIENT v1= sexpr v2= sexpr ')' ) )
+			// /Users/jorgejaso/NetBeansProjects/LispInt/src/Lisp.g:49:2: (v1= term | ( '(' PLUS v1= sexpr v2= sexpr ')' | '(' MINUS v1= sexpr v2= sexpr ')' | '(' TIMES v1= sexpr v2= sexpr ')' | '(' QUOTIENT v1= sexpr v2= sexpr ')' ) )
 			int alt4=2;
 			int LA4_0 = input.LA(1);
 			if ( (LA4_0==ID||LA4_0==NUM) ) {
@@ -249,7 +250,7 @@ public class LispParser extends Parser {
 
 			switch (alt4) {
 				case 1 :
-					// /Users/jorgejaso/NetBeansProjects/LispInt/src/Lisp.g:48:4: v1= term
+					// /Users/jorgejaso/NetBeansProjects/LispInt/src/Lisp.g:49:4: v1= term
 					{
 					pushFollow(FOLLOW_term_in_sexpr130);
 					v1=term();
@@ -259,9 +260,9 @@ public class LispParser extends Parser {
 					}
 					break;
 				case 2 :
-					// /Users/jorgejaso/NetBeansProjects/LispInt/src/Lisp.g:49:4: ( '(' PLUS v1= sexpr v2= sexpr ')' | '(' MINUS v1= sexpr v2= sexpr ')' | '(' TIMES v1= sexpr v2= sexpr ')' | '(' QUOTIENT v1= sexpr v2= sexpr ')' )
+					// /Users/jorgejaso/NetBeansProjects/LispInt/src/Lisp.g:50:4: ( '(' PLUS v1= sexpr v2= sexpr ')' | '(' MINUS v1= sexpr v2= sexpr ')' | '(' TIMES v1= sexpr v2= sexpr ')' | '(' QUOTIENT v1= sexpr v2= sexpr ')' )
 					{
-					// /Users/jorgejaso/NetBeansProjects/LispInt/src/Lisp.g:49:4: ( '(' PLUS v1= sexpr v2= sexpr ')' | '(' MINUS v1= sexpr v2= sexpr ')' | '(' TIMES v1= sexpr v2= sexpr ')' | '(' QUOTIENT v1= sexpr v2= sexpr ')' )
+					// /Users/jorgejaso/NetBeansProjects/LispInt/src/Lisp.g:50:4: ( '(' PLUS v1= sexpr v2= sexpr ')' | '(' MINUS v1= sexpr v2= sexpr ')' | '(' TIMES v1= sexpr v2= sexpr ')' | '(' QUOTIENT v1= sexpr v2= sexpr ')' )
 					int alt3=4;
 					int LA3_0 = input.LA(1);
 					if ( (LA3_0==LPAR) ) {
@@ -307,7 +308,7 @@ public class LispParser extends Parser {
 
 					switch (alt3) {
 						case 1 :
-							// /Users/jorgejaso/NetBeansProjects/LispInt/src/Lisp.g:49:5: '(' PLUS v1= sexpr v2= sexpr ')'
+							// /Users/jorgejaso/NetBeansProjects/LispInt/src/Lisp.g:50:5: '(' PLUS v1= sexpr v2= sexpr ')'
 							{
 							match(input,LPAR,FOLLOW_LPAR_in_sexpr151); 
 							match(input,PLUS,FOLLOW_PLUS_in_sexpr169); 
@@ -324,7 +325,7 @@ public class LispParser extends Parser {
 							}
 							break;
 						case 2 :
-							// /Users/jorgejaso/NetBeansProjects/LispInt/src/Lisp.g:51:19: '(' MINUS v1= sexpr v2= sexpr ')'
+							// /Users/jorgejaso/NetBeansProjects/LispInt/src/Lisp.g:52:19: '(' MINUS v1= sexpr v2= sexpr ')'
 							{
 							match(input,LPAR,FOLLOW_LPAR_in_sexpr201); 
 							match(input,MINUS,FOLLOW_MINUS_in_sexpr203); 
@@ -341,7 +342,7 @@ public class LispParser extends Parser {
 							}
 							break;
 						case 3 :
-							// /Users/jorgejaso/NetBeansProjects/LispInt/src/Lisp.g:52:19: '(' TIMES v1= sexpr v2= sexpr ')'
+							// /Users/jorgejaso/NetBeansProjects/LispInt/src/Lisp.g:53:19: '(' TIMES v1= sexpr v2= sexpr ')'
 							{
 							match(input,LPAR,FOLLOW_LPAR_in_sexpr236); 
 							match(input,TIMES,FOLLOW_TIMES_in_sexpr238); 
@@ -358,7 +359,7 @@ public class LispParser extends Parser {
 							}
 							break;
 						case 4 :
-							// /Users/jorgejaso/NetBeansProjects/LispInt/src/Lisp.g:53:19: '(' QUOTIENT v1= sexpr v2= sexpr ')'
+							// /Users/jorgejaso/NetBeansProjects/LispInt/src/Lisp.g:54:19: '(' QUOTIENT v1= sexpr v2= sexpr ')'
 							{
 							match(input,LPAR,FOLLOW_LPAR_in_sexpr270); 
 							match(input,QUOTIENT,FOLLOW_QUOTIENT_in_sexpr272); 
@@ -396,7 +397,7 @@ public class LispParser extends Parser {
 
 
 	// $ANTLR start "term"
-	// /Users/jorgejaso/NetBeansProjects/LispInt/src/Lisp.g:57:1: term returns [int value] : ( NUM | ID | LPAR v= sexpr RPAR );
+	// /Users/jorgejaso/NetBeansProjects/LispInt/src/Lisp.g:58:1: term returns [int value] : ( NUM | ID | LPAR v= sexpr RPAR );
 	public final int term() throws RecognitionException {
 		int value = 0;
 
@@ -406,7 +407,7 @@ public class LispParser extends Parser {
 		int v =0;
 
 		try {
-			// /Users/jorgejaso/NetBeansProjects/LispInt/src/Lisp.g:58:2: ( NUM | ID | LPAR v= sexpr RPAR )
+			// /Users/jorgejaso/NetBeansProjects/LispInt/src/Lisp.g:59:2: ( NUM | ID | LPAR v= sexpr RPAR )
 			int alt5=3;
 			switch ( input.LA(1) ) {
 			case NUM:
@@ -431,7 +432,7 @@ public class LispParser extends Parser {
 			}
 			switch (alt5) {
 				case 1 :
-					// /Users/jorgejaso/NetBeansProjects/LispInt/src/Lisp.g:58:4: NUM
+					// /Users/jorgejaso/NetBeansProjects/LispInt/src/Lisp.g:59:4: NUM
 					{
 					NUM2=(Token)match(input,NUM,FOLLOW_NUM_in_term339); 
 					 value = Integer.parseInt(
@@ -439,7 +440,7 @@ public class LispParser extends Parser {
 					}
 					break;
 				case 2 :
-					// /Users/jorgejaso/NetBeansProjects/LispInt/src/Lisp.g:60:4: ID
+					// /Users/jorgejaso/NetBeansProjects/LispInt/src/Lisp.g:61:4: ID
 					{
 					ID3=(Token)match(input,ID,FOLLOW_ID_in_term363); 
 					 int a =
@@ -448,7 +449,7 @@ public class LispParser extends Parser {
 					}
 					break;
 				case 3 :
-					// /Users/jorgejaso/NetBeansProjects/LispInt/src/Lisp.g:63:4: LPAR v= sexpr RPAR
+					// /Users/jorgejaso/NetBeansProjects/LispInt/src/Lisp.g:64:4: LPAR v= sexpr RPAR
 					{
 					match(input,LPAR,FOLLOW_LPAR_in_term388); 
 					pushFollow(FOLLOW_sexpr_in_term392);

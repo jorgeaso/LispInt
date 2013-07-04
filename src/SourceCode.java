@@ -14,6 +14,12 @@ public class SourceCode {
     {
         this.FileName = fn; //initializing the name of the file
     }
+    
+    public SourceCode()
+    {
+        FileName = ""; //initializing the name of the file
+    }
+    
     // Method that display the source code
     public String DisplaySource() {
 			String FilePath;
@@ -37,6 +43,31 @@ public class SourceCode {
 			}
 	return line;		
     }
+    
+    // Method that display the source code
+    public String DisplayOutput() {
+			String FilePath;
+                        FilePath="/Users/jorgejaso/NetBeansProjects/LispInt/LispOutput";
+                        String line="";
+                        try {
+				FileReader reader = new FileReader(FilePath);
+				Scanner in = new Scanner(reader);
+				while (in.hasNextLine()) { 
+					line += in.nextLine();
+                                        line += "\n";
+				}
+                                //displayCode.setText(line);
+				reader.close();
+			}
+			catch (IOException e) {
+                                JOptionPane.showMessageDialog(null, "File not found. \n", "Error Message", JOptionPane.ERROR_MESSAGE); 
+				System.out.println("File not found");
+                                System.exit(0);
+			}
+	return line;		
+    }
+    
+    
     
     // Accesor method
     public String getFileName() {   
