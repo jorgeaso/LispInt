@@ -60,9 +60,9 @@ public class SourceCode {
                                 //displayCode.setText(line);
 				reader.close();
                                 PrintWriter writerout = null; 
-                        writerout = new PrintWriter("/Users/jorgejaso/NetBeansProjects/LispInt/LispOutput"); 
-                        writerout.println("");
-                        writerout.close();
+                                writerout = new PrintWriter("/Users/jorgejaso/NetBeansProjects/LispInt/LispOutput"); 
+                                writerout.println("");
+                                writerout.close();
 			}
 			catch (IOException e) {
                                 JOptionPane.showMessageDialog(null, "File not found. \n", "Error Message", JOptionPane.ERROR_MESSAGE); 

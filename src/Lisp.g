@@ -40,10 +40,9 @@ com
                                                         ioe.printStackTrace(); // print out details of where exception occurred			
                                                 }
                                               }
-	|	'(' SETQ ID v=sexpr ')' EOL       { //int a = $ID.text.charAt(0) - 'a'; 
-                                                    //store[a] = $v.value;
+	|	'(' SETQ ID v=sexpr ')' EOL       { 
                                                     store.put($ID.text,new Integer($v.value));
-                                                    //Hashmap is composed by: ID (variable name), Value
+                                                    //Hashmap is composed by: ID (variable name), Numeric Value 
                                                   }
 	;
 
@@ -62,13 +61,10 @@ sexpr		                     returns [int value]
 term		                     returns [int value]
 	:	NUM                  { $value = Integer.parseInt(
 		                         $NUM.text); }
-	|	ID                   { //int a =
-		                        // $ID.text.charAt(0) - 'a'; 
-		                        //$value = store[a];
-                                        
-                                        Integer v3 = (Integer)store.get($ID.text);
+	|	ID                   {  
+                                       Integer v3 = (Integer)store.get($ID.text);
                                        if ( v3!=null ) $value = v3.intValue();
-                                        else System.err.println("undefined variable "+$ID.text);
+                                       else System.err.println("undefined variable "+$ID.text);
                                       }
 	|	'(' v=sexpr ')'     { $value = $v.value; }
 	;
@@ -87,7 +83,7 @@ QUOTIENT    :   '/' ;
 LPAR	:	'(' ;
 RPAR	:	')' ;
 
-ID	:	'a'..'z'+ ;
+ID	:	('a'..'z'|'A'..'Z')+ ;
 NUM	:	'0'..'9'+ ;
 
 EOL	:	'\r'? '\n' ;
