@@ -14,6 +14,7 @@ public class LispIntRun {
     
 	public static void main(String[] args) throws Exception {
 		output=System.out;
+                //filewriter=
                 
                 // Reads the specified name of the file through an input dialog box
                 String FileName= JOptionPane.showInputDialog(null, "Enter source file name:");

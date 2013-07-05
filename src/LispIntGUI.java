@@ -16,8 +16,11 @@ public class LispIntGUI extends JFrame implements ActionListener {
     private JTextArea CodeTextArea, OutputTextArea;
     /** GUI Label output */
     private JLabel SourceLabel, SelectLabel, OutputLabel;
+    /** GUI Label output */
+    private JFileChooser FileChooser;
     /** Name of input file */
-    //private final String SrcInFile = "/Users/jorgejaso/NetBeansProjects/LispInt/src/arith.lisp";    
+    //private final String SrcInFile = "/Users/jorgejaso/NetBeansProjects/LispInt/src/arith.lisp";
+ 
     String lispFile;
 	
     public LispIntGUI(String FN) {
@@ -110,6 +113,10 @@ public class LispIntGUI extends JFrame implements ActionListener {
 		if(ae.getSource()==selectButton)
                 {
                     // Code to choose the source file
+                    FileChooser choose= new FileChooser();
+                    // choose.setVisible(true);
+                    String chosen=choose.ChooseFile();
+                    System.out.println("Seleccionaste: "+chosen);
                 }
             
             

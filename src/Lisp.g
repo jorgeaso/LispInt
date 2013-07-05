@@ -26,12 +26,12 @@ prog
 // Commands
 
 com
-	:	'(' PUT v=sexpr ')' EOL       { LispIntRun.output.println($v.value); 
+	:	'(' PUT v=sexpr ')' EOL       { LispIntRun.output.println($v.value); // PrintWriter
                                                 try
                                                 {
                                                 PrintWriter writerout = null; 
                                                 writerout = new PrintWriter(new BufferedWriter(new FileWriter("LispOutput", true))); // write to a file and appends the results in case there are more than 1 line
-                                                writerout.println($v.value);
+                                                writerout.println($v.value); // LispIntRun.filewriter.println();
                                                 writerout.close();
                                                 }
                                                 catch (IOException ioe)
