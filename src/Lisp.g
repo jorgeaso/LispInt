@@ -4,6 +4,7 @@ grammar Lisp;
 import java.util.HashMap;
 import java.io.*;
 
+
 }
 
 // To include a header to lexer @lexer::header {package pkg.name;}
@@ -11,9 +12,9 @@ import java.io.*;
 
 @members {
         
-	private int[] store = new int[26]; // implement hashmap
+	// private int[] store = new int[26]; // implement hashmap
 	// ... storage for variables 'a', ..., 'z'
-        // HashMap store = new HashMap(); // implementation of hashmap
+        HashMap store = new HashMap(); // implementation of hashmap
 }
 
 // Programs 
@@ -39,8 +40,11 @@ com
                                                         ioe.printStackTrace(); // print out details of where exception occurred			
                                                 }
                                               }
-	|	'(' SETQ ID v=sexpr ')' EOL       { int a = $ID.text.charAt(0) - 'a'; 
-                                                    store[a] = $v.value; }
+	|	'(' SETQ ID v=sexpr ')' EOL       { //int a = $ID.text.charAt(0) - 'a'; 
+                                                    //store[a] = $v.value;
+                                                    store.put($ID.text,new Integer($v.value));
+                                                    //Hashmap is composed by: ID (variable name), Value
+                                                  }
 	;
 
 // Expressions
@@ -58,13 +62,18 @@ sexpr		                     returns [int value]
 term		                     returns [int value]
 	:	NUM                  { $value = Integer.parseInt(
 		                         $NUM.text); }
-	|	ID                   { int a =
-		                         $ID.text.charAt(0) - 'a'; 
-		                       $value = store[a]; }
-	|	LPAR v=sexpr RPAR     { $value = $v.value; }
+	|	ID                   { //int a =
+		                        // $ID.text.charAt(0) - 'a'; 
+		                        //$value = store[a];
+                                        
+                                        Integer v3 = (Integer)store.get($ID.text);
+                                       if ( v3!=null ) $value = v3.intValue();
+                                        else System.err.println("undefined variable "+$ID.text);
+                                      }
+	|	'(' v=sexpr ')'     { $value = $v.value; }
 	;
 
-// Lexicon
+// Lexer rules
 
 PUT	:	'put' ;
 SETQ	:	'setq' ;
@@ -72,8 +81,9 @@ SETQ	:	'setq' ;
 ASSN	:	'=' ;
 PLUS	:	'+' ;
 MINUS	:	'-' ;
-TIMES	:	'*' ;
+TIMES	:	'*' ;   
 QUOTIENT    :   '/' ;
+
 LPAR	:	'(' ;
 RPAR	:	')' ;
 
