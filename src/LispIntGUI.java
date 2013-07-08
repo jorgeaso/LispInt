@@ -22,7 +22,19 @@ public class LispIntGUI extends JFrame implements ActionListener {
     //private final String SrcInFile = "/Users/jorgejaso/NetBeansProjects/LispInt/src/arith.lisp";
  
     String lispFile;
-	
+
+        // Constructor for a new GUI
+    public LispIntGUI() {
+            
+            System.out.println("Choose File");
+            setDefaultCloseOperation(EXIT_ON_CLOSE);
+            setTitle("Choose File");
+            setSize(700, 400);
+            	
+    } 
+    
+    
+    // Constructor for a new GUI
     public LispIntGUI(String FN) {
             String FileName = FN;
             System.out.println("Este es FileName desde GUI: "+FileName);
@@ -36,18 +48,19 @@ public class LispIntGUI extends JFrame implements ActionListener {
             layoutBottom();	
     } 
                 
-    // JPanel containing Select Button
+    // Class JPanel containing Select Button
     public void layoutTop() {
             JPanel topJPanel = new JPanel();
             topJPanel.setLayout(new BorderLayout());
             JPanel MiddleTop = new JPanel();
             selectButton= new JButton("Select File");
+            selectButton.addActionListener(this);
             MiddleTop.add(selectButton);
             topJPanel.add(MiddleTop, BorderLayout.CENTER);
             add(topJPanel, BorderLayout.NORTH);
     } // End layoutTop
     
-      // JPanel containing Label, JTextArea and Execute Button
+      // Class JPanel containing Label, JTextArea and Execute Button
     public void layoutMiddle(String Code) {
             JPanel middleJPanel = new JPanel();
             middleJPanel.setLayout(new BorderLayout());
@@ -76,7 +89,7 @@ public class LispIntGUI extends JFrame implements ActionListener {
     } // End layoutMiddle
     
     /**
-     * JPanel containing Label, JTextArea and Exit Button
+     * Class JPanel containing Label, JTextArea and Exit Button
      */
     public void layoutBottom() {
             JPanel bottomJPanel = new JPanel();
@@ -113,15 +126,26 @@ public class LispIntGUI extends JFrame implements ActionListener {
 		if(ae.getSource()==selectButton)
                 {
                     // Code to choose the source file
-                    FileChooser choose= new FileChooser();
-                    // choose.setVisible(true);
-                    String chosen=choose.ChooseFile();
-                    System.out.println("Seleccionaste: "+chosen);
+                    //FileChooser choose= new FileChooser();
+                    // choose.setVisible(true); // The solution wasnt this line
+                    //String chosen=choose.ChooseFile();
+                    //System.out.println("Seleccionaste: "+chosen);
+                    JFileChooser chooser = new JFileChooser();
+                    int returnVal = chooser.showOpenDialog(LispIntGUI.this);
+                    // if file chosen, confirm the details
+                    if (returnVal == JFileChooser.APPROVE_OPTION){
+                      // resultLabel.setText("You chose to open this file: " + chooser.getSelectedFile().getPath());
+                      String chosenFile = chooser.getSelectedFile().getPath();
+                      System.out.println(chosenFile);
+                    }else{
+                      // resultLabel.setText("You did not choose a file");
+                      String chosenFile = "None";
+                      System.out.println(chosenFile);
+                    }
                 }
             
             
-                if (ae.getSource()==executeButton)
-                {
+                if (ae.getSource()==executeButton){
                     // Execute selected file
                     SourceCode SourceCodeObject =new SourceCode();
                     String Results=SourceCodeObject.DisplayOutput();
