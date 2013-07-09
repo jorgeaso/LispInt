@@ -3,6 +3,9 @@ import java.awt.event.*;
 import javax.swing.*;
 import java.util.*;
 import java.io.*;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import org.antlr.runtime.*;
 
 /**
  *
@@ -18,33 +21,18 @@ public class LispIntGUI extends JFrame implements ActionListener {
     private JLabel SourceLabel, SelectLabel, OutputLabel;
     /** GUI Label output */
     private JFileChooser FileChooser;
-    /** Name of input file */
-    //private final String SrcInFile = "/Users/jorgejaso/NetBeansProjects/LispInt/src/arith.lisp";
+    private String FilePath="";
+    private SourceCode SourceCodeObject =new SourceCode(FilePath);
  
-    String lispFile;
-
-        // Constructor for a new GUI
-    public LispIntGUI() {
-            
-            System.out.println("Choose File");
-            setDefaultCloseOperation(EXIT_ON_CLOSE);
-            setTitle("Choose File");
-            setSize(700, 400);
-            	
-    } 
-    
+    String lispFile; 
     
     // Constructor for a new GUI
-    public LispIntGUI(String FN) {
-            String FileName = FN;
-            System.out.println("Este es FileName desde GUI: "+FileName);
-            SourceCode SourceCodeObject =new SourceCode(FileName);
-            String Code=SourceCodeObject.DisplaySource();
+    public LispIntGUI() {
             setDefaultCloseOperation(EXIT_ON_CLOSE);
             setTitle("Lisp Interpreter");
             setSize(700, 400);
             layoutTop();
-            layoutMiddle(Code);
+            layoutMiddle();
             layoutBottom();	
     } 
                 
@@ -60,8 +48,8 @@ public class LispIntGUI extends JFrame implements ActionListener {
             add(topJPanel, BorderLayout.NORTH);
     } // End layoutTop
     
-      // Class JPanel containing Label, JTextArea and Execute Button
-    public void layoutMiddle(String Code) {
+    // Class JPanel containing Label, JTextArea and Execute Button
+    public void layoutMiddle() {
             JPanel middleJPanel = new JPanel();
             middleJPanel.setLayout(new BorderLayout());
             JPanel UpperMiddle = new JPanel();
@@ -74,7 +62,7 @@ public class LispIntGUI extends JFrame implements ActionListener {
             CodeTextArea = new JTextArea(7,75);
             CodeTextArea.setFont(new Font("Courier", Font.PLAIN, 14));
             CodeTextArea.setEditable(false);
-            CodeTextArea.setText(Code);
+            CodeTextArea.setText("");
             JScrollPane scrollPane = new JScrollPane(CodeTextArea);
             MiddleMiddle.add(scrollPane,BorderLayout.CENTER);
 
@@ -118,45 +106,56 @@ public class LispIntGUI extends JFrame implements ActionListener {
             add(bottomJPanel, BorderLayout.SOUTH);
     } // End layoutBottom
         
-    	/**
-	 * Process button clicks.
-	 * @param ae the ActionEvent
-	 */
+    /**
+     * Process button clicks.
+     * @param ae the ActionEvent
+     */
     public void actionPerformed(ActionEvent ae) {
-		if(ae.getSource()==selectButton)
-                {
-                    // Code to choose the source file
-                    //FileChooser choose= new FileChooser();
-                    // choose.setVisible(true); // The solution wasnt this line
-                    //String chosen=choose.ChooseFile();
-                    //System.out.println("Seleccionaste: "+chosen);
-                    JFileChooser chooser = new JFileChooser();
-                    int returnVal = chooser.showOpenDialog(LispIntGUI.this);
-                    // if file chosen, confirm the details
-                    if (returnVal == JFileChooser.APPROVE_OPTION){
-                      // resultLabel.setText("You chose to open this file: " + chooser.getSelectedFile().getPath());
-                      String chosenFile = chooser.getSelectedFile().getPath();
-                      System.out.println(chosenFile);
-                    }else{
-                      // resultLabel.setText("You did not choose a file");
-                      String chosenFile = "None";
-                      System.out.println(chosenFile);
+            if(ae.getSource()==selectButton){
+                // Code to choose the source file
+                JFileChooser chooser = new JFileChooser();
+                int returnVal = chooser.showOpenDialog(LispIntGUI.this);
+                // if file chosen, display file contents
+                if (returnVal == JFileChooser.APPROVE_OPTION){
+                  FilePath = chooser.getSelectedFile().getPath();
+                  System.out.println(FilePath);
+                  SourceCode SourceCodeObject =new SourceCode(FilePath);
+                  String Code=SourceCodeObject.DisplaySource();
+                  CodeTextArea.setText(Code);
+                }
+            } // End if selectButton
+            
+            
+            if (ae.getSource()==executeButton){
+                // Execute selected file
+                try {
+                    // System.out.println("valor de FilePath en Executebutton: "+FilePath);
+                    CharStream cs= new ANTLRFileStream(FilePath);
+                    LispLexer lexer = new LispLexer (cs);
+                    CommonTokenStream tokens = new CommonTokenStream(lexer);
+                    LispParser parser = new LispParser(tokens);
+                    try {
+                        parser.prog();
+                    }catch(RecognitionException ex) {
+                        Logger.getLogger(LispIntGUI.class.getName()).log(Level.SEVERE, null, ex);
                     }
+                }catch(IOException e){
+                    JOptionPane.showMessageDialog(null, "File not found. \n", "Error Message", JOptionPane.ERROR_MESSAGE); 
+                    System.out.println("File not found");
+                    System.exit(0);
                 }
-            
-            
-                if (ae.getSource()==executeButton){
-                    // Execute selected file
-                    SourceCode SourceCodeObject =new SourceCode();
-                    String Results=SourceCodeObject.DisplayOutput();
-                    OutputTextArea.setText(Results);	
-                } 
-            
-                if (ae.getSource()==exitButton)
-                {	    	
-                    // Closing the application
-                    System.exit(0);		
-                }
+
+                //Display Results in text field
+                SourceCode SourceCodeObject =new SourceCode();
+                String Results=SourceCodeObject.DisplayOutput();
+                OutputTextArea.setText(Results);	   
+            } // End if executeButton 
+
+            if (ae.getSource()==exitButton)
+            {	    	
+                // Closing the application
+                System.exit(0);		
+            }
      	
     } // end actionPerformed
   

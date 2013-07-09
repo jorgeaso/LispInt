@@ -1,4 +1,4 @@
-// $ANTLR 3.5 /Users/jorgejaso/NetBeansProjects/LispInt/src/Lisp.g 2013-07-05 06:02:13
+// $ANTLR 3.5 /Users/jorgejaso/NetBeansProjects/LispInt/src/Lisp.g 2013-07-08 22:40:24
 
 import java.util.HashMap;
 import java.io.*;
@@ -157,12 +157,12 @@ public class LispParser extends Parser {
 
 					match(input,RPAR,FOLLOW_RPAR_in_com54); 
 					match(input,EOL,FOLLOW_EOL_in_com56); 
-					 LispIntRun.output.println(v); 
+					 LispIntRun.output.println(v); // PrintWriter
 					                                                try
 					                                                {
 					                                                PrintWriter writerout = null; 
 					                                                writerout = new PrintWriter(new BufferedWriter(new FileWriter("LispOutput", true))); // write to a file and appends the results in case there are more than 1 line
-					                                                writerout.println(v);
+					                                                writerout.println(v); // LispIntRun.filewriter.println();
 					                                                writerout.close();
 					                                                }
 					                                                catch (IOException ioe)

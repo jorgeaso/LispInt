@@ -22,65 +22,61 @@ public class SourceCode {
     
     // Method that display the source code
     public String DisplaySource() {
-			String FilePath;
-                        FilePath="/Users/jorgejaso/NetBeansProjects/LispInt/src/"+FileName;
-                        System.out.println("Este es el filepath desde sourcecode class:"+FilePath);
-                        String line="";
-                        try {
-				FileReader reader = new FileReader(FilePath);
-				Scanner in = new Scanner(reader);
-				while (in.hasNextLine()) { 
-					line += in.nextLine();
-                                        line += "\n";
-				}
-                                //displayCode.setText(line);
-				reader.close();
-			}
-			catch (IOException e) {
-                                JOptionPane.showMessageDialog(null, "File not found. \n", "Error Message", JOptionPane.ERROR_MESSAGE); 
-				System.out.println("File not found");
-                                System.exit(0);
-			}
+        String FilePath;
+        FilePath=FileName;
+        System.out.println("Este es el filepath desde sourcecode class:"+FilePath);
+        String line="";
+        try {
+                FileReader reader = new FileReader(FilePath);
+                Scanner in = new Scanner(reader);
+                while (in.hasNextLine()) { 
+                        line += in.nextLine();
+                        line += "\n";
+                }
+                //displayCode.setText(line);
+                reader.close();
+        }
+        catch (IOException e) {
+                JOptionPane.showMessageDialog(null, "File not found. \n", "Error Message", JOptionPane.ERROR_MESSAGE); 
+                System.out.println("File not found");
+                System.exit(0);
+        }
 	return line;	
         
     }
     
     // Method that display the source code
     public String DisplayOutput() {
-			String FilePath;
-                        FilePath="/Users/jorgejaso/NetBeansProjects/LispInt/LispOutput";
-                        String line="";
-                        try {
-				FileReader reader = new FileReader(FilePath);
-				Scanner in = new Scanner(reader);
-				while (in.hasNextLine()) { 
-					line += in.nextLine();
-                                        line += "\n";
-				}
-                                //displayCode.setText(line);
-				reader.close();
-                                PrintWriter writerout = null; 
-                                writerout = new PrintWriter("/Users/jorgejaso/NetBeansProjects/LispInt/LispOutput"); 
-                                writerout.println("");
-                                writerout.close();
-			}
-			catch (IOException e) {
-                                JOptionPane.showMessageDialog(null, "File not found. \n", "Error Message", JOptionPane.ERROR_MESSAGE); 
-				System.out.println("File not found");
-                                System.exit(0);
-			}
+        String FilePath;
+        FilePath="/Users/jorgejaso/NetBeansProjects/LispInt/LispOutput";
+        String line="";
+        try {
+                FileReader reader = new FileReader(FilePath);
+                Scanner in = new Scanner(reader);
+                while (in.hasNextLine()) { 
+                        line += in.nextLine();
+                        line += "\n";
+                }
+                //displayCode.setText(line);
+                reader.close();
+                PrintWriter writerout = null; 
+                writerout = new PrintWriter("/Users/jorgejaso/NetBeansProjects/LispInt/LispOutput"); 
+                writerout.println("");
+                writerout.close();
+        }
+        catch (IOException e) {
+                JOptionPane.showMessageDialog(null, "File not found. \n", "Error Message", JOptionPane.ERROR_MESSAGE); 
+                System.out.println("File not found");
+                //System.exit(0);
+        }
 	return line;	
                                            
     }
-    
-    
+  
     
     // Accesor method
     public String getFileName() {   
 	      return FileName;
-    }
-	
-
-    
+    }  
     
 }
