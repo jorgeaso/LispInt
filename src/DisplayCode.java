@@ -6,16 +6,16 @@ import javax.swing.JOptionPane;
  *
  * @author jorgejaso
  */
-public class SourceCode {
+public class DisplayCode {
     // instance variables
     private String FileName;
     // default constructor
-    public SourceCode(String fn)
+    public DisplayCode(String fn)
     {
         this.FileName = fn; //initializing the name of the file
     }
     
-    public SourceCode()
+    public DisplayCode()
     {
         FileName = ""; //initializing the name of the file
     }
@@ -24,7 +24,7 @@ public class SourceCode {
     public String DisplaySource() {
         String FilePath;
         FilePath=FileName;
-        System.out.println("Este es el filepath desde sourcecode class:"+FilePath);
+        // System.out.println("Este es el filepath desde sourcecode class:"+FilePath);
         String line="";
         try {
                 FileReader reader = new FileReader(FilePath);

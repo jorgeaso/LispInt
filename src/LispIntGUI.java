@@ -22,7 +22,7 @@ public class LispIntGUI extends JFrame implements ActionListener {
     /** GUI Label output */
     private JFileChooser FileChooser;
     private String FilePath="";
-    private SourceCode SourceCodeObject =new SourceCode(FilePath);
+    private DisplayCode SourceCodeObject =new DisplayCode(FilePath);
  
     String lispFile; 
     
@@ -113,13 +113,14 @@ public class LispIntGUI extends JFrame implements ActionListener {
     public void actionPerformed(ActionEvent ae) {
             if(ae.getSource()==selectButton){
                 // Code to choose the source file
-                JFileChooser chooser = new JFileChooser();
+                JFileChooser chooser = new JFileChooser("/Users/jorgejaso/NetBeansProjects/LispInt/LispCode");
+                //chooser.setFileFilter(".lisp");
                 int returnVal = chooser.showOpenDialog(LispIntGUI.this);
                 // if file chosen, display file contents
                 if (returnVal == JFileChooser.APPROVE_OPTION){
                   FilePath = chooser.getSelectedFile().getPath();
-                  System.out.println(FilePath);
-                  SourceCode SourceCodeObject =new SourceCode(FilePath);
+                  // System.out.println(FilePath);
+                  DisplayCode SourceCodeObject =new DisplayCode(FilePath);
                   String Code=SourceCodeObject.DisplaySource();
                   CodeTextArea.setText(Code);
                 }
@@ -131,9 +132,9 @@ public class LispIntGUI extends JFrame implements ActionListener {
                 try {
                     // System.out.println("valor de FilePath en Executebutton: "+FilePath);
                     CharStream cs= new ANTLRFileStream(FilePath);
-                    LispLexer lexer = new LispLexer (cs);
+                    ListmanLexer lexer = new ListmanLexer (cs); // Modify for new grammar
                     CommonTokenStream tokens = new CommonTokenStream(lexer);
-                    LispParser parser = new LispParser(tokens);
+                    ListmanParser parser = new ListmanParser(tokens); // Modify for new grammar
                     try {
                         parser.prog();
                     }catch(RecognitionException ex) {
@@ -146,7 +147,7 @@ public class LispIntGUI extends JFrame implements ActionListener {
                 }
 
                 //Display Results in text field
-                SourceCode SourceCodeObject =new SourceCode();
+                DisplayCode SourceCodeObject =new DisplayCode();
                 String Results=SourceCodeObject.DisplayOutput();
                 OutputTextArea.setText(Results);	   
             } // End if executeButton 

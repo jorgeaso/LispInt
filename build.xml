@@ -79,7 +79,7 @@
         <!-- Full path to Antlr jar -->
         <property name="antlr.jar" location="/usr/local/antlr/antlr-3.5-complete.jar"/>
         <!-- Grammar path -->
-        <property name="antlr.grammar" location="src/Lisp.g"/>
+         <property name="antlr.grammar" location="src/Listman.g"/>
     </target>
     
     <target name="antlr" depends="init-antlr" unless="up-to-date">
