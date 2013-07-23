@@ -23,26 +23,56 @@ prog
 // Expressions
 
 sexpr		                     
-	:	list               { LispIntRun.output.println("This is a sexpr-list: term+."); }
-		|('(' CAR sexpr ')' {LispIntRun.output.println("This is a sexpr-CAR.");
+	:	list               { LispIntRun.output.println("Found sexpr-list: term+."); }
+		|('(' CAR sexpr ')' {LispIntRun.output.println("Found sexpr-CAR.");
                                     resultcar= atomList.get(0);
                                     atomList.clear();
                                     atomList.add(resultcar);
-                                    LispIntRun.output.println("this is the result of car : "+atomList.get(0));
+                                    try{
+                                    PrintWriter writerout = null; 
+                                    writerout = new PrintWriter(new BufferedWriter(new FileWriter("LispOutput", true))); // write to a file and appends the results in case there are more than 1 line
+                                    writerout.println(atomList.get(0)); // LispIntRun.filewriter.println();
+                                    writerout.close();
+                                    }
+                                    catch (IOException ioe){
+                                            System.out.println("File I/O error: ");
+                                            ioe.printStackTrace(); // print out details of where exception occurred			
+                                    }
+                                    // LispIntRun.output.println("this is the result of car : "+atomList.get(0));
                                     }
                 | '(' CDR sexpr ')' { LispIntRun.output.println("This is a sexpr-CDR.");
-                                        LispIntRun.output.println(atomList.size());
+                                        
                                         atomList.remove(0);
                                         for (int i=0; i<atomList.size();i++ ){
                                             resultcdr= atomList.get(i);
-                                            LispIntRun.output.println("This is the result of cdr: "+resultcdr);
+                                            try{
+                                            PrintWriter writerout = null; 
+                                            writerout = new PrintWriter(new BufferedWriter(new FileWriter("LispOutput", true))); // write to a file and appends the results in case there are more than 1 line
+                                            writerout.print(resultcdr+" "); // LispIntRun.filewriter.println();
+                                            writerout.close();
+                                            }
+                                            catch (IOException ioe){
+                                                    System.out.println("File I/O error: ");
+                                                    ioe.printStackTrace(); // print out details of where exception occurred			
+                                            }
+                                            //LispIntRun.output.println("This is the result of cdr: "+resultcdr);
                                         }
-                                        LispIntRun.output.println("This is the length of array: "+atomList.size());
+                                        
 
                                     }                         
                 | '(' LENGTH sexpr ')' { LispIntRun.output.println("This is a sexpr-LENGTH.");
                                         resultlen=atomList.size();
-                                        LispIntRun.output.println("This is the result of length: "+resultlen);
+                                        try{
+                                            PrintWriter writerout = null; 
+                                            writerout = new PrintWriter(new BufferedWriter(new FileWriter("LispOutput", true))); // write to a file and appends the results in case there are more than 1 line
+                                            writerout.print(resultlen); // LispIntRun.filewriter.println();
+                                            writerout.close();
+                                        }
+                                        catch (IOException ioe){
+                                            System.out.println("File I/O error: ");
+                                            ioe.printStackTrace(); // print out details of where exception occurred			
+                                        }
+                                        //LispIntRun.output.println("This is the result of length: "+resultlen);
                                     }                         
                 )
 	;

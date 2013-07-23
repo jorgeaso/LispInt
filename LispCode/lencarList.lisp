@@ -1,1 +1,1 @@
-(length (car (a b c (d1 d2))))
+(length (car (a b c d)))
