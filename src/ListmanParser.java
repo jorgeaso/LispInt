@@ -1,7 +1,8 @@
-// $ANTLR 3.5 /Users/jorgejaso/NetBeansProjects/LispInt/src/Listman.g 2013-07-22 19:07:10
+// $ANTLR 3.5 /Users/jorgejaso/NetBeansProjects/LispInt/src/Listman.g 2013-07-23 02:22:18
 
 import java.io.*;
-import java.util.HashMap;
+import java.util.ArrayList;
+import java.util.Iterator;
 
 
 import org.antlr.runtime.*;
@@ -12,17 +13,17 @@ import java.util.ArrayList;
 @SuppressWarnings("all")
 public class ListmanParser extends Parser {
 	public static final String[] tokenNames = new String[] {
-		"<invalid>", "<EOR>", "<DOWN>", "<UP>", "CAR", "CDR", "EOL", "ID", "LENGTH", 
-		"LPAR", "NUM", "RPAR", "SPACE"
+		"<invalid>", "<EOR>", "<DOWN>", "<UP>", "ASSN", "CAR", "CDR", "EOL", "ID", 
+		"LENGTH", "LPAR", "RPAR", "SPACE"
 	};
 	public static final int EOF=-1;
-	public static final int CAR=4;
-	public static final int CDR=5;
-	public static final int EOL=6;
-	public static final int ID=7;
-	public static final int LENGTH=8;
-	public static final int LPAR=9;
-	public static final int NUM=10;
+	public static final int ASSN=4;
+	public static final int CAR=5;
+	public static final int CDR=6;
+	public static final int EOL=7;
+	public static final int ID=8;
+	public static final int LENGTH=9;
+	public static final int LPAR=10;
 	public static final int RPAR=11;
 	public static final int SPACE=12;
 
@@ -45,18 +46,20 @@ public class ListmanParser extends Parser {
 	@Override public String getGrammarFileName() { return "/Users/jorgejaso/NetBeansProjects/LispInt/src/Listman.g"; }
 
 
-		 //HashMap store = new HashMap();
+		 Object resultcar, resultcdr;
+	         int i=0, resultlen;
+	         ArrayList listTest = new ArrayList( );
 
 
 
 	// $ANTLR start "prog"
-	// /Users/jorgejaso/NetBeansProjects/LispInt/src/Listman.g:14:1: prog : ( sexpr )* EOF ;
+	// /Users/jorgejaso/NetBeansProjects/LispInt/src/Listman.g:18:1: prog : ( sexpr )* EOF ;
 	public final void prog() throws RecognitionException {
 		try {
-			// /Users/jorgejaso/NetBeansProjects/LispInt/src/Listman.g:15:2: ( ( sexpr )* EOF )
-			// /Users/jorgejaso/NetBeansProjects/LispInt/src/Listman.g:15:4: ( sexpr )* EOF
+			// /Users/jorgejaso/NetBeansProjects/LispInt/src/Listman.g:19:2: ( ( sexpr )* EOF )
+			// /Users/jorgejaso/NetBeansProjects/LispInt/src/Listman.g:19:4: ( sexpr )* EOF
 			{
-			// /Users/jorgejaso/NetBeansProjects/LispInt/src/Listman.g:15:4: ( sexpr )*
+			// /Users/jorgejaso/NetBeansProjects/LispInt/src/Listman.g:19:4: ( sexpr )*
 			loop1:
 			while (true) {
 				int alt1=2;
@@ -67,9 +70,9 @@ public class ListmanParser extends Parser {
 
 				switch (alt1) {
 				case 1 :
-					// /Users/jorgejaso/NetBeansProjects/LispInt/src/Listman.g:15:4: sexpr
+					// /Users/jorgejaso/NetBeansProjects/LispInt/src/Listman.g:19:4: sexpr
 					{
-					pushFollow(FOLLOW_sexpr_in_prog24);
+					pushFollow(FOLLOW_sexpr_in_prog25);
 					sexpr();
 					state._fsp--;
 
@@ -81,7 +84,7 @@ public class ListmanParser extends Parser {
 				}
 			}
 
-			match(input,EOF,FOLLOW_EOF_in_prog27); 
+			match(input,EOF,FOLLOW_EOF_in_prog28); 
 			}
 
 		}
@@ -98,10 +101,10 @@ public class ListmanParser extends Parser {
 
 
 	// $ANTLR start "sexpr"
-	// /Users/jorgejaso/NetBeansProjects/LispInt/src/Listman.g:20:1: sexpr : ( list | ( '(' CAR sexpr ')' | '(' CDR sexpr ')' | '(' LENGTH sexpr ')' ) );
+	// /Users/jorgejaso/NetBeansProjects/LispInt/src/Listman.g:25:1: sexpr : ( list | ( '(' CAR sexpr ')' | '(' CDR sexpr ')' | '(' LENGTH sexpr ')' ) );
 	public final void sexpr() throws RecognitionException {
 		try {
-			// /Users/jorgejaso/NetBeansProjects/LispInt/src/Listman.g:21:2: ( list | ( '(' CAR sexpr ')' | '(' CDR sexpr ')' | '(' LENGTH sexpr ')' ) )
+			// /Users/jorgejaso/NetBeansProjects/LispInt/src/Listman.g:26:2: ( list | ( '(' CAR sexpr ')' | '(' CDR sexpr ')' | '(' LENGTH sexpr ')' ) )
 			int alt3=2;
 			int LA3_0 = input.LA(1);
 			if ( (LA3_0==LPAR) ) {
@@ -109,7 +112,7 @@ public class ListmanParser extends Parser {
 				if ( ((LA3_1 >= CAR && LA3_1 <= CDR)||LA3_1==LENGTH) ) {
 					alt3=2;
 				}
-				else if ( (LA3_1==ID||(LA3_1 >= LPAR && LA3_1 <= NUM)) ) {
+				else if ( (LA3_1==ID||LA3_1==LPAR) ) {
 					alt3=1;
 				}
 
@@ -135,9 +138,9 @@ public class ListmanParser extends Parser {
 
 			switch (alt3) {
 				case 1 :
-					// /Users/jorgejaso/NetBeansProjects/LispInt/src/Listman.g:21:4: list
+					// /Users/jorgejaso/NetBeansProjects/LispInt/src/Listman.g:26:4: list
 					{
-					pushFollow(FOLLOW_list_in_sexpr66);
+					pushFollow(FOLLOW_list_in_sexpr68);
 					list();
 					state._fsp--;
 
@@ -145,9 +148,9 @@ public class ListmanParser extends Parser {
 					}
 					break;
 				case 2 :
-					// /Users/jorgejaso/NetBeansProjects/LispInt/src/Listman.g:22:4: ( '(' CAR sexpr ')' | '(' CDR sexpr ')' | '(' LENGTH sexpr ')' )
+					// /Users/jorgejaso/NetBeansProjects/LispInt/src/Listman.g:27:4: ( '(' CAR sexpr ')' | '(' CDR sexpr ')' | '(' LENGTH sexpr ')' )
 					{
-					// /Users/jorgejaso/NetBeansProjects/LispInt/src/Listman.g:22:4: ( '(' CAR sexpr ')' | '(' CDR sexpr ')' | '(' LENGTH sexpr ')' )
+					// /Users/jorgejaso/NetBeansProjects/LispInt/src/Listman.g:27:4: ( '(' CAR sexpr ')' | '(' CDR sexpr ')' | '(' LENGTH sexpr ')' )
 					int alt2=3;
 					int LA2_0 = input.LA(1);
 					if ( (LA2_0==LPAR) ) {
@@ -188,42 +191,56 @@ public class ListmanParser extends Parser {
 
 					switch (alt2) {
 						case 1 :
-							// /Users/jorgejaso/NetBeansProjects/LispInt/src/Listman.g:22:5: '(' CAR sexpr ')'
+							// /Users/jorgejaso/NetBeansProjects/LispInt/src/Listman.g:27:5: '(' CAR sexpr ')'
 							{
-							match(input,LPAR,FOLLOW_LPAR_in_sexpr88); 
-							match(input,CAR,FOLLOW_CAR_in_sexpr90); 
-							pushFollow(FOLLOW_sexpr_in_sexpr92);
+							match(input,LPAR,FOLLOW_LPAR_in_sexpr90); 
+							match(input,CAR,FOLLOW_CAR_in_sexpr92); 
+							pushFollow(FOLLOW_sexpr_in_sexpr94);
 							sexpr();
 							state._fsp--;
 
-							match(input,RPAR,FOLLOW_RPAR_in_sexpr94); 
+							match(input,RPAR,FOLLOW_RPAR_in_sexpr96); 
 							LispIntRun.output.println("This is a sexpr-CAR.");
+							                                    resultcar= listTest.get(0);
+							                                    listTest.clear();
+							                                    listTest.add(resultcar);
+							                                    LispIntRun.output.println("this is the result of car : "+listTest.get(0));
+							                                    
 							}
 							break;
 						case 2 :
-							// /Users/jorgejaso/NetBeansProjects/LispInt/src/Listman.g:23:19: '(' CDR sexpr ')'
+							// /Users/jorgejaso/NetBeansProjects/LispInt/src/Listman.g:33:19: '(' CDR sexpr ')'
 							{
-							match(input,LPAR,FOLLOW_LPAR_in_sexpr116); 
-							match(input,CDR,FOLLOW_CDR_in_sexpr118); 
-							pushFollow(FOLLOW_sexpr_in_sexpr120);
+							match(input,LPAR,FOLLOW_LPAR_in_sexpr118); 
+							match(input,CDR,FOLLOW_CDR_in_sexpr120); 
+							pushFollow(FOLLOW_sexpr_in_sexpr122);
 							sexpr();
 							state._fsp--;
 
-							match(input,RPAR,FOLLOW_RPAR_in_sexpr122); 
+							match(input,RPAR,FOLLOW_RPAR_in_sexpr124); 
 							 LispIntRun.output.println("This is a sexpr-CDR.");
+							                                        LispIntRun.output.println(listTest.size());
+							                                        for (int i=1; i<listTest.size();i++ ){
+							                                            resultcdr= listTest.get(i);
+							                                            LispIntRun.output.println("This is the result of cdr: "+resultcdr);
+							                                        }
+							                                    
 							}
 							break;
 						case 3 :
-							// /Users/jorgejaso/NetBeansProjects/LispInt/src/Listman.g:24:19: '(' LENGTH sexpr ')'
+							// /Users/jorgejaso/NetBeansProjects/LispInt/src/Listman.g:40:19: '(' LENGTH sexpr ')'
 							{
-							match(input,LPAR,FOLLOW_LPAR_in_sexpr169); 
-							match(input,LENGTH,FOLLOW_LENGTH_in_sexpr171); 
-							pushFollow(FOLLOW_sexpr_in_sexpr173);
+							match(input,LPAR,FOLLOW_LPAR_in_sexpr171); 
+							match(input,LENGTH,FOLLOW_LENGTH_in_sexpr173); 
+							pushFollow(FOLLOW_sexpr_in_sexpr175);
 							sexpr();
 							state._fsp--;
 
-							match(input,RPAR,FOLLOW_RPAR_in_sexpr175); 
+							match(input,RPAR,FOLLOW_RPAR_in_sexpr177); 
 							 LispIntRun.output.println("This is a sexpr-LENGTH.");
+							                                        resultlen=listTest.size();
+							                                        LispIntRun.output.println("This is the result of length: "+resultlen);
+							                                    
 							}
 							break;
 
@@ -247,28 +264,31 @@ public class ListmanParser extends Parser {
 
 
 	// $ANTLR start "list"
-	// /Users/jorgejaso/NetBeansProjects/LispInt/src/Listman.g:28:1: list : '(' ( term )+ ')' ;
-	public final void list() throws RecognitionException {
+	// /Users/jorgejaso/NetBeansProjects/LispInt/src/Listman.g:47:1: list returns [ArrayList<String> listTest] : '(' ( term )+ ')' ;
+	public final ArrayList<String> list() throws RecognitionException {
+		ArrayList<String> listTest = null;
+
+
 		try {
-			// /Users/jorgejaso/NetBeansProjects/LispInt/src/Listman.g:29:9: ( '(' ( term )+ ')' )
-			// /Users/jorgejaso/NetBeansProjects/LispInt/src/Listman.g:29:17: '(' ( term )+ ')'
+			// /Users/jorgejaso/NetBeansProjects/LispInt/src/Listman.g:48:9: ( '(' ( term )+ ')' )
+			// /Users/jorgejaso/NetBeansProjects/LispInt/src/Listman.g:48:17: '(' ( term )+ ')'
 			{
-			match(input,LPAR,FOLLOW_LPAR_in_list276); 
-			// /Users/jorgejaso/NetBeansProjects/LispInt/src/Listman.g:29:21: ( term )+
+			match(input,LPAR,FOLLOW_LPAR_in_list281); 
+			// /Users/jorgejaso/NetBeansProjects/LispInt/src/Listman.g:48:21: ( term )+
 			int cnt4=0;
 			loop4:
 			while (true) {
 				int alt4=2;
 				int LA4_0 = input.LA(1);
-				if ( (LA4_0==ID||(LA4_0 >= LPAR && LA4_0 <= NUM)) ) {
+				if ( (LA4_0==ID||LA4_0==LPAR) ) {
 					alt4=1;
 				}
 
 				switch (alt4) {
 				case 1 :
-					// /Users/jorgejaso/NetBeansProjects/LispInt/src/Listman.g:29:21: term
+					// /Users/jorgejaso/NetBeansProjects/LispInt/src/Listman.g:48:21: term
 					{
-					pushFollow(FOLLOW_term_in_list278);
+					pushFollow(FOLLOW_term_in_list283);
 					term();
 					state._fsp--;
 
@@ -283,8 +303,14 @@ public class ListmanParser extends Parser {
 				cnt4++;
 			}
 
-			match(input,RPAR,FOLLOW_RPAR_in_list281); 
+			match(input,RPAR,FOLLOW_RPAR_in_list286); 
 			 LispIntRun.output.println("This is a list of term+: ATOM | sexpr");
+			                                      
+			                                      //listTest.add( "first" );
+			                                      //listTest.add( "second");
+			                                      //listTest.add("third");
+			                                     
+			                                    
 			}
 
 		}
@@ -295,62 +321,54 @@ public class ListmanParser extends Parser {
 		finally {
 			// do for sure before leaving
 		}
+		return listTest;
 	}
 	// $ANTLR end "list"
 
 
 
 	// $ANTLR start "term"
-	// /Users/jorgejaso/NetBeansProjects/LispInt/src/Listman.g:33:1: term : ( NUM | ID | '(' sexpr ')' );
+	// /Users/jorgejaso/NetBeansProjects/LispInt/src/Listman.g:58:1: term : ( ID | '(' sexpr ')' );
 	public final void term() throws RecognitionException {
+		Token ID1=null;
+
 		try {
-			// /Users/jorgejaso/NetBeansProjects/LispInt/src/Listman.g:34:2: ( NUM | ID | '(' sexpr ')' )
-			int alt5=3;
-			switch ( input.LA(1) ) {
-			case NUM:
-				{
+			// /Users/jorgejaso/NetBeansProjects/LispInt/src/Listman.g:59:2: ( ID | '(' sexpr ')' )
+			int alt5=2;
+			int LA5_0 = input.LA(1);
+			if ( (LA5_0==ID) ) {
 				alt5=1;
-				}
-				break;
-			case ID:
-				{
+			}
+			else if ( (LA5_0==LPAR) ) {
 				alt5=2;
-				}
-				break;
-			case LPAR:
-				{
-				alt5=3;
-				}
-				break;
-			default:
+			}
+
+			else {
 				NoViableAltException nvae =
 					new NoViableAltException("", 5, 0, input);
 				throw nvae;
 			}
+
 			switch (alt5) {
 				case 1 :
-					// /Users/jorgejaso/NetBeansProjects/LispInt/src/Listman.g:34:7: NUM
+					// /Users/jorgejaso/NetBeansProjects/LispInt/src/Listman.g:59:4: ID
 					{
-					match(input,NUM,FOLLOW_NUM_in_term401); 
-					LispIntRun.output.println("This is a term-NUM");
+					ID1=(Token)match(input,ID,FOLLOW_ID_in_term402); 
+					  listTest.add((ID1!=null?ID1.getText():null));
+					                                       
+					                                     LispIntRun.output.println("This is a term-ATOM");
+					                                   
 					}
 					break;
 				case 2 :
-					// /Users/jorgejaso/NetBeansProjects/LispInt/src/Listman.g:35:14: ID
+					// /Users/jorgejaso/NetBeansProjects/LispInt/src/Listman.g:63:4: '(' sexpr ')'
 					{
-					match(input,ID,FOLLOW_ID_in_term434); 
-					 LispIntRun.output.println("This is a term-ID");
-					}
-					break;
-				case 3 :
-					// /Users/jorgejaso/NetBeansProjects/LispInt/src/Listman.g:36:4: '(' sexpr ')'
-					{
-					match(input,LPAR,FOLLOW_LPAR_in_term468); 
-					pushFollow(FOLLOW_sexpr_in_term470);
+					match(input,LPAR,FOLLOW_LPAR_in_term434); 
+					pushFollow(FOLLOW_sexpr_in_term436);
 					sexpr();
 					state._fsp--;
 
-					match(input,RPAR,FOLLOW_RPAR_in_term472); 
+					match(input,RPAR,FOLLOW_RPAR_in_term438); 
 					 LispIntRun.output.println("This is a term-sexpr");
 					}
 					break;
@@ -371,27 +389,26 @@ public class ListmanParser extends Parser {
 
 
 
-	public static final BitSet FOLLOW_sexpr_in_prog24 = new BitSet(new long[]{0x0000000000000200L});
-	public static final BitSet FOLLOW_EOF_in_prog27 = new BitSet(new long[]{0x0000000000000002L});
-	public static final BitSet FOLLOW_list_in_sexpr66 = new BitSet(new long[]{0x0000000000000002L});
-	public static final BitSet FOLLOW_LPAR_in_sexpr88 = new BitSet(new long[]{0x0000000000000010L});
-	public static final BitSet FOLLOW_CAR_in_sexpr90 = new BitSet(new long[]{0x0000000000000200L});
-	public static final BitSet FOLLOW_sexpr_in_sexpr92 = new BitSet(new long[]{0x0000000000000800L});
-	public static final BitSet FOLLOW_RPAR_in_sexpr94 = new BitSet(new long[]{0x0000000000000002L});
-	public static final BitSet FOLLOW_LPAR_in_sexpr116 = new BitSet(new long[]{0x0000000000000020L});
-	public static final BitSet FOLLOW_CDR_in_sexpr118 = new BitSet(new long[]{0x0000000000000200L});
-	public static final BitSet FOLLOW_sexpr_in_sexpr120 = new BitSet(new long[]{0x0000000000000800L});
-	public static final BitSet FOLLOW_RPAR_in_sexpr122 = new BitSet(new long[]{0x0000000000000002L});
-	public static final BitSet FOLLOW_LPAR_in_sexpr169 = new BitSet(new long[]{0x0000000000000100L});
-	public static final BitSet FOLLOW_LENGTH_in_sexpr171 = new BitSet(new long[]{0x0000000000000200L});
-	public static final BitSet FOLLOW_sexpr_in_sexpr173 = new BitSet(new long[]{0x0000000000000800L});
-	public static final BitSet FOLLOW_RPAR_in_sexpr175 = new BitSet(new long[]{0x0000000000000002L});
-	public static final BitSet FOLLOW_LPAR_in_list276 = new BitSet(new long[]{0x0000000000000680L});
-	public static final BitSet FOLLOW_term_in_list278 = new BitSet(new long[]{0x0000000000000E80L});
-	public static final BitSet FOLLOW_RPAR_in_list281 = new BitSet(new long[]{0x0000000000000002L});
-	public static final BitSet FOLLOW_NUM_in_term401 = new BitSet(new long[]{0x0000000000000002L});
-	public static final BitSet FOLLOW_ID_in_term434 = new BitSet(new long[]{0x0000000000000002L});
-	public static final BitSet FOLLOW_LPAR_in_term468 = new BitSet(new long[]{0x0000000000000200L});
-	public static final BitSet FOLLOW_sexpr_in_term470 = new BitSet(new long[]{0x0000000000000800L});
-	public static final BitSet FOLLOW_RPAR_in_term472 = new BitSet(new long[]{0x0000000000000002L});
+	public static final BitSet FOLLOW_sexpr_in_prog25 = new BitSet(new long[]{0x0000000000000400L});
+	public static final BitSet FOLLOW_EOF_in_prog28 = new BitSet(new long[]{0x0000000000000002L});
+	public static final BitSet FOLLOW_list_in_sexpr68 = new BitSet(new long[]{0x0000000000000002L});
+	public static final BitSet FOLLOW_LPAR_in_sexpr90 = new BitSet(new long[]{0x0000000000000020L});
+	public static final BitSet FOLLOW_CAR_in_sexpr92 = new BitSet(new long[]{0x0000000000000400L});
+	public static final BitSet FOLLOW_sexpr_in_sexpr94 = new BitSet(new long[]{0x0000000000000800L});
+	public static final BitSet FOLLOW_RPAR_in_sexpr96 = new BitSet(new long[]{0x0000000000000002L});
+	public static final BitSet FOLLOW_LPAR_in_sexpr118 = new BitSet(new long[]{0x0000000000000040L});
+	public static final BitSet FOLLOW_CDR_in_sexpr120 = new BitSet(new long[]{0x0000000000000400L});
+	public static final BitSet FOLLOW_sexpr_in_sexpr122 = new BitSet(new long[]{0x0000000000000800L});
+	public static final BitSet FOLLOW_RPAR_in_sexpr124 = new BitSet(new long[]{0x0000000000000002L});
+	public static final BitSet FOLLOW_LPAR_in_sexpr171 = new BitSet(new long[]{0x0000000000000200L});
+	public static final BitSet FOLLOW_LENGTH_in_sexpr173 = new BitSet(new long[]{0x0000000000000400L});
+	public static final BitSet FOLLOW_sexpr_in_sexpr175 = new BitSet(new long[]{0x0000000000000800L});
+	public static final BitSet FOLLOW_RPAR_in_sexpr177 = new BitSet(new long[]{0x0000000000000002L});
+	public static final BitSet FOLLOW_LPAR_in_list281 = new BitSet(new long[]{0x0000000000000500L});
+	public static final BitSet FOLLOW_term_in_list283 = new BitSet(new long[]{0x0000000000000D00L});
+	public static final BitSet FOLLOW_RPAR_in_list286 = new BitSet(new long[]{0x0000000000000002L});
+	public static final BitSet FOLLOW_ID_in_term402 = new BitSet(new long[]{0x0000000000000002L});
+	public static final BitSet FOLLOW_LPAR_in_term434 = new BitSet(new long[]{0x0000000000000400L});
+	public static final BitSet FOLLOW_sexpr_in_term436 = new BitSet(new long[]{0x0000000000000800L});
+	public static final BitSet FOLLOW_RPAR_in_term438 = new BitSet(new long[]{0x0000000000000002L});
 }

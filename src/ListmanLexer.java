@@ -1,4 +1,4 @@
-// $ANTLR 3.5 /Users/jorgejaso/NetBeansProjects/LispInt/src/Listman.g 2013-07-22 19:07:11
+// $ANTLR 3.5 /Users/jorgejaso/NetBeansProjects/LispInt/src/Listman.g 2013-07-23 02:22:18
 
 import org.antlr.runtime.*;
 import java.util.Stack;
@@ -8,13 +8,13 @@ import java.util.ArrayList;
 @SuppressWarnings("all")
 public class ListmanLexer extends Lexer {
 	public static final int EOF=-1;
-	public static final int CAR=4;
-	public static final int CDR=5;
-	public static final int EOL=6;
-	public static final int ID=7;
-	public static final int LENGTH=8;
-	public static final int LPAR=9;
-	public static final int NUM=10;
+	public static final int ASSN=4;
+	public static final int CAR=5;
+	public static final int CDR=6;
+	public static final int EOL=7;
+	public static final int ID=8;
+	public static final int LENGTH=9;
+	public static final int LPAR=10;
 	public static final int RPAR=11;
 	public static final int SPACE=12;
 
@@ -33,13 +33,33 @@ public class ListmanLexer extends Lexer {
 	}
 	@Override public String getGrammarFileName() { return "/Users/jorgejaso/NetBeansProjects/LispInt/src/Listman.g"; }
 
+	// $ANTLR start "ASSN"
+	public final void mASSN() throws RecognitionException {
+		try {
+			int _type = ASSN;
+			int _channel = DEFAULT_TOKEN_CHANNEL;
+			// /Users/jorgejaso/NetBeansProjects/LispInt/src/Listman.g:68:6: ( '=' )
+			// /Users/jorgejaso/NetBeansProjects/LispInt/src/Listman.g:68:8: '='
+			{
+			match('='); 
+			}
+
+			state.type = _type;
+			state.channel = _channel;
+		}
+		finally {
+			// do for sure before leaving
+		}
+	}
+	// $ANTLR end "ASSN"
+
 	// $ANTLR start "CAR"
 	public final void mCAR() throws RecognitionException {
 		try {
 			int _type = CAR;
 			int _channel = DEFAULT_TOKEN_CHANNEL;
-			// /Users/jorgejaso/NetBeansProjects/LispInt/src/Listman.g:41:5: ( 'car' )
-			// /Users/jorgejaso/NetBeansProjects/LispInt/src/Listman.g:41:7: 'car'
+			// /Users/jorgejaso/NetBeansProjects/LispInt/src/Listman.g:69:5: ( 'car' )
+			// /Users/jorgejaso/NetBeansProjects/LispInt/src/Listman.g:69:7: 'car'
 			{
 			match("car"); 
 
@@ -59,8 +79,8 @@ public class ListmanLexer extends Lexer {
 		try {
 			int _type = CDR;
 			int _channel = DEFAULT_TOKEN_CHANNEL;
-			// /Users/jorgejaso/NetBeansProjects/LispInt/src/Listman.g:42:5: ( 'cdr' )
-			// /Users/jorgejaso/NetBeansProjects/LispInt/src/Listman.g:42:7: 'cdr'
+			// /Users/jorgejaso/NetBeansProjects/LispInt/src/Listman.g:70:5: ( 'cdr' )
+			// /Users/jorgejaso/NetBeansProjects/LispInt/src/Listman.g:70:7: 'cdr'
 			{
 			match("cdr"); 
 
@@ -80,8 +100,8 @@ public class ListmanLexer extends Lexer {
 		try {
 			int _type = LENGTH;
 			int _channel = DEFAULT_TOKEN_CHANNEL;
-			// /Users/jorgejaso/NetBeansProjects/LispInt/src/Listman.g:43:8: ( 'length' )
-			// /Users/jorgejaso/NetBeansProjects/LispInt/src/Listman.g:43:10: 'length'
+			// /Users/jorgejaso/NetBeansProjects/LispInt/src/Listman.g:71:8: ( 'length' )
+			// /Users/jorgejaso/NetBeansProjects/LispInt/src/Listman.g:71:10: 'length'
 			{
 			match("length"); 
 
@@ -101,8 +121,8 @@ public class ListmanLexer extends Lexer {
 		try {
 			int _type = LPAR;
 			int _channel = DEFAULT_TOKEN_CHANNEL;
-			// /Users/jorgejaso/NetBeansProjects/LispInt/src/Listman.g:46:6: ( '(' )
-			// /Users/jorgejaso/NetBeansProjects/LispInt/src/Listman.g:46:8: '('
+			// /Users/jorgejaso/NetBeansProjects/LispInt/src/Listman.g:74:6: ( '(' )
+			// /Users/jorgejaso/NetBeansProjects/LispInt/src/Listman.g:74:8: '('
 			{
 			match('('); 
 			}
@@ -121,8 +141,8 @@ public class ListmanLexer extends Lexer {
 		try {
 			int _type = RPAR;
 			int _channel = DEFAULT_TOKEN_CHANNEL;
-			// /Users/jorgejaso/NetBeansProjects/LispInt/src/Listman.g:47:6: ( ')' )
-			// /Users/jorgejaso/NetBeansProjects/LispInt/src/Listman.g:47:8: ')'
+			// /Users/jorgejaso/NetBeansProjects/LispInt/src/Listman.g:75:6: ( ')' )
+			// /Users/jorgejaso/NetBeansProjects/LispInt/src/Listman.g:75:8: ')'
 			{
 			match(')'); 
 			}
@@ -141,16 +161,16 @@ public class ListmanLexer extends Lexer {
 		try {
 			int _type = ID;
 			int _channel = DEFAULT_TOKEN_CHANNEL;
-			// /Users/jorgejaso/NetBeansProjects/LispInt/src/Listman.g:49:4: ( ( 'a' .. 'z' | 'A' .. 'Z' )+ )
-			// /Users/jorgejaso/NetBeansProjects/LispInt/src/Listman.g:49:6: ( 'a' .. 'z' | 'A' .. 'Z' )+
+			// /Users/jorgejaso/NetBeansProjects/LispInt/src/Listman.g:77:4: ( ( 'a' .. 'z' | 'A' .. 'Z' | '0' .. '9' )+ )
+			// /Users/jorgejaso/NetBeansProjects/LispInt/src/Listman.g:77:6: ( 'a' .. 'z' | 'A' .. 'Z' | '0' .. '9' )+
 			{
-			// /Users/jorgejaso/NetBeansProjects/LispInt/src/Listman.g:49:6: ( 'a' .. 'z' | 'A' .. 'Z' )+
+			// /Users/jorgejaso/NetBeansProjects/LispInt/src/Listman.g:77:6: ( 'a' .. 'z' | 'A' .. 'Z' | '0' .. '9' )+
 			int cnt1=0;
 			loop1:
 			while (true) {
 				int alt1=2;
 				int LA1_0 = input.LA(1);
-				if ( ((LA1_0 >= 'A' && LA1_0 <= 'Z')||(LA1_0 >= 'a' && LA1_0 <= 'z')) ) {
+				if ( ((LA1_0 >= '0' && LA1_0 <= '9')||(LA1_0 >= 'A' && LA1_0 <= 'Z')||(LA1_0 >= 'a' && LA1_0 <= 'z')) ) {
 					alt1=1;
 				}
 
@@ -158,7 +178,7 @@ public class ListmanLexer extends Lexer {
 				case 1 :
 					// /Users/jorgejaso/NetBeansProjects/LispInt/src/Listman.g:
 					{
-					if ( (input.LA(1) >= 'A' && input.LA(1) <= 'Z')||(input.LA(1) >= 'a' && input.LA(1) <= 'z') ) {
+					if ( (input.LA(1) >= '0' && input.LA(1) <= '9')||(input.LA(1) >= 'A' && input.LA(1) <= 'Z')||(input.LA(1) >= 'a' && input.LA(1) <= 'z') ) {
 						input.consume();
 					}
 					else {
@@ -188,75 +208,23 @@ public class ListmanLexer extends Lexer {
 	}
 	// $ANTLR end "ID"
 
-	// $ANTLR start "NUM"
-	public final void mNUM() throws RecognitionException {
-		try {
-			int _type = NUM;
-			int _channel = DEFAULT_TOKEN_CHANNEL;
-			// /Users/jorgejaso/NetBeansProjects/LispInt/src/Listman.g:50:9: ( ( '0' .. '9' )+ )
-			// /Users/jorgejaso/NetBeansProjects/LispInt/src/Listman.g:50:17: ( '0' .. '9' )+
-			{
-			// /Users/jorgejaso/NetBeansProjects/LispInt/src/Listman.g:50:17: ( '0' .. '9' )+
-			int cnt2=0;
-			loop2:
-			while (true) {
-				int alt2=2;
-				int LA2_0 = input.LA(1);
-				if ( ((LA2_0 >= '0' && LA2_0 <= '9')) ) {
-					alt2=1;
-				}
-
-				switch (alt2) {
-				case 1 :
-					// /Users/jorgejaso/NetBeansProjects/LispInt/src/Listman.g:
-					{
-					if ( (input.LA(1) >= '0' && input.LA(1) <= '9') ) {
-						input.consume();
-					}
-					else {
-						MismatchedSetException mse = new MismatchedSetException(null,input);
-						recover(mse);
-						throw mse;
-					}
-					}
-					break;
-
-				default :
-					if ( cnt2 >= 1 ) break loop2;
-					EarlyExitException eee = new EarlyExitException(2, input);
-					throw eee;
-				}
-				cnt2++;
-			}
-
-			}
-
-			state.type = _type;
-			state.channel = _channel;
-		}
-		finally {
-			// do for sure before leaving
-		}
-	}
-	// $ANTLR end "NUM"
-
 	// $ANTLR start "EOL"
 	public final void mEOL() throws RecognitionException {
 		try {
 			int _type = EOL;
 			int _channel = DEFAULT_TOKEN_CHANNEL;
-			// /Users/jorgejaso/NetBeansProjects/LispInt/src/Listman.g:52:5: ( ( '\\r' )? '\\n' )
-			// /Users/jorgejaso/NetBeansProjects/LispInt/src/Listman.g:52:7: ( '\\r' )? '\\n'
+			// /Users/jorgejaso/NetBeansProjects/LispInt/src/Listman.g:80:5: ( ( '\\r' )? '\\n' )
+			// /Users/jorgejaso/NetBeansProjects/LispInt/src/Listman.g:80:7: ( '\\r' )? '\\n'
 			{
-			// /Users/jorgejaso/NetBeansProjects/LispInt/src/Listman.g:52:7: ( '\\r' )?
-			int alt3=2;
-			int LA3_0 = input.LA(1);
-			if ( (LA3_0=='\r') ) {
-				alt3=1;
+			// /Users/jorgejaso/NetBeansProjects/LispInt/src/Listman.g:80:7: ( '\\r' )?
+			int alt2=2;
+			int LA2_0 = input.LA(1);
+			if ( (LA2_0=='\r') ) {
+				alt2=1;
 			}
-			switch (alt3) {
+			switch (alt2) {
 				case 1 :
-					// /Users/jorgejaso/NetBeansProjects/LispInt/src/Listman.g:52:7: '\\r'
+					// /Users/jorgejaso/NetBeansProjects/LispInt/src/Listman.g:80:7: '\\r'
 					{
 					match('\r'); 
 					}
@@ -281,20 +249,20 @@ public class ListmanLexer extends Lexer {
 		try {
 			int _type = SPACE;
 			int _channel = DEFAULT_TOKEN_CHANNEL;
-			// /Users/jorgejaso/NetBeansProjects/LispInt/src/Listman.g:54:7: ( ( ' ' | '\\t' )+ )
-			// /Users/jorgejaso/NetBeansProjects/LispInt/src/Listman.g:54:9: ( ' ' | '\\t' )+
+			// /Users/jorgejaso/NetBeansProjects/LispInt/src/Listman.g:82:7: ( ( ' ' | '\\t' )+ )
+			// /Users/jorgejaso/NetBeansProjects/LispInt/src/Listman.g:82:9: ( ' ' | '\\t' )+
 			{
-			// /Users/jorgejaso/NetBeansProjects/LispInt/src/Listman.g:54:9: ( ' ' | '\\t' )+
-			int cnt4=0;
-			loop4:
+			// /Users/jorgejaso/NetBeansProjects/LispInt/src/Listman.g:82:9: ( ' ' | '\\t' )+
+			int cnt3=0;
+			loop3:
 			while (true) {
-				int alt4=2;
-				int LA4_0 = input.LA(1);
-				if ( (LA4_0=='\t'||LA4_0==' ') ) {
-					alt4=1;
+				int alt3=2;
+				int LA3_0 = input.LA(1);
+				if ( (LA3_0=='\t'||LA3_0==' ') ) {
+					alt3=1;
 				}
 
-				switch (alt4) {
+				switch (alt3) {
 				case 1 :
 					// /Users/jorgejaso/NetBeansProjects/LispInt/src/Listman.g:
 					{
@@ -310,11 +278,11 @@ public class ListmanLexer extends Lexer {
 					break;
 
 				default :
-					if ( cnt4 >= 1 ) break loop4;
-					EarlyExitException eee = new EarlyExitException(4, input);
+					if ( cnt3 >= 1 ) break loop3;
+					EarlyExitException eee = new EarlyExitException(3, input);
 					throw eee;
 				}
-				cnt4++;
+				cnt3++;
 			}
 
 			 skip(); 
@@ -331,122 +299,137 @@ public class ListmanLexer extends Lexer {
 
 	@Override
 	public void mTokens() throws RecognitionException {
-		// /Users/jorgejaso/NetBeansProjects/LispInt/src/Listman.g:1:8: ( CAR | CDR | LENGTH | LPAR | RPAR | ID | NUM | EOL | SPACE )
-		int alt5=9;
+		// /Users/jorgejaso/NetBeansProjects/LispInt/src/Listman.g:1:8: ( ASSN | CAR | CDR | LENGTH | LPAR | RPAR | ID | EOL | SPACE )
+		int alt4=9;
 		switch ( input.LA(1) ) {
+		case '=':
+			{
+			alt4=1;
+			}
+			break;
 		case 'c':
 			{
 			switch ( input.LA(2) ) {
 			case 'a':
 				{
-				int LA5_9 = input.LA(3);
-				if ( (LA5_9=='r') ) {
-					int LA5_12 = input.LA(4);
-					if ( ((LA5_12 >= 'A' && LA5_12 <= 'Z')||(LA5_12 >= 'a' && LA5_12 <= 'z')) ) {
-						alt5=6;
+				int LA4_9 = input.LA(3);
+				if ( (LA4_9=='r') ) {
+					int LA4_12 = input.LA(4);
+					if ( ((LA4_12 >= '0' && LA4_12 <= '9')||(LA4_12 >= 'A' && LA4_12 <= 'Z')||(LA4_12 >= 'a' && LA4_12 <= 'z')) ) {
+						alt4=7;
 					}
 
 					else {
-						alt5=1;
+						alt4=2;
 					}
 
 				}
 
 				else {
-					alt5=6;
+					alt4=7;
 				}
 
 				}
 				break;
 			case 'd':
 				{
-				int LA5_10 = input.LA(3);
-				if ( (LA5_10=='r') ) {
-					int LA5_13 = input.LA(4);
-					if ( ((LA5_13 >= 'A' && LA5_13 <= 'Z')||(LA5_13 >= 'a' && LA5_13 <= 'z')) ) {
-						alt5=6;
+				int LA4_10 = input.LA(3);
+				if ( (LA4_10=='r') ) {
+					int LA4_13 = input.LA(4);
+					if ( ((LA4_13 >= '0' && LA4_13 <= '9')||(LA4_13 >= 'A' && LA4_13 <= 'Z')||(LA4_13 >= 'a' && LA4_13 <= 'z')) ) {
+						alt4=7;
 					}
 
 					else {
-						alt5=2;
+						alt4=3;
 					}
 
 				}
 
 				else {
-					alt5=6;
+					alt4=7;
 				}
 
 				}
 				break;
 			default:
-				alt5=6;
+				alt4=7;
 			}
 			}
 			break;
 		case 'l':
 			{
-			int LA5_2 = input.LA(2);
-			if ( (LA5_2=='e') ) {
-				int LA5_11 = input.LA(3);
-				if ( (LA5_11=='n') ) {
-					int LA5_14 = input.LA(4);
-					if ( (LA5_14=='g') ) {
-						int LA5_17 = input.LA(5);
-						if ( (LA5_17=='t') ) {
-							int LA5_18 = input.LA(6);
-							if ( (LA5_18=='h') ) {
-								int LA5_19 = input.LA(7);
-								if ( ((LA5_19 >= 'A' && LA5_19 <= 'Z')||(LA5_19 >= 'a' && LA5_19 <= 'z')) ) {
-									alt5=6;
+			int LA4_3 = input.LA(2);
+			if ( (LA4_3=='e') ) {
+				int LA4_11 = input.LA(3);
+				if ( (LA4_11=='n') ) {
+					int LA4_14 = input.LA(4);
+					if ( (LA4_14=='g') ) {
+						int LA4_17 = input.LA(5);
+						if ( (LA4_17=='t') ) {
+							int LA4_18 = input.LA(6);
+							if ( (LA4_18=='h') ) {
+								int LA4_19 = input.LA(7);
+								if ( ((LA4_19 >= '0' && LA4_19 <= '9')||(LA4_19 >= 'A' && LA4_19 <= 'Z')||(LA4_19 >= 'a' && LA4_19 <= 'z')) ) {
+									alt4=7;
 								}
 
 								else {
-									alt5=3;
+									alt4=4;
 								}
 
 							}
 
 							else {
-								alt5=6;
+								alt4=7;
 							}
 
 						}
 
 						else {
-							alt5=6;
+							alt4=7;
 						}
 
 					}
 
 					else {
-						alt5=6;
+						alt4=7;
 					}
 
 				}
 
 				else {
-					alt5=6;
+					alt4=7;
 				}
 
 			}
 
 			else {
-				alt5=6;
+				alt4=7;
 			}
 
 			}
 			break;
 		case '(':
 			{
-			alt5=4;
+			alt4=5;
 			}
 			break;
 		case ')':
 			{
-			alt5=5;
+			alt4=6;
 			}
 			break;
+		case '0':
+		case '1':
+		case '2':
+		case '3':
+		case '4':
+		case '5':
+		case '6':
+		case '7':
+		case '8':
+		case '9':
 		case 'A':
 		case 'B':
 		case 'C':
@@ -498,99 +481,85 @@ public class ListmanLexer extends Lexer {
 		case 'y':
 		case 'z':
 			{
-			alt5=6;
-			}
-			break;
-		case '0':
-		case '1':
-		case '2':
-		case '3':
-		case '4':
-		case '5':
-		case '6':
-		case '7':
-		case '8':
-		case '9':
-			{
-			alt5=7;
+			alt4=7;
 			}
 			break;
 		case '\n':
 		case '\r':
 			{
-			alt5=8;
+			alt4=8;
 			}
 			break;
 		case '\t':
 		case ' ':
 			{
-			alt5=9;
+			alt4=9;
 			}
 			break;
 		default:
 			NoViableAltException nvae =
-				new NoViableAltException("", 5, 0, input);
+				new NoViableAltException("", 4, 0, input);
 			throw nvae;
 		}
-		switch (alt5) {
+		switch (alt4) {
 			case 1 :
-				// /Users/jorgejaso/NetBeansProjects/LispInt/src/Listman.g:1:10: CAR
+				// /Users/jorgejaso/NetBeansProjects/LispInt/src/Listman.g:1:10: ASSN
+				{
+				mASSN(); 
+
+				}
+				break;
+			case 2 :
+				// /Users/jorgejaso/NetBeansProjects/LispInt/src/Listman.g:1:15: CAR
 				{
 				mCAR(); 
 
 				}
 				break;
-			case 2 :
-				// /Users/jorgejaso/NetBeansProjects/LispInt/src/Listman.g:1:14: CDR
+			case 3 :
+				// /Users/jorgejaso/NetBeansProjects/LispInt/src/Listman.g:1:19: CDR
 				{
 				mCDR(); 
 
 				}
 				break;
-			case 3 :
-				// /Users/jorgejaso/NetBeansProjects/LispInt/src/Listman.g:1:18: LENGTH
+			case 4 :
+				// /Users/jorgejaso/NetBeansProjects/LispInt/src/Listman.g:1:23: LENGTH
 				{
 				mLENGTH(); 
 
 				}
 				break;
-			case 4 :
-				// /Users/jorgejaso/NetBeansProjects/LispInt/src/Listman.g:1:25: LPAR
+			case 5 :
+				// /Users/jorgejaso/NetBeansProjects/LispInt/src/Listman.g:1:30: LPAR
 				{
 				mLPAR(); 
 
 				}
 				break;
-			case 5 :
-				// /Users/jorgejaso/NetBeansProjects/LispInt/src/Listman.g:1:30: RPAR
+			case 6 :
+				// /Users/jorgejaso/NetBeansProjects/LispInt/src/Listman.g:1:35: RPAR
 				{
 				mRPAR(); 
 
 				}
 				break;
-			case 6 :
-				// /Users/jorgejaso/NetBeansProjects/LispInt/src/Listman.g:1:35: ID
+			case 7 :
+				// /Users/jorgejaso/NetBeansProjects/LispInt/src/Listman.g:1:40: ID
 				{
 				mID(); 
 
 				}
 				break;
-			case 7 :
-				// /Users/jorgejaso/NetBeansProjects/LispInt/src/Listman.g:1:38: NUM
-				{
-				mNUM(); 
-
-				}
-				break;
 			case 8 :
-				// /Users/jorgejaso/NetBeansProjects/LispInt/src/Listman.g:1:42: EOL
+				// /Users/jorgejaso/NetBeansProjects/LispInt/src/Listman.g:1:43: EOL
 				{
 				mEOL(); 
 
 				}
 				break;
 			case 9 :
-				// /Users/jorgejaso/NetBeansProjects/LispInt/src/Listman.g:1:46: SPACE
+				// /Users/jorgejaso/NetBeansProjects/LispInt/src/Listman.g:1:47: SPACE
 				{
 				mSPACE(); 
 
