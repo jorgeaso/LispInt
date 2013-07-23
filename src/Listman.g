@@ -10,7 +10,7 @@ import java.util.Iterator;
 @members {
 	 Object resultcar, resultcdr;
          int i=0, resultlen;
-         ArrayList listTest = new ArrayList( );
+         ArrayList atomList = new ArrayList( );
 }
 
 // Programs 
@@ -25,42 +25,39 @@ prog
 sexpr		                     
 	:	list               { LispIntRun.output.println("This is a sexpr-list: term+."); }
 		|('(' CAR sexpr ')' {LispIntRun.output.println("This is a sexpr-CAR.");
-                                    resultcar= listTest.get(0);
-                                    listTest.clear();
-                                    listTest.add(resultcar);
-                                    LispIntRun.output.println("this is the result of car : "+listTest.get(0));
+                                    resultcar= atomList.get(0);
+                                    atomList.clear();
+                                    atomList.add(resultcar);
+                                    LispIntRun.output.println("this is the result of car : "+atomList.get(0));
                                     }
                 | '(' CDR sexpr ')' { LispIntRun.output.println("This is a sexpr-CDR.");
-                                        LispIntRun.output.println(listTest.size());
-                                        for (int i=1; i<listTest.size();i++ ){
-                                            resultcdr= listTest.get(i);
+                                        LispIntRun.output.println(atomList.size());
+                                        atomList.remove(0);
+                                        for (int i=0; i<atomList.size();i++ ){
+                                            resultcdr= atomList.get(i);
                                             LispIntRun.output.println("This is the result of cdr: "+resultcdr);
                                         }
+                                        LispIntRun.output.println("This is the length of array: "+atomList.size());
+
                                     }                         
                 | '(' LENGTH sexpr ')' { LispIntRun.output.println("This is a sexpr-LENGTH.");
-                                        resultlen=listTest.size();
+                                        resultlen=atomList.size();
                                         LispIntRun.output.println("This is the result of length: "+resultlen);
                                     }                         
                 )
 	;
 
-list                                returns [ArrayList<String> listTest]
+list                                returns [ArrayList<String> atomList]
         :       '(' term+ ')'       { LispIntRun.output.println("This is a list of term+: ATOM | sexpr");
-                                      
-                                      //listTest.add( "first" );
-                                      //listTest.add( "second");
-                                      //listTest.add("third");
-                                     
                                     }
                                             
         ;
 
 term                                             
-	:	ID                {  listTest.add($ID.text);
-                                       
+	:	ATOM                 { atomList.add($ATOM.text);  
                                      LispIntRun.output.println("This is a term-ATOM");
                                    }          
-	|	'(' sexpr ')'        { LispIntRun.output.println("This is a term-sexpr");}
+	|	'(' sexpr ')'      { LispIntRun.output.println("This is a term-sexpr");}
 	;
 
 // Lexer rules
@@ -74,7 +71,7 @@ LENGTH	:	'length' ;
 LPAR	:	'(' ;
 RPAR	:	')' ;
 
-ID	:	('a'..'z'|'A'..'Z'|'0'..'9')+ ;
+ATOM	:	('a'..'z'|'A'..'Z'|'0'..'9')+ ;
 
 
 EOL	:	'\r'? '\n' ;
