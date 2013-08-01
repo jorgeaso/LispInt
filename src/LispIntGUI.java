@@ -61,7 +61,7 @@ public class LispIntGUI extends JFrame implements ActionListener {
             
             CodeTextArea = new JTextArea(7,75);
             CodeTextArea.setFont(new Font("Courier", Font.PLAIN, 14));
-            CodeTextArea.setEditable(false);
+            CodeTextArea.setEditable(true);
             CodeTextArea.setText("");
             JScrollPane scrollPane = new JScrollPane(CodeTextArea);
             MiddleMiddle.add(scrollPane,BorderLayout.CENTER);
@@ -130,7 +130,7 @@ public class LispIntGUI extends JFrame implements ActionListener {
             if (ae.getSource()==executeButton){
                 // Execute selected file
                 try {
-                    // System.out.println("valor de FilePath en Executebutton: "+FilePath);
+                    System.out.println("valor de FilePath en Executebutton: "+FilePath);
                     CharStream cs= new ANTLRFileStream(FilePath);
                     ListmanLexer lexer = new ListmanLexer (cs); // Modify for new grammar
                     CommonTokenStream tokens = new CommonTokenStream(lexer);
