@@ -14,7 +14,7 @@ import org.antlr.runtime.*;
 
 public class LispIntGUI extends JFrame implements ActionListener {
     /** GUI Buttons **/
-    private JButton selectButton, executeButton, exitButton;
+    private JButton selectButton, analyzeButton, executeButton, saveButton, exitButton;
     /** GUI TextArea to display source lisp code and output */
     private JTextArea CodeTextArea, OutputTextArea;
     /** GUI Label output */
@@ -24,12 +24,12 @@ public class LispIntGUI extends JFrame implements ActionListener {
     private String FilePath="";
     private DisplayCode SourceCodeObject =new DisplayCode(FilePath);
  
-    String lispFile; 
+    String lispFile, ResultFile; 
     
     // Constructor for a new GUI
     public LispIntGUI() {
             setDefaultCloseOperation(EXIT_ON_CLOSE);
-            setTitle("Lisp Interpreter");
+            setTitle("Lisp Interpreter: List Manipulation");
             setSize(700, 400);
             layoutTop();
             layoutMiddle();
@@ -65,9 +65,12 @@ public class LispIntGUI extends JFrame implements ActionListener {
             CodeTextArea.setText("");
             JScrollPane scrollPane = new JScrollPane(CodeTextArea);
             MiddleMiddle.add(scrollPane,BorderLayout.CENTER);
-
+            
+            analyzeButton = new JButton("Analyze");
+            analyzeButton.addActionListener(this);
             executeButton = new JButton("Execute");
             executeButton.addActionListener(this);
+            LowerMiddle.add(analyzeButton, BorderLayout.SOUTH);
             LowerMiddle.add(executeButton, BorderLayout.SOUTH);
 
             middleJPanel.add(UpperMiddle, BorderLayout.NORTH);
@@ -96,8 +99,11 @@ public class LispIntGUI extends JFrame implements ActionListener {
             JScrollPane scrollPane = new JScrollPane(OutputTextArea);
             MiddleBottom.add(scrollPane,BorderLayout.CENTER);
             
+            saveButton = new JButton("Save");
+            saveButton.addActionListener(this);
             exitButton = new JButton("Exit");
             exitButton.addActionListener(this);
+            LowerBottom.add(saveButton, BorderLayout.SOUTH);
             LowerBottom.add(exitButton, BorderLayout.SOUTH);
 
             bottomJPanel.add(UpperBottom, BorderLayout.NORTH);
@@ -113,7 +119,7 @@ public class LispIntGUI extends JFrame implements ActionListener {
     public void actionPerformed(ActionEvent ae) {
             if(ae.getSource()==selectButton){
                 // Code to choose the source file
-                JFileChooser chooser = new JFileChooser("/Users/jorgejaso/NetBeansProjects/LispInt/LispCode");
+                JFileChooser chooser = new JFileChooser("/Users/jorgejaso/NetBeansProjects/LispInt_List/LispCode");
                 //chooser.setFileFilter(".lisp");
                 int returnVal = chooser.showOpenDialog(LispIntGUI.this);
                 // if file chosen, display file contents
@@ -126,12 +132,22 @@ public class LispIntGUI extends JFrame implements ActionListener {
                 }
             } // End if selectButton
             
+            if (ae.getSource()==analyzeButton)
+            {	    	
+                // Lisp Code Analysis
+                OutputTextArea.setText("The source lisp code contains: ");
+                OutputTextArea.append("\n S-expression: ");
+                OutputTextArea.append("\n Atoms: ");
+            }
             
             if (ae.getSource()==executeButton){
                 // Execute selected file
                 try {
-                    System.out.println("valor de FilePath en Executebutton: "+FilePath);
-                    CharStream cs= new ANTLRFileStream(FilePath);
+                    PrintWriter writerout = null; 
+                    writerout = new PrintWriter("/Users/jorgejaso/NetBeansProjects/LispInt_List/LispSource"); 
+                    writerout.println(CodeTextArea.getText());
+                    writerout.close();
+                    CharStream cs= new ANTLRFileStream("/Users/jorgejaso/NetBeansProjects/LispInt_List/LispSource");
                     ListmanLexer lexer = new ListmanLexer (cs); // Modify for new grammar
                     CommonTokenStream tokens = new CommonTokenStream(lexer);
                     ListmanParser parser = new ListmanParser(tokens); // Modify for new grammar
@@ -151,7 +167,31 @@ public class LispIntGUI extends JFrame implements ActionListener {
                 String Results=SourceCodeObject.DisplayOutput();
                 OutputTextArea.setText(Results);	   
             } // End if executeButton 
+            
+            if (ae.getSource()==saveButton)
+            {	    	
+                // Save the input code and the results in a file
+                ResultFile = JOptionPane.showInputDialog ("Please enter file name: ");
 
+                try {
+                    PrintWriter writerout = null; 
+                    writerout = new PrintWriter("/Users/jorgejaso/NetBeansProjects/LispInt_List/"+ResultFile); 
+                    writerout.println("INPUT CODE:");
+                    writerout.println("---------------------------------------------------\n");
+                    writerout.println(CodeTextArea.getText());
+                    writerout.println("\nRESULTS:");
+                    writerout.println("---------------------------------------------------");
+                    writerout.println(OutputTextArea.getText());
+                    writerout.close();
+                }catch(IOException e){
+                    JOptionPane.showMessageDialog(null, "File not found. \n", "Error Message", JOptionPane.ERROR_MESSAGE); 
+                    System.out.println("File not found");
+                    System.exit(0);
+                } 
+                
+            }
+            
+            
             if (ae.getSource()==exitButton)
             {	    	
                 // Closing the application

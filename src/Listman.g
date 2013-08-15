@@ -23,8 +23,8 @@ prog
 // Expressions
 
 sexpr		                     
-	:	list               { LispIntRun.output.println("Found sexpr-list: term+."); }
-		|('(' CAR sexpr ')' {LispIntRun.output.println("Found sexpr-CAR.");
+	:	list               { LispIntRun.output.println("Found sexpr - LIST: term+."); }
+		|('(' CAR sexpr ')' {LispIntRun.output.println("S-expression: CAR");
                                     resultcar= atomList.get(0);
                                     atomList.clear();
                                     atomList.add(resultcar);
@@ -40,7 +40,7 @@ sexpr
                                     }
                                     // LispIntRun.output.println("this is the result of car : "+atomList.get(0));
                                     }
-                | '(' CDR sexpr ')' { LispIntRun.output.println("This is a sexpr-CDR.");
+                | '(' CDR sexpr ')' { LispIntRun.output.println("S-expression: CDR");
                                         
                                         atomList.remove(0);
                                         for (int i=0; i<atomList.size();i++ ){
@@ -59,7 +59,7 @@ sexpr
                                         }   
 
                                     }                         
-                | '(' LENGTH sexpr ')' { LispIntRun.output.println("This is a sexpr-LENGTH.");
+                | '(' LENGTH sexpr ')' { LispIntRun.output.println("S-expression: LENGTH");
                                         resultlen=atomList.size();
                                         try{
                                             PrintWriter writerout = null; 
@@ -77,14 +77,14 @@ sexpr
 	;
 
 list                                returns [ArrayList<String> atomList]
-        :       '(' term+ ')'       { LispIntRun.output.println("This is a list of term+: ATOM | sexpr");
+        :       '(' term+ ')'       { LispIntRun.output.println("List of term+: ATOM | sexpr");
                                     }
                                             
         ;
 
 term                                             
 	:	ATOM               { atomList.add($ATOM.text);  
-                                     LispIntRun.output.println("This is a term-ATOM");
+                                     LispIntRun.output.println("Term found: ATOM");
                                    }          
 	|	'(' sexpr ')'      { LispIntRun.output.println("This is a term-sexpr");}
 	;

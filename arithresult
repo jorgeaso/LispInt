@@ -1,0 +1,13 @@
+INPUT CODE:
+---------------------------------------------------
+
+(setq a 10)
+(setq b 2)
+(put (+ (* a a) b))
+
+
+RESULTS:
+---------------------------------------------------
+The source lisp code contains: 
+S-expression: 
+Atoms: 
