@@ -5,6 +5,7 @@ import java.util.*;
 import java.io.*;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.filechooser.FileNameExtensionFilter;
 import org.antlr.runtime.*;
 
 /**
@@ -120,7 +121,8 @@ public class LispIntGUI extends JFrame implements ActionListener {
             if(ae.getSource()==selectButton){
                 // Code to choose the source file
                 JFileChooser chooser = new JFileChooser("/Users/jorgejaso/NetBeansProjects/LispInt_List/LispCode");
-                //chooser.setFileFilter(".lisp");
+                FileNameExtensionFilter extfilter = new FileNameExtensionFilter("lisp files", ("lisp"),("lsp"),("txt"));
+                chooser.setFileFilter(extfilter);
                 int returnVal = chooser.showOpenDialog(LispIntGUI.this);
                 // if file chosen, display file contents
                 if (returnVal == JFileChooser.APPROVE_OPTION){
@@ -134,17 +136,24 @@ public class LispIntGUI extends JFrame implements ActionListener {
             
             if (ae.getSource()==analyzeButton)
             {	    	
+                if (CodeTextArea.getText().equals("")){
+                        JOptionPane.showMessageDialog(null, "Enter Lisp Code or Select Lisp File!", "Warning Message", JOptionPane.WARNING_MESSAGE);
+                }else{
                 // Lisp Code Analysis
-                OutputTextArea.setText("The source lisp code contains: ");
-                OutputTextArea.append("\n S-expression: ");
-                OutputTextArea.append("\n Atoms: ");
+                        OutputTextArea.setText("The source lisp code contains: ");
+                        OutputTextArea.append("\n S-expression: ");
+                        OutputTextArea.append("\n Atoms: ");
+                }
             }
             
             if (ae.getSource()==executeButton){
                 // Execute selected file
                 try {
                     PrintWriter writerout = null; 
-                    writerout = new PrintWriter("/Users/jorgejaso/NetBeansProjects/LispInt_List/LispSource"); 
+                    writerout = new PrintWriter("/Users/jorgejaso/NetBeansProjects/LispInt_List/LispSource");
+                    if (CodeTextArea.getText().equals("")){
+                        JOptionPane.showMessageDialog(null, "Enter Lisp Code or Select Lisp File!", "Warning Message", JOptionPane.WARNING_MESSAGE);
+                    }
                     writerout.println(CodeTextArea.getText());
                     writerout.close();
                     CharStream cs= new ANTLRFileStream("/Users/jorgejaso/NetBeansProjects/LispInt_List/LispSource");
@@ -175,7 +184,7 @@ public class LispIntGUI extends JFrame implements ActionListener {
 
                 try {
                     PrintWriter writerout = null; 
-                    writerout = new PrintWriter("/Users/jorgejaso/NetBeansProjects/LispInt_List/"+ResultFile); 
+                    writerout = new PrintWriter("/Users/jorgejaso/NetBeansProjects/LispInt_List/"+ResultFile+".txt"); 
                     writerout.println("INPUT CODE:");
                     writerout.println("---------------------------------------------------\n");
                     writerout.println(CodeTextArea.getText());

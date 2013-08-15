@@ -1,4 +1,4 @@
-// $ANTLR 3.5 /Users/jorgejaso/NetBeansProjects/LispInt_List/src/Listman.g 2013-08-15 15:36:07
+// $ANTLR 3.5 /Users/jorgejaso/NetBeansProjects/LispInt_List/src/Listman.g 2013-08-15 20:51:01
 
 import java.io.*;
 import java.util.ArrayList;
@@ -49,7 +49,7 @@ public class ListmanParser extends Parser {
 		 Object resultcar, resultcdr;
 	         int i=0, resultlen;
 	         ArrayList atomList = new ArrayList( );
-	         // public static final boolean DEBUG_OUTPUT=false;
+	         private static final boolean DEBUG = true;
 
 
 
@@ -213,14 +213,14 @@ public class ListmanParser extends Parser {
 							                                    atomList.clear();
 							                                    atomList.add(resultcar);
 							                                    try{
-							                                    PrintWriter writerout = null; 
-							                                    writerout = new PrintWriter(new BufferedWriter(new FileWriter("LispOutput", true))); // write to a file and appends the results in case there are more than 1 line
-							                                    writerout.print(atomList.get(0)); // LispIntRun.filewriter.println();
-							                                    writerout.close();
+							                                        PrintWriter writerout = null; 
+							                                        writerout = new PrintWriter(new BufferedWriter(new FileWriter("LispOutput", true))); // write to a file and appends the results in case there are more than 1 line
+							                                        writerout.print(atomList.get(0)); // LispIntRun.filewriter.println();
+							                                        writerout.close();
 							                                    }
 							                                    catch (IOException ioe){
-							                                            System.out.println("File I/O error: ");
-							                                            ioe.printStackTrace(); // print out details of where exception occurred			
+							                                        System.out.println("File I/O error: ");
+							                                        ioe.printStackTrace(); // print out details of where exception occurred			
 							                                    }
 							                                    // LispIntRun.output.println("this is the result of car : "+atomList.get(0));
 							                                    
@@ -248,8 +248,8 @@ public class ListmanParser extends Parser {
 							                                                writerout.close();
 							                                            }
 							                                            catch (IOException ioe){
-							                                                    System.out.println("File I/O error: ");
-							                                                    ioe.printStackTrace(); // print out details of where exception occurred			
+							                                                System.out.println("File I/O error: ");
+							                                                ioe.printStackTrace(); // print out details of where exception occurred			
 							                                            }
 							                                            //LispIntRun.output.println("This is the result of cdr: "+resultcdr);
 							                                        }   

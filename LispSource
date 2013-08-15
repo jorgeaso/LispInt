@@ -1,2 +1,2 @@
-(length (cdr (a b c)))
+car (a b c))
 
