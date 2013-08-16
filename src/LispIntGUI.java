@@ -31,7 +31,7 @@ public class LispIntGUI extends JFrame implements ActionListener {
     public LispIntGUI() {
             setDefaultCloseOperation(EXIT_ON_CLOSE);
             setTitle("Lisp Interpreter: List Manipulation");
-            setSize(700, 400);
+            setSize(700, 520);
             layoutTop();
             layoutMiddle();
             layoutBottom();	
@@ -42,6 +42,7 @@ public class LispIntGUI extends JFrame implements ActionListener {
             JPanel topJPanel = new JPanel();
             topJPanel.setLayout(new BorderLayout());
             JPanel MiddleTop = new JPanel();
+            //MiddleTop.setBackground(Color.black);
             selectButton= new JButton("Select File");
             selectButton.addActionListener(this);
             MiddleTop.add(selectButton);
@@ -54,13 +55,16 @@ public class LispIntGUI extends JFrame implements ActionListener {
             JPanel middleJPanel = new JPanel();
             middleJPanel.setLayout(new BorderLayout());
             JPanel UpperMiddle = new JPanel();
+            //UpperMiddle.setBackground(Color.blue);
             JPanel MiddleMiddle = new JPanel();
+            //MiddleMiddle.setBackground(Color.green);
             JPanel LowerMiddle = new JPanel();
+            //LowerMiddle.setBackground(Color.yellow);
             
             SourceLabel= new JLabel("Source Lisp Code:");
             UpperMiddle.add(SourceLabel, BorderLayout.NORTH);
             
-            CodeTextArea = new JTextArea(7,75);
+            CodeTextArea = new JTextArea(10,75);
             CodeTextArea.setFont(new Font("Courier", Font.PLAIN, 14));
             CodeTextArea.setEditable(true);
             CodeTextArea.setText("");
@@ -87,13 +91,16 @@ public class LispIntGUI extends JFrame implements ActionListener {
             JPanel bottomJPanel = new JPanel();
             bottomJPanel.setLayout(new BorderLayout());
             JPanel UpperBottom = new JPanel();
+            //UpperBottom.setBackground(Color.DARK_GRAY);
             JPanel MiddleBottom = new JPanel();
+            //MiddleBottom.setBackground(Color.gray);
             JPanel LowerBottom = new JPanel();
+            //LowerBottom.setBackground(Color.LIGHT_GRAY);
             
             OutputLabel= new JLabel("Output:");
             UpperBottom.add(OutputLabel, BorderLayout.NORTH);
 
-            OutputTextArea = new JTextArea(7,75);
+            OutputTextArea = new JTextArea(10,75);
             OutputTextArea.setFont(new Font("Courier", Font.PLAIN, 14));
             OutputTextArea.setEditable(false);
             OutputTextArea.setText("");
