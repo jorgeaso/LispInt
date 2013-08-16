@@ -32,6 +32,8 @@ public class LispIntGUI extends JFrame implements ActionListener {
             setDefaultCloseOperation(EXIT_ON_CLOSE);
             setTitle("Lisp Interpreter: List Manipulation");
             setSize(700, 520);
+            setResizable(false);
+            setLocation(300,100);
             layoutTop();
             layoutMiddle();
             layoutBottom();	
