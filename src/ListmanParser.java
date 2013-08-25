@@ -1,4 +1,4 @@
-// $ANTLR 3.5 /Users/jorgejaso/NetBeansProjects/LispInt_List/src/Listman.g 2013-08-15 20:51:01
+// $ANTLR 3.5 /Users/jorgejaso/NetBeansProjects/LispInt_List/src/Listman.g 2013-08-19 17:28:03
 
 import java.io.*;
 import java.util.ArrayList;
@@ -49,7 +49,7 @@ public class ListmanParser extends Parser {
 		 Object resultcar, resultcdr;
 	         int i=0, resultlen;
 	         ArrayList atomList = new ArrayList( );
-	         private static final boolean DEBUG = true;
+	         private static final boolean DEBUG = true;         
 
 
 

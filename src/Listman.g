@@ -11,7 +11,7 @@ import java.util.Iterator;
 	 Object resultcar, resultcdr;
          int i=0, resultlen;
          ArrayList atomList = new ArrayList( );
-         private static final boolean DEBUG = true;
+         private static final boolean DEBUG = true;         
 }
 
 // Programs 
