@@ -11,7 +11,8 @@ import java.util.Iterator;
 	 Object resultcar, resultcdr;
          int i=0, resultlen;
          ArrayList atomList = new ArrayList( );
-         private static final boolean DEBUG = true;         
+         private static final boolean DEBUG = true;     
+         
 }
 
 // Programs 
@@ -23,8 +24,17 @@ prog
 // Expressions
 
 sexpr		                     
-	:	list               { LispIntRun.output.println("Found sexpr - LIST: term+."); }
-		|('(' CAR sexpr ')' {LispIntRun.output.println("S-expression: CAR");
+	:	list               { try{
+                                        PrintWriter writeanalysis = null; 
+                                        writeanalysis = new PrintWriter(new BufferedWriter(new FileWriter("Analysis", true)));
+                                        writeanalysis.print("yes");
+                                     }catch (IOException ioe){
+                                        System.out.println("File I/O error: ");
+                                        ioe.printStackTrace(); // print out details of where exception occurred			
+                                     } 
+                                   }
+		|('(' CAR sexpr ')' {
+                                    LispIntRun.output.println("Found CAR S-expression");
                                     resultcar= atomList.get(0);
                                     atomList.clear();
                                     atomList.add(resultcar);
@@ -40,7 +50,7 @@ sexpr
                                     }
                                     // LispIntRun.output.println("this is the result of car : "+atomList.get(0));
                                     }
-                | '(' CDR sexpr ')' { LispIntRun.output.println("S-expression: CDR");
+                | '(' CDR sexpr ')' { LispIntRun.output.println("Found CDR S-expression");
                                         
                                         atomList.remove(0);
                                         for (int i=0; i<atomList.size();i++ ){
@@ -59,7 +69,7 @@ sexpr
                                         }   
 
                                     }                         
-                | '(' LENGTH sexpr ')' { LispIntRun.output.println("S-expression: LENGTH");
+                | '(' LENGTH sexpr ')' { LispIntRun.output.println("Found LENGTH S-expression");
                                         resultlen=atomList.size();
                                         try{
                                             PrintWriter writerout = null; 
@@ -77,16 +87,16 @@ sexpr
 	;
 
 list                                returns [ArrayList<String> atomList]
-        :       '(' term+ ')'       { LispIntRun.output.println("List of term+: ATOM | sexpr");
+        :       '(' term+ ')'       { LispIntRun.output.println("Found a LIST composed by one or more atoms");
                                     }
                                             
         ;
 
 term                                             
 	:	ATOM               { atomList.add($ATOM.text);  
-                                     LispIntRun.output.println("Term found: ATOM");
+                                     LispIntRun.output.println("Found Atom");
                                    }          
-	|	'(' sexpr ')'      { LispIntRun.output.println("This is a term-sexpr");}
+	|	'(' sexpr ')'      { LispIntRun.output.println("Found S-expression");}
 	;
 
 // Lexer rules
