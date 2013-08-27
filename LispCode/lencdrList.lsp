@@ -1,1 +1,1 @@
-(length (cdr (a b c)))
+(length (cdr (atom1 atom2 atom3 atom4 atom5)))

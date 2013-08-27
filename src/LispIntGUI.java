@@ -73,12 +73,12 @@ public class LispIntGUI extends JFrame implements ActionListener {
             JScrollPane scrollPane = new JScrollPane(CodeTextArea);
             MiddleMiddle.add(scrollPane,BorderLayout.CENTER);
             
-            analyzeButton = new JButton("Analyze");
-            analyzeButton.addActionListener(this);
             executeButton = new JButton("Execute");
             executeButton.addActionListener(this);
-            LowerMiddle.add(analyzeButton, BorderLayout.SOUTH);
+            analyzeButton = new JButton("Analyze");
+            analyzeButton.addActionListener(this);
             LowerMiddle.add(executeButton, BorderLayout.SOUTH);
+            LowerMiddle.add(analyzeButton, BorderLayout.SOUTH);
 
             middleJPanel.add(UpperMiddle, BorderLayout.NORTH);
             middleJPanel.add(MiddleMiddle, BorderLayout.CENTER);
@@ -151,16 +151,37 @@ public class LispIntGUI extends JFrame implements ActionListener {
             {	    	
                 if (CodeTextArea.getText().equals("")){
                         JOptionPane.showMessageDialog(null, "Enter Lisp Code or Select Lisp File!", "Warning Message", JOptionPane.WARNING_MESSAGE);
-                }else{
-                // Lisp Code Analysis
-                        OutputTextArea.setText("The source lisp code contains: ");
-                        OutputTextArea.append("\n S-expression: ");
-                        OutputTextArea.append("\n Atoms: ");
+                }else if (OutputTextArea.getText().equals("")){
+                        JOptionPane.showMessageDialog(null, "First EXECUTE lisp code to display analysis", "Warning Message", JOptionPane.WARNING_MESSAGE);
+                }       
+                else{
+                    // Display Analysis
+                    try{    
+                    FileReader reader = new FileReader("./analysis.txt");
+                    Scanner in = new Scanner(reader);
+                    OutputTextArea.setText("");
+                    while (in.hasNextLine()) { 
+                        OutputTextArea.append(in.nextLine());
+                        OutputTextArea.append("\n");
+                    }
+                    reader.close(); 
+                    }catch(IOException e){
+                        JOptionPane.showMessageDialog(null, "Error on analysis file \n", "Error Message", JOptionPane.ERROR_MESSAGE);
+                    }
                 }
             }
             
             if (ae.getSource()==executeButton){
                 // Execute selected file
+                LispIntRun.file = new File("analysis.txt");
+                try {
+                    LispIntRun.fos = new FileOutputStream(LispIntRun.file);
+                } catch (FileNotFoundException ex) {
+                    Logger.getLogger(LispIntGUI.class.getName()).log(Level.SEVERE, null, ex);
+                }
+                LispIntRun.ps = new PrintStream(LispIntRun.fos);
+                System.setOut(LispIntRun.ps);
+                
                 try {
                     PrintWriter writerout = null; 
                     writerout = new PrintWriter("./LispSource");
@@ -203,7 +224,7 @@ public class LispIntGUI extends JFrame implements ActionListener {
                     writerout.println("INPUT CODE:");
                     writerout.println("---------------------------------------------------\n");
                     writerout.println(CodeTextArea.getText());
-                    writerout.println("\nRESULTS:");
+                    writerout.println("\nOUTPUT:");
                     writerout.println("---------------------------------------------------");
                     writerout.println(OutputTextArea.getText());
                     JOptionPane.showMessageDialog(null, "File saved.", "Information Message", JOptionPane.INFORMATION_MESSAGE);

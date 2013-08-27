@@ -1,4 +1,4 @@
-// $ANTLR 3.5 /Users/jorgejaso/NetBeansProjects/LispInt_List/src/Listman.g 2013-08-26 20:08:40
+// $ANTLR 3.5 /Users/jorgejaso/NetBeansProjects/LispInt_List/src/Listman.g 2013-08-27 04:12:00
 
 import java.io.*;
 import java.util.ArrayList;
@@ -153,21 +153,14 @@ public class ListmanParser extends Parser {
 					list();
 					state._fsp--;
 
-					 try{
-					                                        PrintWriter writeanalysis = null; 
-					                                        writeanalysis = new PrintWriter(new BufferedWriter(new FileWriter("Analysis", true)));
-					                                        writeanalysis.print("yes");
-					                                     }catch (IOException ioe){
-					                                        System.out.println("File I/O error: ");
-					                                        ioe.printStackTrace(); // print out details of where exception occurred			
-					                                     } 
+					 
 					                                   
 					}
 					break;
 				case 2 :
-					// /Users/jorgejaso/NetBeansProjects/LispInt_List/src/Listman.g:36:4: ( '(' CAR sexpr ')' | '(' CDR sexpr ')' | '(' LENGTH sexpr ')' )
+					// /Users/jorgejaso/NetBeansProjects/LispInt_List/src/Listman.g:29:4: ( '(' CAR sexpr ')' | '(' CDR sexpr ')' | '(' LENGTH sexpr ')' )
 					{
-					// /Users/jorgejaso/NetBeansProjects/LispInt_List/src/Listman.g:36:4: ( '(' CAR sexpr ')' | '(' CDR sexpr ')' | '(' LENGTH sexpr ')' )
+					// /Users/jorgejaso/NetBeansProjects/LispInt_List/src/Listman.g:29:4: ( '(' CAR sexpr ')' | '(' CDR sexpr ')' | '(' LENGTH sexpr ')' )
 					int alt2=3;
 					int LA2_0 = input.LA(1);
 					if ( (LA2_0==LPAR) ) {
@@ -208,7 +201,7 @@ public class ListmanParser extends Parser {
 
 					switch (alt2) {
 						case 1 :
-							// /Users/jorgejaso/NetBeansProjects/LispInt_List/src/Listman.g:36:5: '(' CAR sexpr ')'
+							// /Users/jorgejaso/NetBeansProjects/LispInt_List/src/Listman.g:29:5: '(' CAR sexpr ')'
 							{
 							match(input,LPAR,FOLLOW_LPAR_in_sexpr101); 
 							match(input,CAR,FOLLOW_CAR_in_sexpr103); 
@@ -218,7 +211,7 @@ public class ListmanParser extends Parser {
 
 							match(input,RPAR,FOLLOW_RPAR_in_sexpr107); 
 
-							                                    LispIntRun.output.println("Found CAR S-expression");
+							                                    LispIntRun.ps.println("Found CAR S-expression");
 							                                    resultcar= atomList.get(0);
 							                                    atomList.clear();
 							                                    atomList.add(resultcar);
@@ -237,7 +230,7 @@ public class ListmanParser extends Parser {
 							}
 							break;
 						case 2 :
-							// /Users/jorgejaso/NetBeansProjects/LispInt_List/src/Listman.g:53:19: '(' CDR sexpr ')'
+							// /Users/jorgejaso/NetBeansProjects/LispInt_List/src/Listman.g:46:19: '(' CDR sexpr ')'
 							{
 							match(input,LPAR,FOLLOW_LPAR_in_sexpr129); 
 							match(input,CDR,FOLLOW_CDR_in_sexpr131); 
@@ -246,7 +239,7 @@ public class ListmanParser extends Parser {
 							state._fsp--;
 
 							match(input,RPAR,FOLLOW_RPAR_in_sexpr135); 
-							 LispIntRun.output.println("Found CDR S-expression");
+							 LispIntRun.ps.println("Found CDR S-expression");
 							                                        
 							                                        atomList.remove(0);
 							                                        for (int i=0; i<atomList.size();i++ ){
@@ -268,7 +261,7 @@ public class ListmanParser extends Parser {
 							}
 							break;
 						case 3 :
-							// /Users/jorgejaso/NetBeansProjects/LispInt_List/src/Listman.g:72:19: '(' LENGTH sexpr ')'
+							// /Users/jorgejaso/NetBeansProjects/LispInt_List/src/Listman.g:65:19: '(' LENGTH sexpr ')'
 							{
 							match(input,LPAR,FOLLOW_LPAR_in_sexpr182); 
 							match(input,LENGTH,FOLLOW_LENGTH_in_sexpr184); 
@@ -277,7 +270,7 @@ public class ListmanParser extends Parser {
 							state._fsp--;
 
 							match(input,RPAR,FOLLOW_RPAR_in_sexpr188); 
-							 LispIntRun.output.println("Found LENGTH S-expression");
+							 LispIntRun.ps.println("Found LENGTH S-expression");
 							                                        resultlen=atomList.size();
 							                                        try{
 							                                            PrintWriter writerout = null; 
@@ -314,17 +307,17 @@ public class ListmanParser extends Parser {
 
 
 	// $ANTLR start "list"
-	// /Users/jorgejaso/NetBeansProjects/LispInt_List/src/Listman.g:89:1: list returns [ArrayList<String> atomList] : '(' ( term )+ ')' ;
+	// /Users/jorgejaso/NetBeansProjects/LispInt_List/src/Listman.g:82:1: list returns [ArrayList<String> atomList] : '(' ( term )+ ')' ;
 	public final ArrayList<String> list() throws RecognitionException {
 		ArrayList<String> atomList = null;
 
 
 		try {
-			// /Users/jorgejaso/NetBeansProjects/LispInt_List/src/Listman.g:90:9: ( '(' ( term )+ ')' )
-			// /Users/jorgejaso/NetBeansProjects/LispInt_List/src/Listman.g:90:17: '(' ( term )+ ')'
+			// /Users/jorgejaso/NetBeansProjects/LispInt_List/src/Listman.g:83:9: ( '(' ( term )+ ')' )
+			// /Users/jorgejaso/NetBeansProjects/LispInt_List/src/Listman.g:83:17: '(' ( term )+ ')'
 			{
 			match(input,LPAR,FOLLOW_LPAR_in_list292); 
-			// /Users/jorgejaso/NetBeansProjects/LispInt_List/src/Listman.g:90:21: ( term )+
+			// /Users/jorgejaso/NetBeansProjects/LispInt_List/src/Listman.g:83:21: ( term )+
 			int cnt4=0;
 			loop4:
 			while (true) {
@@ -336,7 +329,7 @@ public class ListmanParser extends Parser {
 
 				switch (alt4) {
 				case 1 :
-					// /Users/jorgejaso/NetBeansProjects/LispInt_List/src/Listman.g:90:21: term
+					// /Users/jorgejaso/NetBeansProjects/LispInt_List/src/Listman.g:83:21: term
 					{
 					pushFollow(FOLLOW_term_in_list294);
 					term();
@@ -354,7 +347,7 @@ public class ListmanParser extends Parser {
 			}
 
 			match(input,RPAR,FOLLOW_RPAR_in_list297); 
-			 LispIntRun.output.println("Found a LIST composed by one or more atoms");
+			 LispIntRun.ps.println("Found a LIST composed by one or more atoms");
 			                                    
 			}
 
@@ -373,12 +366,12 @@ public class ListmanParser extends Parser {
 
 
 	// $ANTLR start "term"
-	// /Users/jorgejaso/NetBeansProjects/LispInt_List/src/Listman.g:95:1: term : ( ATOM | '(' sexpr ')' );
+	// /Users/jorgejaso/NetBeansProjects/LispInt_List/src/Listman.g:88:1: term : ( ATOM | '(' sexpr ')' );
 	public final void term() throws RecognitionException {
 		Token ATOM1=null;
 
 		try {
-			// /Users/jorgejaso/NetBeansProjects/LispInt_List/src/Listman.g:96:2: ( ATOM | '(' sexpr ')' )
+			// /Users/jorgejaso/NetBeansProjects/LispInt_List/src/Listman.g:89:2: ( ATOM | '(' sexpr ')' )
 			int alt5=2;
 			int LA5_0 = input.LA(1);
 			if ( (LA5_0==ATOM) ) {
@@ -396,16 +389,16 @@ public class ListmanParser extends Parser {
 
 			switch (alt5) {
 				case 1 :
-					// /Users/jorgejaso/NetBeansProjects/LispInt_List/src/Listman.g:96:4: ATOM
+					// /Users/jorgejaso/NetBeansProjects/LispInt_List/src/Listman.g:89:4: ATOM
 					{
 					ATOM1=(Token)match(input,ATOM,FOLLOW_ATOM_in_term413); 
 					 atomList.add((ATOM1!=null?ATOM1.getText():null));  
-					                                     LispIntRun.output.println("Found Atom");
+					                                     LispIntRun.ps.println("Found Atom");
 					                                   
 					}
 					break;
 				case 2 :
-					// /Users/jorgejaso/NetBeansProjects/LispInt_List/src/Listman.g:99:4: '(' sexpr ')'
+					// /Users/jorgejaso/NetBeansProjects/LispInt_List/src/Listman.g:92:4: '(' sexpr ')'
 					{
 					match(input,LPAR,FOLLOW_LPAR_in_term444); 
 					pushFollow(FOLLOW_sexpr_in_term446);
@@ -413,7 +406,7 @@ public class ListmanParser extends Parser {
 					state._fsp--;
 
 					match(input,RPAR,FOLLOW_RPAR_in_term448); 
-					 LispIntRun.output.println("Found S-expression");
+					 LispIntRun.ps.println("Found S-expression");
 					}
 					break;
 
