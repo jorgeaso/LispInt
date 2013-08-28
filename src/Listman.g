@@ -11,7 +11,16 @@ import java.util.Iterator;
 	 Object resultcar, resultcdr;
          int i=0, resultlen;
          ArrayList atomList = new ArrayList( );
-         private static final boolean DEBUG = true;     
+         private static final boolean DEBUG = true;  
+
+         // Error Handling
+        public void displayRecognitionError(String[] tokenNames,
+                                        RecognitionException e) {
+        String hdr = getErrorHeader(e);
+        String msg = getErrorMessage(e, tokenNames);        
+        if (!msg.equals(""))
+           System.err.println(" Lisp Sintax Error in "+hdr+"\n"); 
+        }
          
 }
 
